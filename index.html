@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mi Cine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #0b0b0d;
+    --panel: #161619;
+    --card: #1c1c20;
+    --red: #c8102e;
+    --gold: #d4af37;
+    --text: #f2f0ea;
+    --muted: #8a8a8f;
+    --border: #2a2a2f;
+  }
+  *{ box-sizing: border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', system-ui, sans-serif;
+    min-height: 100vh;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+  input, textarea{
+    -webkit-user-select: text;
+    -moz-user-select: text;
+    user-select: text;
+  }
+  img{ -webkit-user-drag: none; user-drag: none; pointer-events: none; }
+
+  /* ---------- Header / marquee ---------- */
+  header{
+    position: relative;
+    padding: 34px 20px 22px;
+    text-align: center;
+    background:
+      repeating-linear-gradient(90deg, var(--border) 0 2px, transparent 2px 18px) top / 100% 6px no-repeat,
+      repeating-linear-gradient(90deg, var(--border) 0 2px, transparent 2px 18px) bottom / 100% 6px no-repeat;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(2.4rem, 6vw, 3.6rem);
+    letter-spacing: 4px;
+    margin: 0;
+    color: var(--text);
+  }
+  header h1 span{ color: var(--red); }
+  header p{
+    margin: 6px 0 0;
+    color: var(--muted);
+    font-size: 0.85rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  #searchBox{
+    margin-top: 18px;
+    width: min(420px, 90%);
+    padding: 10px 16px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    background: var(--panel);
+    color: var(--text);
+    font-size: 0.95rem;
+    outline: none;
+  }
+  #searchBox:focus{ border-color: var(--gold); }
+
+  /* ---------- Grid ---------- */
+  main{ padding: 28px clamp(16px, 4vw, 48px) 60px; }
+  #grid{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+  }
+  @media (min-width: 560px){ #grid{ grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 800px){ #grid{ grid-template-columns: repeat(4, 1fr); } }
+
+  /* ---------- Paginación ---------- */
+  #pagination{
+    display: none;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    margin-top: 30px;
+  }
+  #pagination.show{ display: flex; }
+  #pagination button{
+    background: var(--panel);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  #pagination button:hover:not(:disabled){ border-color: var(--gold); }
+  #pagination button:disabled{ opacity: .35; cursor: default; }
+  #pageLabel{
+    font-size: 0.85rem;
+    color: var(--muted);
+    letter-spacing: .5px;
+  }
+  .card{
+    position: relative;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+  }
+  .card:hover, .card:focus-within{
+    transform: translateY(-4px);
+    border-color: var(--gold);
+    box-shadow: 0 10px 24px rgba(0,0,0,.5);
+  }
+  .poster-wrap{
+    aspect-ratio: 2/3;
+    background: linear-gradient(160deg, #2a2a30, #141416);
+    display:flex; align-items:center; justify-content:center;
+    overflow: hidden;
+  }
+  .poster-wrap img{
+    width: 100%; height: 100%; object-fit: cover; display:block;
+  }
+  .poster-fallback{
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 2.4rem;
+    color: var(--muted);
+    letter-spacing: 2px;
+    text-align: center;
+    padding: 0 10px;
+  }
+  .card-title{
+    padding: 10px 10px 12px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    line-height: 1.25;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .overlay{
+    position: absolute; inset: 0;
+    background: linear-gradient(180deg, rgba(11,11,13,.15) 0%, rgba(11,11,13,.96) 78%);
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 14px;
+    opacity: 0;
+    transform: translateY(6px);
+    transition: opacity .2s ease, transform .2s ease;
+    pointer-events: none;
+  }
+  .card:hover .overlay, .card.touch-active .overlay, .card:focus-within .overlay{
+    opacity: 1; transform: translateY(0);
+    pointer-events: auto;
+  }
+  .overlay-desc{
+    font-size: 0.8rem;
+    color: var(--muted);
+    max-height: 110px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    line-height: 1.35;
+  }
+  .play-btn{
+    align-self: flex-start;
+    background: var(--red);
+    color: #fff;
+    border: none;
+    padding: 7px 14px;
+    border-radius: 6px;
+    font-size: 0.82rem;
+    font-weight: 700;
+    cursor: pointer;
+    letter-spacing: .5px;
+  }
+  .play-btn:hover{ background: #a30d24; }
+
+  #emptyMsg{
+    display:none;
+    text-align:center;
+    color: var(--muted);
+    padding: 60px 20px;
+    font-size: 0.95rem;
+  }
+
+  /* ---------- Modal reproductor ---------- */
+  #playerModal{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.92);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 500;
+    padding: 20px;
+  }
+  #playerModal.open{ display: flex; }
+  #playerFrame{
+    width: min(1000px, 100%);
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  #playerFrame iframe{ width:100%; height:100%; border:0; }
+  #closePlayer{
+    position: absolute;
+    top: 18px; right: 24px;
+    background: none; border: none;
+    color: var(--text); font-size: 2rem;
+    cursor: pointer; line-height: 1;
+  }
+
+  /* ---------- Panel oculto ---------- */
+  #adminPanel{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.85);
+    display: none;
+    align-items: flex-start; justify-content: center;
+    z-index: 600;
+    padding: 30px 16px;
+    overflow-y: auto;
+  }
+  #adminPanel.open{ display: flex; }
+  .admin-box{
+    background: var(--panel);
+    border: 1px solid var(--gold);
+    border-radius: 10px;
+    width: min(560px, 100%);
+    padding: 24px;
+  }
+  .admin-box h2{
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    color: var(--gold);
+    margin: 0 0 4px;
+    font-size: 1.6rem;
+  }
+  .admin-box .hint{ color: var(--muted); font-size: 0.78rem; margin-bottom: 18px; }
+  .admin-box label{
+    display:block; font-size: 0.78rem; color: var(--muted);
+    margin: 14px 0 5px; text-transform: uppercase; letter-spacing: .5px;
+  }
+  .admin-box input, .admin-box textarea{
+    width: 100%;
+    background: #101012;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    color: var(--text);
+    padding: 9px 11px;
+    font-family: inherit;
+    font-size: 0.88rem;
+    resize: vertical;
+  }
+  .admin-box textarea{ min-height: 70px; }
+  .admin-actions{ display:flex; gap: 10px; margin-top: 20px; flex-wrap: wrap; }
+  .btn{
+    padding: 9px 16px;
+    border-radius: 6px;
+    border: none;
+    font-weight: 700;
+    font-size: 0.85rem;
+    cursor: pointer;
+  }
+  .btn-primary{ background: var(--red); color:#fff; }
+  .btn-primary:hover{ background: #a30d24; }
+  .btn-secondary{ background: transparent; border: 1px solid var(--border); color: var(--text); }
+  .btn-secondary:hover{ border-color: var(--gold); }
+  .btn-close{ margin-left:auto; }
+
+  .admin-list{ margin-top: 22px; border-top: 1px solid var(--border); padding-top: 14px; }
+  .admin-list h3{ font-size: 0.85rem; color: var(--muted); text-transform: uppercase; letter-spacing: .5px; margin: 0 0 10px; }
+  .admin-item{
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 10px;
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .admin-item button{
+    background: none; border: 1px solid var(--red); color: var(--red);
+    border-radius: 5px; padding: 4px 9px; font-size: 0.75rem; cursor: pointer;
+  }
+  .admin-item button:hover{ background: var(--red); color: #fff; }
+  #importFile{ display:none; }
+  .status-msg{ font-size: 0.78rem; color: var(--gold); min-height: 16px; margin-top: 6px; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <h1>MI <span>CINE</span></h1>
+  <p>Tu colección personal de películas</p>
+  <input id="searchBox" type="text" placeholder="Buscar por título...">
+</header>
+
+<main>
+  <div id="grid"></div>
+  <div id="emptyMsg">No se encontraron películas. Usa el panel oculto para agregar la primera.</div>
+  <div id="pagination">
+    <button id="prevPage">&larr; Anterior</button>
+    <span id="pageLabel">Página 1 de 1</span>
+    <button id="nextPage">Siguiente &rarr;</button>
+  </div>
+</main>
+
+<!-- Reproductor -->
+<div id="playerModal">
+  <button id="closePlayer" aria-label="Cerrar">&times;</button>
+  <div id="playerFrame"></div>
+</div>
+
+<!-- Panel oculto -->
+<div id="adminPanel">
+  <div class="admin-box">
+    <h2 id="formHeading">Panel de administración</h2>
+    <p class="hint">Ctrl + Alt + P (o toca el título 5 veces en móvil) para abrir/cerrar este panel.</p>
+
+    <label for="fTitle">Título</label>
+    <input id="fTitle" type="text" placeholder="Nombre de la película">
+
+    <label for="fPoster">URL de la portada (imagen)</label>
+    <input id="fPoster" type="text" placeholder="https://...">
+
+    <label for="fDesc">Descripción</label>
+    <textarea id="fDesc" placeholder="Sinopsis breve..."></textarea>
+
+    <label for="fEmbed">Código / enlace del reproductor</label>
+    <textarea id="fEmbed" placeholder="Pega aquí el <iframe ...></iframe> o solo la URL, ej: https://bysekoze.com/e/xxxxx"></textarea>
+
+    <div class="admin-actions">
+      <button class="btn btn-primary" id="addMovieBtn">Agregar película</button>
+      <button class="btn btn-secondary" id="cancelEditBtn" style="display:none;">Cancelar edición</button>
+      <button class="btn btn-secondary" id="saveJsonBtn">💾 Descargar movies.json</button>
+      <button class="btn btn-secondary" id="reloadJsonBtn">↺ Recargar desde movies.json</button>
+      <button class="btn btn-secondary" id="exportBtn">Exportar respaldo (.json)</button>
+      <button class="btn btn-secondary" id="importBtn">Importar respaldo</button>
+      <button class="btn btn-secondary btn-close" id="closeAdminBtn">Cerrar</button>
+    </div>
+    <p class="hint" style="margin-top:10px;">Tus cambios se guardan primero en este navegador. Para publicarlos para todos: descarga <strong>movies.json</strong> y súbelo a tu repositorio de GitHub Pages (mismo lugar que el HTML), reemplazando el archivo anterior.</p>
+    <input type="file" id="importFile" accept="application/json">
+    <div class="status-msg" id="statusMsg"></div>
+
+    <div class="admin-list">
+      <h3>Películas guardadas</h3>
+      <div id="adminList"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+  const STORAGE_KEY = 'miCine.movies';
+  const JSON_FILE = 'movies.json';
+
+  async function fetchInitialMovies(){
+    // 1) Si ya hay ediciones locales sin publicar en este navegador, usarlas.
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
+    // 2) Si no, cargar el archivo movies.json publicado junto al HTML.
+    try{
+      const res = await fetch(JSON_FILE, { cache: 'no-store' });
+      if(res.ok){
+        const data = await res.json();
+        if(Array.isArray(data)){
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+          return data;
+        }
+      }
+    }catch(e){
+      console.warn('No se pudo cargar ' + JSON_FILE, e);
+    }
+    return [];
+  }
+  function saveMovies(list){
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+  }
+
+  let movies = [];
+
+  const grid = document.getElementById('grid');
+  const emptyMsg = document.getElementById('emptyMsg');
+  const searchBox = document.getElementById('searchBox');
+  const pagination = document.getElementById('pagination');
+  const pageLabel = document.getElementById('pageLabel');
+  const prevPageBtn = document.getElementById('prevPage');
+  const nextPageBtn = document.getElementById('nextPage');
+
+  const PAGE_SIZE = 16; // máx. 16 por página (4 columnas x 4 filas)
+  let currentPage = 1;
+  let lastFilter = '';
+
+  function escapeHtml(str){
+    const d = document.createElement('div');
+    d.textContent = str || '';
+    return d.innerHTML;
+  }
+
+  function renderGrid(filter, page){
+    if(filter === undefined) filter = lastFilter;
+    lastFilter = filter;
+
+    const term = (filter || '').trim().toLowerCase();
+    const fullList = term ? movies.filter(m => m.title.toLowerCase().includes(term)) : movies;
+
+    const totalPages = Math.max(1, Math.ceil(fullList.length / PAGE_SIZE));
+    if(page !== undefined) currentPage = page;
+    if(currentPage > totalPages) currentPage = totalPages;
+    if(currentPage < 1) currentPage = 1;
+
+    const start = (currentPage - 1) * PAGE_SIZE;
+    const list = fullList.slice(start, start + PAGE_SIZE);
+
+    grid.innerHTML = '';
+    emptyMsg.style.display = fullList.length ? 'none' : 'block';
+
+    pagination.classList.toggle('show', totalPages > 1);
+    pageLabel.textContent = `Página ${currentPage} de ${totalPages}`;
+    prevPageBtn.disabled = currentPage <= 1;
+    nextPageBtn.disabled = currentPage >= totalPages;
+
+    list.forEach(movie => {
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.tabIndex = 0;
+
+      const posterHtml = movie.poster
+        ? `<img src="${escapeHtml(movie.poster)}" alt="${escapeHtml(movie.title)}" onerror="this.parentElement.innerHTML='<div class=poster-fallback>${escapeHtml(movie.title)}</div>'">`
+        : `<div class="poster-fallback">${escapeHtml(movie.title)}</div>`;
+
+      card.innerHTML = `
+        <div class="poster-wrap">${posterHtml}</div>
+        <div class="card-title">${escapeHtml(movie.title)}</div>
+        <div class="overlay">
+          <div class="overlay-desc">${escapeHtml(movie.desc) || 'Sin descripción.'}</div>
+          <button class="play-btn">Ver película</button>
+        </div>
+      `;
+
+      // Desktop: hover ya lo maneja el CSS. Touch: primer toque muestra overlay.
+      card.addEventListener('click', (e) => {
+        const isTouch = matchMedia('(hover: none)').matches;
+        if(isTouch && !card.classList.contains('touch-active')){
+          e.preventDefault();
+          document.querySelectorAll('.card.touch-active').forEach(c => c !== card && c.classList.remove('touch-active'));
+          card.classList.add('touch-active');
+          return;
+        }
+        if(e.target.classList.contains('play-btn') || !isTouch){
+          openPlayer(movie);
+        }
+      });
+
+      const playBtn = card.querySelector('.play-btn');
+      playBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPlayer(movie);
+      });
+
+      grid.appendChild(card);
+    });
+  }
+
+  function openPlayer(movie){
+    if(!movie.embed){
+      alert('Esta película todavía no tiene un reproductor asignado.');
+      return;
+    }
+    const frame = document.getElementById('playerFrame');
+    const raw = movie.embed.trim();
+    if(raw.startsWith('<iframe')){
+      frame.innerHTML = raw;
+    } else {
+      frame.innerHTML = `<iframe src="${escapeHtml(raw)}" allowfullscreen frameborder="0"></iframe>`;
+    }
+    document.getElementById('playerModal').classList.add('open');
+  }
+  function closePlayer(){
+    document.getElementById('playerModal').classList.remove('open');
+    document.getElementById('playerFrame').innerHTML = '';
+  }
+  document.getElementById('closePlayer').addEventListener('click', closePlayer);
+  document.getElementById('playerModal').addEventListener('click', (e) => {
+    if(e.target.id === 'playerModal') closePlayer();
+  });
+
+  searchBox.addEventListener('input', () => renderGrid(searchBox.value, 1));
+  prevPageBtn.addEventListener('click', () => renderGrid(undefined, currentPage - 1));
+  nextPageBtn.addEventListener('click', () => renderGrid(undefined, currentPage + 1));
+
+  /* ---------- Panel oculto ---------- */
+  const adminPanel = document.getElementById('adminPanel');
+  function toggleAdmin(){
+    adminPanel.classList.toggle('open');
+    if(adminPanel.classList.contains('open')) renderAdminList();
+  }
+  document.addEventListener('keydown', (e) => {
+    if(e.ctrlKey && e.altKey && e.key.toLowerCase() === 'p'){
+      e.preventDefault();
+      toggleAdmin();
+    }
+  });
+  // Acceso alterno en móvil: 5 toques rápidos sobre el título
+  let tapCount = 0, tapTimer = null;
+  document.querySelector('header h1').addEventListener('click', () => {
+    tapCount++;
+    clearTimeout(tapTimer);
+    tapTimer = setTimeout(() => { tapCount = 0; }, 1500);
+    if(tapCount >= 5){ tapCount = 0; toggleAdmin(); }
+  });
+  document.getElementById('closeAdminBtn').addEventListener('click', toggleAdmin);
+
+  function setStatus(msg){
+    const el = document.getElementById('statusMsg');
+    el.textContent = msg;
+    setTimeout(() => { if(el.textContent === msg) el.textContent = ''; }, 3000);
+  }
+
+  let editingId = null;
+  const addMovieBtn = document.getElementById('addMovieBtn');
+  const cancelEditBtn = document.getElementById('cancelEditBtn');
+  const formHeading = document.getElementById('formHeading');
+
+  function clearForm(){
+    document.getElementById('fTitle').value = '';
+    document.getElementById('fPoster').value = '';
+    document.getElementById('fDesc').value = '';
+    document.getElementById('fEmbed').value = '';
+  }
+
+  function startEdit(movie){
+    editingId = movie.id;
+    document.getElementById('fTitle').value = movie.title || '';
+    document.getElementById('fPoster').value = movie.poster || '';
+    document.getElementById('fDesc').value = movie.desc || '';
+    document.getElementById('fEmbed').value = movie.embed || '';
+    addMovieBtn.textContent = 'Guardar cambios';
+    formHeading.textContent = 'Editando: ' + movie.title;
+    cancelEditBtn.style.display = 'inline-block';
+    document.getElementById('fTitle').scrollIntoView({behavior:'smooth', block:'center'});
+  }
+
+  function stopEdit(){
+    editingId = null;
+    addMovieBtn.textContent = 'Agregar película';
+    formHeading.textContent = 'Panel de administración';
+    cancelEditBtn.style.display = 'none';
+    clearForm();
+  }
+
+  cancelEditBtn.addEventListener('click', stopEdit);
+
+  addMovieBtn.addEventListener('click', () => {
+    const title = document.getElementById('fTitle').value.trim();
+    const poster = document.getElementById('fPoster').value.trim();
+    const desc = document.getElementById('fDesc').value.trim();
+    const embed = document.getElementById('fEmbed').value.trim();
+
+    if(!title){ setStatus('Falta el título.'); return; }
+
+    if(editingId){
+      const m = movies.find(x => x.id === editingId);
+      if(m){
+        m.title = title; m.poster = poster; m.desc = desc; m.embed = embed;
+        setStatus('Cambios guardados.');
+      }
+      stopEdit();
+    } else {
+      movies.push({ id: crypto.randomUUID(), title, poster, desc, embed });
+      setStatus('Película agregada.');
+      clearForm();
+    }
+
+    saveMovies(movies);
+    renderGrid(searchBox.value);
+    renderAdminList();
+  });
+
+  function moveMovie(fromIndex, toIndex){
+    if(toIndex < 0 || toIndex >= movies.length) return;
+    const [item] = movies.splice(fromIndex, 1);
+    movies.splice(toIndex, 0, item);
+    saveMovies(movies);
+    renderGrid(searchBox.value);
+    renderAdminList();
+  }
+
+  let dragFromIndex = null;
+
+  function renderAdminList(){
+    const container = document.getElementById('adminList');
+    container.innerHTML = '';
+    movies.forEach((m, index) => {
+      const row = document.createElement('div');
+      row.className = 'admin-item';
+      row.draggable = true;
+      row.dataset.index = index;
+
+      row.addEventListener('dragstart', (e) => {
+        dragFromIndex = index;
+        row.style.opacity = '.4';
+        e.dataTransfer.effectAllowed = 'move';
+      });
+      row.addEventListener('dragend', () => { row.style.opacity = '1'; });
+      row.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        row.style.borderTop = '2px solid var(--gold)';
+      });
+      row.addEventListener('dragleave', () => { row.style.borderTop = ''; });
+      row.addEventListener('drop', (e) => {
+        e.preventDefault();
+        row.style.borderTop = '';
+        if(dragFromIndex === null || dragFromIndex === index) return;
+        moveMovie(dragFromIndex, index);
+        dragFromIndex = null;
+      });
+
+      const handle = document.createElement('span');
+      handle.textContent = '⠿ ';
+      handle.style.cursor = 'grab';
+      handle.style.color = 'var(--muted)';
+
+      const label = document.createElement('span');
+      label.textContent = m.title;
+      label.style.flex = '1';
+      label.style.marginLeft = '4px';
+      label.style.overflow = 'hidden';
+      label.style.textOverflow = 'ellipsis';
+      label.style.whiteSpace = 'nowrap';
+
+      const left = document.createElement('span');
+      left.style.display = 'flex';
+      left.style.alignItems = 'center';
+      left.style.flex = '1';
+      left.style.minWidth = '0';
+      left.appendChild(handle);
+      left.appendChild(label);
+
+      const btnGroup = document.createElement('span');
+      btnGroup.style.display = 'flex';
+      btnGroup.style.gap = '6px';
+      btnGroup.style.flexShrink = '0';
+
+      const upBtn = document.createElement('button');
+      upBtn.textContent = '↑';
+      upBtn.disabled = index === 0;
+      upBtn.addEventListener('click', () => moveMovie(index, index - 1));
+
+      const downBtn = document.createElement('button');
+      downBtn.textContent = '↓';
+      downBtn.disabled = index === movies.length - 1;
+      downBtn.addEventListener('click', () => moveMovie(index, index + 1));
+
+      const editBtn = document.createElement('button');
+      editBtn.textContent = 'Editar';
+      editBtn.style.borderColor = 'var(--gold)';
+      editBtn.style.color = 'var(--gold)';
+      editBtn.addEventListener('click', () => startEdit(m));
+
+      const delBtn = document.createElement('button');
+      delBtn.textContent = 'Eliminar';
+      delBtn.addEventListener('click', () => {
+        if(!confirm('¿Eliminar "' + m.title + '"?')) return;
+        movies = movies.filter(x => x.id !== m.id);
+        saveMovies(movies);
+        renderGrid(searchBox.value);
+        renderAdminList();
+        if(editingId === m.id) stopEdit();
+      });
+
+      btnGroup.appendChild(upBtn);
+      btnGroup.appendChild(downBtn);
+      btnGroup.appendChild(editBtn);
+      btnGroup.appendChild(delBtn);
+      row.appendChild(left);
+      row.appendChild(btnGroup);
+      container.appendChild(row);
+    });
+  }
+
+  document.getElementById('exportBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(movies, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = 'mi-cine-respaldo.json';
+    a.click();
+    URL.revokeObjectURL(url);
+    setStatus('Respaldo descargado.');
+  });
+
+  document.getElementById('importBtn').addEventListener('click', () => {
+    document.getElementById('importFile').click();
+  });
+  document.getElementById('importFile').addEventListener('change', (e) => {
+    const file = e.target.files[0];
+    if(!file) return;
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const data = JSON.parse(reader.result);
+        if(!Array.isArray(data)) throw new Error('formato inválido');
+        movies = data;
+        saveMovies(movies);
+        renderGrid(searchBox.value);
+        renderAdminList();
+        setStatus('Respaldo importado.');
+      }catch(err){
+        setStatus('Error al importar: archivo inválido.');
+      }
+    };
+    reader.readAsText(file);
+    e.target.value = '';
+  });
+
+  document.getElementById('saveJsonBtn').addEventListener('click', () => {
+    const blob = new Blob([JSON.stringify(movies, null, 2)], {type: 'application/json'});
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = JSON_FILE;
+    a.click();
+    URL.revokeObjectURL(url);
+    setStatus('movies.json descargado. Súbelo a GitHub para publicar los cambios.');
+  });
+
+  document.getElementById('reloadJsonBtn').addEventListener('click', async () => {
+    if(!confirm('Esto descarta tus cambios locales no publicados y recarga desde movies.json. ¿Continuar?')) return;
+    try{
+      localStorage.removeItem(STORAGE_KEY);
+      const res = await fetch(JSON_FILE, { cache: 'no-store' });
+      const data = res.ok ? await res.json() : [];
+      movies = Array.isArray(data) ? data : [];
+      saveMovies(movies);
+      renderGrid(searchBox.value);
+      renderAdminList();
+      setStatus('Recargado desde movies.json.');
+    }catch(e){
+      setStatus('No se pudo recargar movies.json.');
+    }
+  });
+
+  // Cerrar panel/reproductor con Escape
+  document.addEventListener('keydown', (e) => {
+    if(e.key === 'Escape'){
+      if(adminPanel.classList.contains('open')) toggleAdmin();
+      closePlayer();
+    }
+  });
+
+  /* ---------- Protecciones básicas ---------- */
+  // Nota: estas medidas disuaden a un usuario casual, pero ningún sitio
+  // puede impedir del todo que alguien use las herramientas de su propio
+  // navegador si de verdad quiere hacerlo.
+  function isFormEl(el){
+    return el && (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA');
+  }
+
+  document.addEventListener('contextmenu', (e) => e.preventDefault());
+  document.addEventListener('dblclick', (e) => e.preventDefault());
+  document.addEventListener('dragstart', (e) => {
+    if(!e.target.closest('.admin-item')) e.preventDefault();
+  });
+
+  document.addEventListener('selectstart', (e) => {
+    if(!isFormEl(e.target)) e.preventDefault();
+  });
+  document.addEventListener('copy', (e) => {
+    if(!isFormEl(e.target)) e.preventDefault();
+  });
+  document.addEventListener('cut', (e) => {
+    if(!isFormEl(e.target)) e.preventDefault();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    const k = e.key.toLowerCase();
+    // F12, Ctrl/Cmd+Shift+I/J/C, Ctrl/Cmd+U (ver código fuente)
+    if(
+      k === 'f12' ||
+      ((e.ctrlKey || e.metaKey) && e.shiftKey && ['i','j','c'].includes(k)) ||
+      ((e.ctrlKey || e.metaKey) && k === 'u')
+    ){
+      e.preventDefault();
+    }
+  });
+
+  async function init(){
+    movies = await fetchInitialMovies();
+    renderGrid('');
+  }
+  init();
+})();
+</script>
+</body>
+</html>
