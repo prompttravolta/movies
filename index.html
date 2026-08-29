@@ -124,10 +124,115 @@
     box-shadow: 0 10px 24px rgba(0,0,0,.5);
   }
   .poster-wrap{
+    position: relative;
     aspect-ratio: 2/3;
     background: linear-gradient(160deg, #2a2a30, #141416);
     display:flex; align-items:center; justify-content:center;
     overflow: hidden;
+  }
+  .badges{
+    position: absolute;
+    top: 6px; left: 6px;
+    display: flex; flex-direction: column; gap: 4px;
+    z-index: 2;
+  }
+  .badge{
+    background: rgba(11,11,13,.85);
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 0.62rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    padding: 2px 6px;
+    border-radius: 4px;
+    line-height: 1.4;
+  }
+  .progress-badge{
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    background: rgba(11,11,13,.85);
+    color: var(--muted);
+    font-size: 0.62rem;
+    padding: 3px 6px;
+    text-align: center;
+    z-index: 2;
+  }
+
+  /* ---------- Vista de detalle (maximizada) ---------- */
+  #detailView{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.92);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 550;
+    padding: 20px;
+    overflow-y: auto;
+  }
+  #detailView.open{ display: flex; }
+  .detail-box{
+    position: relative;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    width: min(760px, 100%);
+    max-height: 90vh;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+  }
+  @media (min-width: 640px){
+    .detail-box{ flex-direction: row; }
+    .detail-poster-wrap{ width: 42%; flex-shrink: 0; }
+  }
+  .detail-poster-wrap{
+    position: relative;
+    aspect-ratio: 2/3;
+    background: linear-gradient(160deg, #2a2a30, #141416);
+    max-height: 60vh;
+  }
+  .detail-poster-wrap img{ width:100%; height:100%; object-fit: cover; display:block; }
+  .detail-badges{ position: absolute; top: 10px; left: 10px; display:flex; flex-direction:column; gap:5px; }
+  .detail-body{ padding: 26px; overflow-y: auto; }
+  .detail-body h2{
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    font-size: 1.8rem;
+    margin: 0 0 10px;
+    -webkit-user-select: text; user-select: text;
+  }
+  .detail-desc{
+    color: var(--muted);
+    font-size: 0.92rem;
+    line-height: 1.6;
+    white-space: pre-line;
+    margin-bottom: 20px;
+    -webkit-user-select: text; user-select: text;
+  }
+  .detail-progress{
+    font-size: 0.78rem;
+    color: var(--gold);
+    margin-bottom: 12px;
+  }
+  #closeDetail{
+    position: absolute;
+    top: 10px; right: 14px;
+    background: rgba(11,11,13,.6);
+    border: none;
+    color: var(--text);
+    font-size: 1.8rem;
+    line-height: 1;
+    cursor: pointer;
+    z-index: 3;
+    border-radius: 50%;
+    width: 36px; height: 36px;
+  }
+  .player-banner{
+    width: min(1000px, 100%);
+    color: var(--gold);
+    font-size: 0.8rem;
+    text-align: center;
+    margin-bottom: 8px;
+    min-height: 18px;
   }
   .poster-wrap img{
     width: 100%; height: 100%; object-fit: cover; display:block;
@@ -151,34 +256,29 @@
   }
   .overlay{
     position: absolute; inset: 0;
-    background: linear-gradient(180deg, rgba(11,11,13,.15) 0%, rgba(11,11,13,.96) 78%);
-    display: flex; flex-direction: column; justify-content: flex-end;
-    padding: 14px;
+    background: linear-gradient(180deg, rgba(11,11,13,0) 55%, rgba(11,11,13,.9) 100%);
+    display: flex; align-items: flex-end; justify-content: center;
+    padding: 10px;
     opacity: 0;
-    transform: translateY(6px);
-    transition: opacity .2s ease, transform .2s ease;
+    transition: opacity .2s ease;
     pointer-events: none;
   }
-  .card:hover .overlay, .card.touch-active .overlay, .card:focus-within .overlay{
-    opacity: 1; transform: translateY(0);
-    pointer-events: auto;
+  .card:hover .overlay, .card:focus-within .overlay{
+    opacity: 1;
   }
-  .overlay-desc{
-    font-size: 0.8rem;
-    color: var(--muted);
-    max-height: 110px;
-    overflow-y: auto;
-    margin-bottom: 10px;
-    line-height: 1.35;
+  .overlay-hint{
+    font-size: 0.72rem;
+    color: var(--text);
+    letter-spacing: .5px;
+    font-weight: 600;
   }
   .play-btn{
-    align-self: flex-start;
     background: var(--red);
     color: #fff;
     border: none;
-    padding: 7px 14px;
+    padding: 10px 20px;
     border-radius: 6px;
-    font-size: 0.82rem;
+    font-size: 0.9rem;
     font-weight: 700;
     cursor: pointer;
     letter-spacing: .5px;
@@ -303,7 +403,7 @@
 <header>
   <h1>MI <span>CINE</span></h1>
   <p>Tu colección personal de películas</p>
-  <input id="searchBox" type="text" placeholder="Buscar por título...">
+  <input id="searchBox" type="text" placeholder="Buscar por título o descripción...">
 </header>
 
 <main>
@@ -316,9 +416,27 @@
   </div>
 </main>
 
+<!-- Detalle de la película (pantalla maximizada) -->
+<div id="detailView">
+  <div class="detail-box">
+    <button id="closeDetail" aria-label="Cerrar">&times;</button>
+    <div class="detail-poster-wrap">
+      <img id="detailPoster" alt="">
+      <div id="detailBadges" class="detail-badges"></div>
+    </div>
+    <div class="detail-body">
+      <h2 id="detailTitle"></h2>
+      <div id="detailProgress" class="detail-progress"></div>
+      <div id="detailDesc" class="detail-desc"></div>
+      <button class="play-btn" id="detailPlayBtn">▶ Ver película</button>
+    </div>
+  </div>
+</div>
+
 <!-- Reproductor -->
 <div id="playerModal">
   <button id="closePlayer" aria-label="Cerrar">&times;</button>
+  <div id="playerBanner" class="player-banner"></div>
   <div id="playerFrame"></div>
 </div>
 
@@ -339,6 +457,13 @@
 
     <label for="fEmbed">Código / enlace del reproductor</label>
     <textarea id="fEmbed" placeholder="Pega aquí el <iframe ...></iframe> o solo la URL, ej: https://bysekoze.com/e/xxxxx"></textarea>
+
+    <label for="fLang">Idioma (opcional)</label>
+    <input id="fLang" type="text" placeholder="Ej: Español, Latino, Inglés...">
+
+    <label for="fSubs">Subtítulos (opcional)</label>
+    <input id="fSubs" type="text" placeholder="Ej: Español, Sin subtítulos...">
+    <p class="hint" style="margin-top:4px;">Idioma y subtítulos no aparecen como texto en la portada: solo se muestra un pequeño ícono en la esquina de cada película.</p>
 
     <div class="admin-actions">
       <button class="btn btn-primary" id="addMovieBtn">Agregar película</button>
@@ -415,7 +540,12 @@
     lastFilter = filter;
 
     const term = (filter || '').trim().toLowerCase();
-    const fullList = term ? movies.filter(m => m.title.toLowerCase().includes(term)) : movies;
+    const fullList = term
+      ? movies.filter(m =>
+          m.title.toLowerCase().includes(term) ||
+          (m.desc || '').toLowerCase().includes(term)
+        )
+      : movies;
 
     const totalPages = Math.max(1, Math.ceil(fullList.length / PAGE_SIZE));
     if(page !== undefined) currentPage = page;
@@ -442,38 +572,104 @@
         ? `<img src="${escapeHtml(movie.poster)}" alt="${escapeHtml(movie.title)}" onerror="this.parentElement.innerHTML='<div class=poster-fallback>${escapeHtml(movie.title)}</div>'">`
         : `<div class="poster-fallback">${escapeHtml(movie.title)}</div>`;
 
+      const badges = [];
+      if(movie.lang) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang)}</span>`);
+      if(movie.subs) badges.push(`<span class="badge">💬 ${escapeHtml(movie.subs)}</span>`);
+
+      const progressSec = getProgress(movie.id);
+      const progressHtml = progressSec > 0
+        ? `<div class="progress-badge">▶ Continuar (${formatTime(progressSec)})</div>`
+        : '';
+
       card.innerHTML = `
-        <div class="poster-wrap">${posterHtml}</div>
-        <div class="card-title">${escapeHtml(movie.title)}</div>
-        <div class="overlay">
-          <div class="overlay-desc">${escapeHtml(movie.desc) || 'Sin descripción.'}</div>
-          <button class="play-btn">Ver película</button>
+        <div class="poster-wrap">
+          ${posterHtml}
+          ${badges.length ? `<div class="badges">${badges.join('')}</div>` : ''}
+          ${progressHtml}
         </div>
+        <div class="card-title">${escapeHtml(movie.title)}</div>
+        <div class="overlay"><span class="overlay-hint">Ver detalles</span></div>
       `;
 
-      // Desktop: hover ya lo maneja el CSS. Touch: primer toque muestra overlay.
-      card.addEventListener('click', (e) => {
-        const isTouch = matchMedia('(hover: none)').matches;
-        if(isTouch && !card.classList.contains('touch-active')){
-          e.preventDefault();
-          document.querySelectorAll('.card.touch-active').forEach(c => c !== card && c.classList.remove('touch-active'));
-          card.classList.add('touch-active');
-          return;
-        }
-        if(e.target.classList.contains('play-btn') || !isTouch){
-          openPlayer(movie);
-        }
-      });
-
-      const playBtn = card.querySelector('.play-btn');
-      playBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        openPlayer(movie);
-      });
+      card.addEventListener('click', () => openDetail(movie));
 
       grid.appendChild(card);
     });
   }
+
+  /* ---------- Vista de detalle (maximizada) ---------- */
+  const detailView = document.getElementById('detailView');
+  let currentDetailMovie = null;
+
+  function openDetail(movie){
+    currentDetailMovie = movie;
+    const posterEl = document.getElementById('detailPoster');
+    if(movie.poster){
+      posterEl.src = movie.poster;
+      posterEl.style.display = 'block';
+    } else {
+      posterEl.style.display = 'none';
+    }
+    document.getElementById('detailTitle').textContent = movie.title;
+    document.getElementById('detailDesc').textContent = movie.desc || 'Sin descripción disponible.';
+
+    const badges = [];
+    if(movie.lang) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang)}</span>`);
+    if(movie.subs) badges.push(`<span class="badge">💬 ${escapeHtml(movie.subs)}</span>`);
+    document.getElementById('detailBadges').innerHTML = badges.join('');
+
+    const sec = getProgress(movie.id);
+    document.getElementById('detailProgress').textContent = sec > 0
+      ? `Llevabas visto aproximadamente ${formatTime(sec)} la última vez.`
+      : '';
+
+    detailView.classList.add('open');
+  }
+  function closeDetail(){
+    detailView.classList.remove('open');
+    currentDetailMovie = null;
+  }
+  document.getElementById('closeDetail').addEventListener('click', closeDetail);
+  detailView.addEventListener('click', (e) => {
+    if(e.target.id === 'detailView') closeDetail();
+  });
+  document.getElementById('detailPlayBtn').addEventListener('click', () => {
+    if(currentDetailMovie){
+      const m = currentDetailMovie;
+      closeDetail();
+      openPlayer(m);
+    }
+  });
+
+  /* ---------- Progreso aproximado de reproducción ---------- */
+  // Aviso: como el video se reproduce dentro de un reproductor externo
+  // (iframe de otro sitio), esta página no tiene forma de saber el punto
+  // exacto donde quedó el video. Lo que hace es cronometrar cuánto tiempo
+  // estuvo abierto el reproductor y guardar ese estimado, para avisarte
+  // más o menos cuánto llevabas visto. Tendrás que adelantar manualmente.
+  const PROGRESS_KEY = 'miCine.progress';
+  function loadProgress(){
+    try{ return JSON.parse(localStorage.getItem(PROGRESS_KEY)) || {}; }
+    catch(e){ return {}; }
+  }
+  function getProgress(movieId){
+    const p = loadProgress();
+    return p[movieId] || 0;
+  }
+  function setProgress(movieId, seconds){
+    const p = loadProgress();
+    p[movieId] = Math.max(p[movieId] || 0, Math.round(seconds));
+    localStorage.setItem(PROGRESS_KEY, JSON.stringify(p));
+  }
+  function formatTime(totalSeconds){
+    const h = Math.floor(totalSeconds / 3600);
+    const m = Math.floor((totalSeconds % 3600) / 60);
+    if(h > 0) return `${h}h ${m}min`;
+    return `${m} min`;
+  }
+
+  let playerOpenedAt = null;
+  let playerMovie = null;
 
   function openPlayer(movie){
     if(!movie.embed){
@@ -487,9 +683,26 @@
     } else {
       frame.innerHTML = `<iframe src="${escapeHtml(raw)}" allowfullscreen frameborder="0"></iframe>`;
     }
+
+    const sec = getProgress(movie.id);
+    document.getElementById('playerBanner').textContent = sec > 0
+      ? `Llevabas visto aproximadamente ${formatTime(sec)} la última vez — adelanta manualmente dentro del reproductor.`
+      : '';
+
+    playerOpenedAt = Date.now();
+    playerMovie = movie;
     document.getElementById('playerModal').classList.add('open');
   }
   function closePlayer(){
+    if(playerMovie && playerOpenedAt){
+      const elapsed = (Date.now() - playerOpenedAt) / 1000;
+      if(elapsed > 15){
+        setProgress(playerMovie.id, getProgress(playerMovie.id) + elapsed);
+        renderGrid(searchBox.value);
+      }
+    }
+    playerOpenedAt = null;
+    playerMovie = null;
     document.getElementById('playerModal').classList.remove('open');
     document.getElementById('playerFrame').innerHTML = '';
   }
@@ -540,6 +753,8 @@
     document.getElementById('fPoster').value = '';
     document.getElementById('fDesc').value = '';
     document.getElementById('fEmbed').value = '';
+    document.getElementById('fLang').value = '';
+    document.getElementById('fSubs').value = '';
   }
 
   function startEdit(movie){
@@ -548,6 +763,8 @@
     document.getElementById('fPoster').value = movie.poster || '';
     document.getElementById('fDesc').value = movie.desc || '';
     document.getElementById('fEmbed').value = movie.embed || '';
+    document.getElementById('fLang').value = movie.lang || '';
+    document.getElementById('fSubs').value = movie.subs || '';
     addMovieBtn.textContent = 'Guardar cambios';
     formHeading.textContent = 'Editando: ' + movie.title;
     cancelEditBtn.style.display = 'inline-block';
@@ -569,6 +786,8 @@
     const poster = document.getElementById('fPoster').value.trim();
     const desc = document.getElementById('fDesc').value.trim();
     const embed = document.getElementById('fEmbed').value.trim();
+    const lang = document.getElementById('fLang').value.trim();
+    const subs = document.getElementById('fSubs').value.trim();
 
     if(!title){ setStatus('Falta el título.'); return; }
 
@@ -576,11 +795,12 @@
       const m = movies.find(x => x.id === editingId);
       if(m){
         m.title = title; m.poster = poster; m.desc = desc; m.embed = embed;
+        m.lang = lang; m.subs = subs;
         setStatus('Cambios guardados.');
       }
       stopEdit();
     } else {
-      movies.push({ id: crypto.randomUUID(), title, poster, desc, embed });
+      movies.push({ id: crypto.randomUUID(), title, poster, desc, embed, lang, subs });
       setStatus('Película agregada.');
       clearForm();
     }
@@ -758,6 +978,7 @@
   document.addEventListener('keydown', (e) => {
     if(e.key === 'Escape'){
       if(adminPanel.classList.contains('open')) toggleAdmin();
+      if(detailView.classList.contains('open')) closeDetail();
       closePlayer();
     }
   });
