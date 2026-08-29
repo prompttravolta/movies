@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="referrer" content="strict-origin-when-cross-origin">
 <title>Mi Cine</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -37,12 +38,15 @@
 
   /* ---------- Header / marquee ---------- */
   header{
-    position: relative;
+    position: sticky;
+    top: 0;
+    z-index: 100;
     padding: 34px 20px 22px;
     text-align: center;
     background:
       repeating-linear-gradient(90deg, var(--border) 0 2px, transparent 2px 18px) top / 100% 6px no-repeat,
       repeating-linear-gradient(90deg, var(--border) 0 2px, transparent 2px 18px) bottom / 100% 6px no-repeat;
+    background-color: var(--bg);
     border-bottom: 1px solid var(--border);
   }
   header h1{
@@ -132,13 +136,18 @@
   }
   .badges{
     position: absolute;
-    top: 6px; left: 6px;
+    left: 6px; right: 6px;
+    bottom: 6px;
     display: flex; flex-direction: column; gap: 4px;
+    align-items: flex-start;
     z-index: 2;
   }
+  .badges.has-progress{ bottom: 26px; }
   .badge{
-    background: rgba(11,11,13,.85);
-    border: 1px solid var(--gold);
+    background: rgba(11,11,13,.5);
+    backdrop-filter: blur(3px);
+    -webkit-backdrop-filter: blur(3px);
+    border: 1px solid rgba(212,175,55,.75);
     color: var(--gold);
     font-size: 0.62rem;
     font-weight: 700;
@@ -158,73 +167,70 @@
     z-index: 2;
   }
 
-  /* ---------- Vista de detalle (maximizada) ---------- */
+  /* ---------- Vista de detalle (pantalla completa) ---------- */
   #detailView{
     position: fixed; inset: 0;
-    background: rgba(0,0,0,.92);
+    background: var(--bg);
     display: none;
-    align-items: center; justify-content: center;
     z-index: 550;
-    padding: 20px;
     overflow-y: auto;
   }
-  #detailView.open{ display: flex; }
+  #detailView.open{ display: block; }
   .detail-box{
     position: relative;
-    background: var(--panel);
-    border: 1px solid var(--border);
-    border-radius: 12px;
-    width: min(760px, 100%);
-    max-height: 90vh;
-    overflow-y: auto;
-    display: flex;
-    flex-direction: column;
-  }
-  @media (min-width: 640px){
-    .detail-box{ flex-direction: row; }
-    .detail-poster-wrap{ width: 42%; flex-shrink: 0; }
+    min-height: 100%;
+    width: 100%;
   }
   .detail-poster-wrap{
     position: relative;
+    width: 100%;
+    max-height: 55vh;
     aspect-ratio: 2/3;
     background: linear-gradient(160deg, #2a2a30, #141416);
-    max-height: 60vh;
+    overflow: hidden;
+  }
+  @media (min-width: 640px){
+    .detail-poster-wrap{ aspect-ratio: 16/7; }
   }
   .detail-poster-wrap img{ width:100%; height:100%; object-fit: cover; display:block; }
-  .detail-badges{ position: absolute; top: 10px; left: 10px; display:flex; flex-direction:column; gap:5px; }
-  .detail-body{ padding: 26px; overflow-y: auto; }
+  .detail-badges{ position: absolute; bottom: 12px; left: 16px; display:flex; flex-direction:column; gap:6px; }
+  .detail-body{
+    padding: 26px clamp(16px, 5vw, 64px) 80px;
+    max-width: 900px;
+    margin: 0 auto;
+  }
   .detail-body h2{
     font-family: 'Bebas Neue', sans-serif;
     letter-spacing: 2px;
-    font-size: 1.8rem;
-    margin: 0 0 10px;
+    font-size: clamp(1.8rem, 4vw, 2.6rem);
+    margin: 18px 0 10px;
     -webkit-user-select: text; user-select: text;
   }
   .detail-desc{
     color: var(--muted);
-    font-size: 0.92rem;
-    line-height: 1.6;
+    font-size: 0.98rem;
+    line-height: 1.7;
     white-space: pre-line;
-    margin-bottom: 20px;
+    margin-bottom: 24px;
     -webkit-user-select: text; user-select: text;
   }
   .detail-progress{
-    font-size: 0.78rem;
+    font-size: 0.82rem;
     color: var(--gold);
     margin-bottom: 12px;
   }
   #closeDetail{
-    position: absolute;
-    top: 10px; right: 14px;
-    background: rgba(11,11,13,.6);
+    position: fixed;
+    top: 16px; right: 18px;
+    background: rgba(11,11,13,.65);
     border: none;
     color: var(--text);
-    font-size: 1.8rem;
+    font-size: 1.9rem;
     line-height: 1;
     cursor: pointer;
     z-index: 3;
     border-radius: 50%;
-    width: 36px; height: 36px;
+    width: 40px; height: 40px;
   }
   .player-banner{
     width: min(1000px, 100%);
@@ -234,6 +240,74 @@
     margin-bottom: 8px;
     min-height: 18px;
   }
+
+  /* ---------- Modal de tráiler ---------- */
+  #trailerModal{
+    position: fixed; inset: 0;
+    background: rgba(0,0,0,.95);
+    display: none;
+    align-items: center; justify-content: center;
+    z-index: 650;
+    padding: 20px;
+  }
+  #trailerModal.open{ display: flex; }
+  #trailerFrame{
+    width: min(1400px, 96vw);
+    max-height: 85vh;
+    aspect-ratio: 16/9;
+    background: #000;
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  #trailerFrame iframe{ width:100%; height:100%; border:0; }
+  #closeTrailer{
+    position: absolute;
+    top: 18px; right: 24px;
+    background: none; border: none;
+    color: var(--text); font-size: 2rem;
+    cursor: pointer; line-height: 1;
+  }
+  .detail-actions{ display:flex; gap: 10px; flex-wrap: wrap; }
+  .trailer-btn{
+    background: transparent;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    padding: 10px 20px;
+    border-radius: 6px;
+    font-size: 0.9rem;
+    font-weight: 700;
+    letter-spacing: .5px;
+    cursor: pointer;
+  }
+  .trailer-btn:hover{ background: rgba(212,175,55,.12); }
+
+  /* ---------- Barra social inferior (aparece al llegar al final) ---------- */
+  #socialBar{
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    z-index: 400;
+    background: var(--panel);
+    border-top: 1px solid var(--gold);
+    padding: 12px 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 22px;
+    transform: translateY(100%);
+    transition: transform .3s ease;
+  }
+  #socialBar.show{ transform: translateY(0); }
+  #socialBar a{
+    color: var(--text);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px; height: 30px;
+    opacity: .85;
+    transition: opacity .15s ease, color .15s ease;
+  }
+  #socialBar a:hover{ opacity: 1; color: var(--gold); }
+  #socialBar svg{ width: 22px; height: 22px; fill: currentColor; }
   .poster-wrap img{
     width: 100%; height: 100%; object-fit: cover; display:block;
   }
@@ -296,15 +370,17 @@
   /* ---------- Modal reproductor ---------- */
   #playerModal{
     position: fixed; inset: 0;
-    background: rgba(0,0,0,.92);
+    background: rgba(0,0,0,.95);
     display: none;
     align-items: center; justify-content: center;
-    z-index: 500;
+    flex-direction: column;
+    z-index: 650;
     padding: 20px;
   }
   #playerModal.open{ display: flex; }
   #playerFrame{
-    width: min(1000px, 100%);
+    width: min(1400px, 96vw);
+    max-height: 85vh;
     aspect-ratio: 16/9;
     background: #000;
     border-radius: 6px;
@@ -325,7 +401,7 @@
     background: rgba(0,0,0,.85);
     display: none;
     align-items: flex-start; justify-content: center;
-    z-index: 600;
+    z-index: 700;
     padding: 30px 16px;
     overflow-y: auto;
   }
@@ -428,9 +504,18 @@
       <h2 id="detailTitle"></h2>
       <div id="detailProgress" class="detail-progress"></div>
       <div id="detailDesc" class="detail-desc"></div>
-      <button class="play-btn" id="detailPlayBtn">▶ Ver película</button>
+      <div class="detail-actions">
+        <button class="trailer-btn" id="detailTrailerBtn" style="display:none;">🎬 TRAILER</button>
+        <button class="play-btn" id="detailPlayBtn">▶ Ver película</button>
+      </div>
     </div>
   </div>
+</div>
+
+<!-- Tráiler -->
+<div id="trailerModal">
+  <button id="closeTrailer" aria-label="Cerrar">&times;</button>
+  <div id="trailerFrame"></div>
 </div>
 
 <!-- Reproductor -->
@@ -458,12 +543,18 @@
     <label for="fEmbed">Código / enlace del reproductor</label>
     <textarea id="fEmbed" placeholder="Pega aquí el <iframe ...></iframe> o solo la URL, ej: https://bysekoze.com/e/xxxxx"></textarea>
 
-    <label for="fLang">Idioma (opcional)</label>
-    <input id="fLang" type="text" placeholder="Ej: Español, Latino, Inglés...">
+    <label for="fLang">Idioma 1 (opcional)</label>
+    <input id="fLang" type="text" placeholder="Ej: Español">
+
+    <label for="fLang2">Idioma 2 (opcional, si tiene doblaje adicional)</label>
+    <input id="fLang2" type="text" placeholder="Ej: Latino, Inglés...">
 
     <label for="fSubs">Subtítulos (opcional)</label>
     <input id="fSubs" type="text" placeholder="Ej: Español, Sin subtítulos...">
     <p class="hint" style="margin-top:4px;">Idioma y subtítulos no aparecen como texto en la portada: solo se muestra un pequeño ícono en la esquina de cada película.</p>
+
+    <label for="fTrailer">URL del tráiler (YouTube, opcional)</label>
+    <input id="fTrailer" type="text" placeholder="https://www.youtube.com/watch?v=...">
 
     <div class="admin-actions">
       <button class="btn btn-primary" id="addMovieBtn">Agregar película</button>
@@ -485,10 +576,62 @@
   </div>
 </div>
 
+<!-- Barra de redes sociales (aparece al llegar al final del contenido) -->
+<div id="socialBar">
+  <a id="socialFacebook" href="#" target="_blank" rel="noopener" aria-label="Facebook">
+    <svg viewBox="0 0 24 24"><path d="M22 12a10 10 0 1 0-11.6 9.9v-7H7.9V12h2.5V9.8c0-2.5 1.5-3.9 3.8-3.9 1.1 0 2.2.2 2.2.2v2.5h-1.3c-1.2 0-1.6.8-1.6 1.6V12h2.8l-.4 2.9h-2.4v7A10 10 0 0 0 22 12Z"/></svg>
+  </a>
+  <a id="socialReddit" href="#" target="_blank" rel="noopener" aria-label="Reddit">
+    <svg viewBox="0 0 24 24"><path d="M22 12.3c0-1.1-.9-2-2-2-.5 0-1 .2-1.3.5-1.3-.9-3.1-1.5-5.1-1.6l1-3.2 2.7.6a1.4 1.4 0 1 0 .1-.7l-3-.7a.4.4 0 0 0-.5.3l-1.2 3.7c-2.1.1-3.9.7-5.2 1.6-.3-.3-.8-.5-1.3-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.1 1.8-.1.3-.1.6-.1.9 0 2.5 3 4.6 6.8 4.6s6.8-2.1 6.8-4.6c0-.3 0-.6-.1-.9.6-.3 1.1-1 1.1-1.8Zm-13 1.2a1.2 1.2 0 1 1 2.4 0 1.2 1.2 0 0 1-2.4 0Zm7.3 3.2c-.8.8-2.3.9-2.8.9s-2-.1-2.8-.9a.3.3 0 1 1 .5-.5c.5.5 1.6.7 2.3.7s1.8-.2 2.3-.7a.3.3 0 1 1 .5.5Zm-.3-2a1.2 1.2 0 1 1 0-2.4 1.2 1.2 0 0 1 0 2.4Z"/></svg>
+  </a>
+  <a id="socialTiktok" href="#" target="_blank" rel="noopener" aria-label="TikTok">
+    <svg viewBox="0 0 24 24"><path d="M16.5 2h-3.1v13.4a2.6 2.6 0 1 1-1.9-2.5v-3.2a5.8 5.8 0 1 0 5 5.7V8.6a7.5 7.5 0 0 0 4.5 1.5V7a4.4 4.4 0 0 1-4.5-4.4V2Z"/></svg>
+  </a>
+  <a id="socialInstagram" href="#" target="_blank" rel="noopener" aria-label="Instagram">
+    <svg viewBox="0 0 24 24"><path d="M8 3h8a5 5 0 0 1 5 5v8a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5V8a5 5 0 0 1 5-5Zm0 2a3 3 0 0 0-3 3v8a3 3 0 0 0 3 3h8a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3H8Zm4 3.3A4.7 4.7 0 1 1 7.3 13 4.7 4.7 0 0 1 12 8.3Zm0 2A2.7 2.7 0 1 0 14.7 13 2.7 2.7 0 0 0 12 10.3ZM17.4 6.7a1.1 1.1 0 1 1-1.1 1.1 1.1 1.1 0 0 1 1.1-1.1Z"/></svg>
+  </a>
+  <a id="socialYoutube" href="#" target="_blank" rel="noopener" aria-label="YouTube">
+    <svg viewBox="0 0 24 24"><path d="M21.6 7.2a2.7 2.7 0 0 0-1.9-1.9C18 4.8 12 4.8 12 4.8s-6 0-7.7.5a2.7 2.7 0 0 0-1.9 1.9A28 28 0 0 0 2 12a28 28 0 0 0 .4 4.8 2.7 2.7 0 0 0 1.9 1.9c1.7.5 7.7.5 7.7.5s6 0 7.7-.5a2.7 2.7 0 0 0 1.9-1.9A28 28 0 0 0 22 12a28 28 0 0 0-.4-4.8ZM10 15.3V8.7l5.7 3.3Z"/></svg>
+  </a>
+  <a id="socialWhatsapp" href="#" target="_blank" rel="noopener" aria-label="WhatsApp">
+    <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2Zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.6-.6-2.9-1.3-4.8-4.2-4.9-4.4-.1-.2-1.2-1.6-1.2-3s.7-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.4.2.5.7 1.8.8 1.9.1.2.1.3 0 .5-.1.2-.1.3-.3.5-.1.2-.3.4-.4.5-.2.2-.3.3-.1.6.2.3.9 1.4 1.9 2.3 1.3 1.2 2.4 1.5 2.7 1.7.3.2.5.1.6-.1.2-.2.7-.8.9-1.1.2-.3.4-.2.6-.1.2 0 1.5.7 1.8.8.3.1.4.2.5.3.1.2.1.7-.1 1.2Z"/></svg>
+  </a>
+</div>
+
 <script>
 (function(){
   const STORAGE_KEY = 'miCine.movies';
   const JSON_FILE = 'movies.json';
+
+  // Edita aquí tus enlaces reales de redes sociales:
+  const SOCIAL_LINKS = {
+    facebook: 'https://facebook.com/',
+    reddit: 'https://reddit.com/',
+    tiktok: 'https://tiktok.com/',
+    instagram: 'https://instagram.com/',
+    youtube: 'https://youtube.com/',
+    whatsapp: 'https://wa.me/'
+  };
+  document.getElementById('socialFacebook').href = SOCIAL_LINKS.facebook;
+  document.getElementById('socialReddit').href = SOCIAL_LINKS.reddit;
+  document.getElementById('socialTiktok').href = SOCIAL_LINKS.tiktok;
+  document.getElementById('socialInstagram').href = SOCIAL_LINKS.instagram;
+  document.getElementById('socialYoutube').href = SOCIAL_LINKS.youtube;
+  document.getElementById('socialWhatsapp').href = SOCIAL_LINKS.whatsapp;
+
+  // La barra aparece al llegar al final del contenido y se oculta al subir.
+  const socialBar = document.getElementById('socialBar');
+  let lastScrollY = window.scrollY;
+  window.addEventListener('scroll', () => {
+    const scrollY = window.scrollY;
+    const atBottom = (window.innerHeight + scrollY) >= (document.documentElement.scrollHeight - 40);
+    if(atBottom){
+      socialBar.classList.add('show');
+    } else if(scrollY < lastScrollY){
+      socialBar.classList.remove('show');
+    }
+    lastScrollY = scrollY;
+  }, { passive: true });
 
   async function fetchInitialMovies(){
     // 1) Si ya hay ediciones locales sin publicar en este navegador, usarlas.
@@ -574,6 +717,7 @@
 
       const badges = [];
       if(movie.lang) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang)}</span>`);
+      if(movie.lang2) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang2)}</span>`);
       if(movie.subs) badges.push(`<span class="badge">💬 ${escapeHtml(movie.subs)}</span>`);
 
       const progressSec = getProgress(movie.id);
@@ -584,7 +728,7 @@
       card.innerHTML = `
         <div class="poster-wrap">
           ${posterHtml}
-          ${badges.length ? `<div class="badges">${badges.join('')}</div>` : ''}
+          ${badges.length ? `<div class="badges${progressSec > 0 ? ' has-progress' : ''}">${badges.join('')}</div>` : ''}
           ${progressHtml}
         </div>
         <div class="card-title">${escapeHtml(movie.title)}</div>
@@ -615,14 +759,18 @@
 
     const badges = [];
     if(movie.lang) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang)}</span>`);
+    if(movie.lang2) badges.push(`<span class="badge">🔊 ${escapeHtml(movie.lang2)}</span>`);
     if(movie.subs) badges.push(`<span class="badge">💬 ${escapeHtml(movie.subs)}</span>`);
     document.getElementById('detailBadges').innerHTML = badges.join('');
+
+    document.getElementById('detailTrailerBtn').style.display = movie.trailer ? 'inline-block' : 'none';
 
     const sec = getProgress(movie.id);
     document.getElementById('detailProgress').textContent = sec > 0
       ? `Llevabas visto aproximadamente ${formatTime(sec)} la última vez.`
       : '';
 
+    detailView.scrollTop = 0;
     detailView.classList.add('open');
   }
   function closeDetail(){
@@ -639,6 +787,47 @@
       closeDetail();
       openPlayer(m);
     }
+  });
+
+  function youtubeEmbedUrl(url){
+    if(!url) return null;
+    let id = null;
+    try{
+      const u = new URL(url.trim());
+      if(u.hostname.includes('youtu.be')){
+        id = u.pathname.slice(1);
+      } else if(u.pathname.startsWith('/embed/')){
+        id = u.pathname.split('/embed/')[1];
+      } else {
+        id = u.searchParams.get('v');
+      }
+    }catch(e){
+      // No es una URL válida; se intenta usar tal cual como ID.
+      id = url.trim();
+    }
+    if(!id) return null;
+    id = id.split('&')[0].split('?')[0];
+    return `https://www.youtube.com/embed/${id}`;
+  }
+
+  document.getElementById('detailTrailerBtn').addEventListener('click', () => {
+    if(!currentDetailMovie || !currentDetailMovie.trailer) return;
+    const embedUrl = youtubeEmbedUrl(currentDetailMovie.trailer);
+    if(!embedUrl){
+      alert('El enlace del tráiler no parece válido.');
+      return;
+    }
+    document.getElementById('trailerFrame').innerHTML =
+      `<iframe src="${embedUrl}" width="100%" height="100%" allow="autoplay; fullscreen; encrypted-media" allowfullscreen frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
+    document.getElementById('trailerModal').classList.add('open');
+  });
+  function closeTrailer(){
+    document.getElementById('trailerModal').classList.remove('open');
+    document.getElementById('trailerFrame').innerHTML = '';
+  }
+  document.getElementById('closeTrailer').addEventListener('click', closeTrailer);
+  document.getElementById('trailerModal').addEventListener('click', (e) => {
+    if(e.target.id === 'trailerModal') closeTrailer();
   });
 
   /* ---------- Progreso aproximado de reproducción ---------- */
@@ -681,7 +870,7 @@
     if(raw.startsWith('<iframe')){
       frame.innerHTML = raw;
     } else {
-      frame.innerHTML = `<iframe src="${escapeHtml(raw)}" allowfullscreen frameborder="0"></iframe>`;
+      frame.innerHTML = `<iframe src="${escapeHtml(raw)}" width="100%" height="100%" allowfullscreen frameborder="0" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
     }
 
     const sec = getProgress(movie.id);
@@ -754,7 +943,9 @@
     document.getElementById('fDesc').value = '';
     document.getElementById('fEmbed').value = '';
     document.getElementById('fLang').value = '';
+    document.getElementById('fLang2').value = '';
     document.getElementById('fSubs').value = '';
+    document.getElementById('fTrailer').value = '';
   }
 
   function startEdit(movie){
@@ -764,7 +955,9 @@
     document.getElementById('fDesc').value = movie.desc || '';
     document.getElementById('fEmbed').value = movie.embed || '';
     document.getElementById('fLang').value = movie.lang || '';
+    document.getElementById('fLang2').value = movie.lang2 || '';
     document.getElementById('fSubs').value = movie.subs || '';
+    document.getElementById('fTrailer').value = movie.trailer || '';
     addMovieBtn.textContent = 'Guardar cambios';
     formHeading.textContent = 'Editando: ' + movie.title;
     cancelEditBtn.style.display = 'inline-block';
@@ -787,7 +980,9 @@
     const desc = document.getElementById('fDesc').value.trim();
     const embed = document.getElementById('fEmbed').value.trim();
     const lang = document.getElementById('fLang').value.trim();
+    const lang2 = document.getElementById('fLang2').value.trim();
     const subs = document.getElementById('fSubs').value.trim();
+    const trailer = document.getElementById('fTrailer').value.trim();
 
     if(!title){ setStatus('Falta el título.'); return; }
 
@@ -795,12 +990,12 @@
       const m = movies.find(x => x.id === editingId);
       if(m){
         m.title = title; m.poster = poster; m.desc = desc; m.embed = embed;
-        m.lang = lang; m.subs = subs;
+        m.lang = lang; m.lang2 = lang2; m.subs = subs; m.trailer = trailer;
         setStatus('Cambios guardados.');
       }
       stopEdit();
     } else {
-      movies.push({ id: crypto.randomUUID(), title, poster, desc, embed, lang, subs });
+      movies.push({ id: crypto.randomUUID(), title, poster, desc, embed, lang, lang2, subs, trailer });
       setStatus('Película agregada.');
       clearForm();
     }
@@ -979,6 +1174,7 @@
     if(e.key === 'Escape'){
       if(adminPanel.classList.contains('open')) toggleAdmin();
       if(detailView.classList.contains('open')) closeDetail();
+      closeTrailer();
       closePlayer();
     }
   });
