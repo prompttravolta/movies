@@ -634,14 +634,11 @@
   }, { passive: true });
 
   async function fetchInitialMovies(){
-    // 1) Si ya hay ediciones locales sin publicar en este navegador, usarlas.
+    // 1) Siempre se intenta cargar primero el archivo publicado en GitHub,
+    //    con un parámetro anti-caché para evitar versiones viejas guardadas
+    //    por el navegador o por la red de GitHub Pages.
     try{
-      const raw = localStorage.getItem(STORAGE_KEY);
-      if(raw) return JSON.parse(raw);
-    }catch(e){}
-    // 2) Si no, cargar el archivo movies.json publicado junto al HTML.
-    try{
-      const res = await fetch(JSON_FILE, { cache: 'no-store' });
+      const res = await fetch(JSON_FILE + '?v=' + Date.now(), { cache: 'no-store' });
       if(res.ok){
         const data = await res.json();
         if(Array.isArray(data)){
@@ -652,6 +649,12 @@
     }catch(e){
       console.warn('No se pudo cargar ' + JSON_FILE, e);
     }
+    // 2) Solo si la carga falla (por ejemplo, al abrir el archivo localmente
+    //    sin servidor), se usa lo último que quedó guardado en este navegador.
+    try{
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if(raw) return JSON.parse(raw);
+    }catch(e){}
     return [];
   }
   function saveMovies(list){
@@ -1157,7 +1160,7 @@
     if(!confirm('Esto descarta tus cambios locales no publicados y recarga desde movies.json. ¿Continuar?')) return;
     try{
       localStorage.removeItem(STORAGE_KEY);
-      const res = await fetch(JSON_FILE, { cache: 'no-store' });
+      const res = await fetch(JSON_FILE + '?v=' + Date.now(), { cache: 'no-store' });
       const data = res.ok ? await res.json() : [];
       movies = Array.isArray(data) ? data : [];
       saveMovies(movies);
