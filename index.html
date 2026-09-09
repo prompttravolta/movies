@@ -14,7 +14,6 @@ main{padding:20px clamp(12px,3vw,32px) 60px}
 #grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer}
-.card:hover{border-color:var(--gold)}
 .poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .poster-wrap img{width:100%;height:100%;object-fit:cover}
 .collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px}
@@ -27,9 +26,9 @@ main{padding:20px clamp(12px,3vw,32px) 60px}
 .admin-box input,.admin-box textarea{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:#fff;padding:8px 10px}
 .btn{padding:8px 14px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:.85rem}.btn-p{background:var(--red);color:#fff}.btn-s{background:transparent;border:1px solid var(--border);color:#fff}
 .admin-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
-.admin-item span:first-child{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .icon-btn{background:var(--panel);border:1px solid var(--border);color:#fff;border-radius:5px;padding:4px 8px;cursor:pointer;font-size:.8rem}
 .icon-btn:disabled{opacity:.3}
+#importFile{display:none}
 </style>
 </head>
 <body>
@@ -41,11 +40,12 @@ const e = React.createElement;
 const KEY = "miCine.movies"; const PER_PAGE = 18;
 
 function App(){
-  const [movies,setMovies] = React.useState(()=>{ try{const s=localStorage.getItem(KEY); if(s) return JSON.parse(s);}catch{} return []; });
+  const [movies,setMovies] = React.useState([]);
   const [q,setQ]=React.useState(""); const [page,setPage]=React.useState(1);
   const [detail,setDetail]=React.useState(null); const [player,setPlayer]=React.useState(null); const [trailer,setTrailer]=React.useState(null);
   const [admin,setAdmin]=React.useState(false); const [editId,setEditId]=React.useState(null); const [selectedSaga,setSelectedSaga]=React.useState(null);
-  const clicks=React.useRef(0);
+  const [msg,setMsg]=React.useState("");
+  const clicks=React.useRef(0); const fileRef=React.useRef(null);
 
   const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
   const [fEmbed,setFEmbed]=React.useState(""); const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
@@ -53,8 +53,32 @@ function App(){
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
 
-  React.useEffect(()=>{ if(localStorage.getItem(KEY)) return; fetch("movies.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(d=>{ if(d.length){ setMovies(d); localStorage.setItem(KEY,JSON.stringify(d)); } }); },[]);
-  React.useEffect(()=>{ localStorage.setItem(KEY, JSON.stringify(movies)); },[movies]);
+  // --- PRIORIDAD: CARGAR SIEMPRE DE GITHUB ---
+  const loadFromGithub = async ()=>{
+    try{
+      const r = await fetch("movies.json?v="+Date.now(), {cache:"no-store"});
+      if(!r.ok) throw Error("no ok");
+      const d = await r.json();
+      if(Array.isArray(d) && d.length>0){
+        setMovies(d);
+        localStorage.setItem(KEY, JSON.stringify(d));
+        setMsg("Cargado desde movies.json de Github ("+d.length+" pelis)");
+        return;
+      }
+    }catch(err){
+      // si falla, intenta localStorage
+      try{
+        const s = localStorage.getItem(KEY);
+        if(s){ setMovies(JSON.parse(s)); setMsg("Sin conexión, cargado desde cache local"); }
+      }catch{}
+    }
+  };
+
+  React.useEffect(()=>{ loadFromGithub(); },[]);
+
+  React.useEffect(()=>{
+    if(movies.length>0) localStorage.setItem(KEY, JSON.stringify(movies));
+  },[movies]);
 
   const move = (from,to)=>{
     if(to<0||to>=movies.length) return;
@@ -109,14 +133,14 @@ function App(){
     if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m));
     else setMovies(p=>[...p,obj]);
     setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);
-    alert("Guardado, ahora descarga el JSON");
+    setMsg("Guardado local. Descarga el JSON y súbelo a Github para que todos lo vean.");
   };
 
   return e("div",{},[
     e("header",{key:"h"},[
       e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
       e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
-      selectedSaga? e("div",{key:"back", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:()=>setSelectedSaga(null)}, "← Volver a inicio - "+(collectionsMap[selectedSaga]?.name||""))) : null
+      selectedSaga? e("div",{key:"back", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:()=>setSelectedSaga(null)}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
     ]),
     e("main",{key:"m"},[
       e("div",{key:"g", id:"grid"}, paginated.map(it=>{
@@ -134,7 +158,7 @@ function App(){
           ]);
         }
       })),
-     !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", marginTop:"20px"}},[
+    !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", marginTop:"20px"}},[
         e("button",{key:"pr", className:"btn btn-s", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "Anterior"),
         e("span",{key:"lb", style:{fontSize:".85rem", color:"var(--muted)"}}, `Pag ${page} de ${totalPages}`),
         e("button",{key:"nx", className:"btn btn-s", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente")
@@ -154,25 +178,25 @@ function App(){
     ]) : null,
     player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
       e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"),
-      e("div",{key:"f", id:"playerFrame"}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true}))
+      e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
     ]) : null,
     trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[
       e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"),
-      e("div",{key:"f", id:"trailerFrame"}, e("iframe",{src:trailer, allowFullScreen:true}))
+      e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
     ]) : null,
     admin? e("div",{key:"ad", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[
       e("div",{key:"box", className:"admin-box"},[
-        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel - Mover con flechas ↑ ↓"),
-        e("p",{key:"p", style:{fontSize:".8rem", color:"var(--muted)"}}, "Para crear saga: pon el MISMO ID de saga a todas las pelis de esa saga. Ej: rocky. Solo se verá 1 portada en el inicio."),
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel Secreto"),
+        e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginBottom:"8px"}}, msg),
         e("label",{key:"l1"},"Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
         e("label",{key:"l2"},"Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
         e("label",{key:"l3"},"Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
         e("label",{key:"l4"},"Embed"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
         e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"10px", borderRadius:"8px"}},[
-          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA"),
-          e("label",{key:"lsi"},"ID Saga (ej: rocky)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
+          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA - Agrupar"),
+          e("label",{key:"lsi"},"ID Saga (ej: rocky - IGUAL para todas)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
           e("label",{key:"lsn"},"Nombre Saga (ej: Rocky Saga)"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
-          e("label",{key:"lsp"},"Poster Saga (se ve en inicio)"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
+          e("label",{key:"lsp"},"Poster Saga (portada en inicio)"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
           e("label",{key:"lo"},"Orden (1,2,3)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
         ]),
         e("label",{key:"l5"},"Lang1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
@@ -181,9 +205,19 @@ function App(){
         e("label",{key:"l8"},"Trailer"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
         e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"12px", flexWrap:"wrap"}},[
           e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
-          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
-          e("button",{key:"cl", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
+          e("button",{key:"cl", className:"btn btn-s", onClick:()=>{setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);}}, "Limpiar"),
+          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click(); URL.revokeObjectURL(u); setMsg("movies.json descargado, súbelo a Github");}}, "⬇ Descargar movies.json"),
+          e("button",{key:"rg", className:"btn btn-s", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{ if(confirm("¿Recargar desde movies.json de Github? Perderás cambios no descargados")) loadFromGithub(); }}, "↺ Recargar desde movies.json"),
+          e("button",{key:"exp", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="respaldo-mi-cine.json"; a.click();}}, "Exportar respaldo"),
+          e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar respaldo"),
+          e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
         ]),
+        e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{
+          const f=ev.target.files[0]; if(!f) return;
+          const reader=new FileReader();
+          reader.onload=()=>{ try{ const j=JSON.parse(reader.result); if(Array.isArray(j)){ setMovies(j); setMsg("Respaldo importado ("+j.length+" pelis)"); } else throw ""; }catch{ setMsg("Error: archivo inválido"); } };
+          reader.readAsText(f); ev.target.value="";
+        }}),
         e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:m.id, className:"admin-item"},[
           e("span",{key:"t"}, m.title + (m.collectionId?` [${m.collectionId}]`:"")),
           e("div",{key:"b", style:{display:"flex", gap:"4px"}},[
