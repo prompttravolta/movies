@@ -1,89 +1,71 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Moviez</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 :root{--bg:#0b0b0d;--panel:#161619;--card:#1c1c20;--red:#c8102e;--gold:#d4af37;--text:#f2f0ea;--muted:#8a8a8f;--border:#2a2a2f;}
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
-header{position:sticky;top:0;z-index:100;padding:14px 20px 12px;text-align:center;background:var(--bg);border-bottom:1px solid var(--border)}
-header h1{font-family:'Bebas Neue';font-size:clamp(2.2rem,5vw,3.2rem);margin:0;letter-spacing:4px;cursor:pointer}header h1 span{color:var(--red)}
-#searchBox{margin-top:10px;width:min(420px,90%);padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);outline:none}
-.tabs{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
-.tab{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
-.tab.active{background:var(--gold);color:#000;border-color:var(--gold)}
+header{position:sticky;top:0;z-index:100;padding:14px 20px;text-align:center;background:var(--bg);border-bottom:1px solid var(--border)}
+header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;cursor:pointer}header h1 span{color:var(--red)}
+#searchBox{margin-top:10px;width:min(420px,90%);padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
 main{padding:20px clamp(12px,3vw,32px) 60px}
 #grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}@media(min-width:1280px){#grid{grid-template-columns:repeat(6,1fr)}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;position:relative}
-.card:hover{border-color:var(--gold);transform:translateY(-3px)}
-.poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+@media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer}
+.card:hover{border-color:var(--gold)}
+.poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .poster-wrap img{width:100%;height:100%;object-fit:cover}
 .collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px}
-.saga-badge{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.7);border:1px solid var(--gold);color:var(--gold);font-size:.6rem;padding:2px 6px;border-radius:4px}
 .card-title{padding:8px 9px;font-size:.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-#detailView{position:fixed;inset:0;background:var(--bg);display:none;z-index:550;overflow-y:auto}#detailView.open{display:block}
-#adminPanel{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;z-index:700;overflow:auto;padding:20px}#adminPanel.open{display:flex;justify-content:center}
-.admin-box{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(600px,100%);padding:20px}
+#detailView,#playerModal,#trailerModal{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;z-index:600;padding:20px}#detailView.open,#playerModal.open,#trailerModal.open{display:flex;align-items:center;justify-content:center}
+#detailView.open{display:block;overflow:auto;background:var(--bg)}
+#adminPanel{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:700;overflow:auto;padding:20px}#adminPanel.open{display:flex;justify-content:center}
+.admin-box{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(650px,100%);padding:20px}
 .admin-box label{display:block;font-size:.75rem;color:var(--muted);margin:12px 0 4px;text-transform:uppercase}
 .admin-box input,.admin-box textarea{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:#fff;padding:8px 10px}
 .btn{padding:8px 14px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:.85rem}.btn-p{background:var(--red);color:#fff}.btn-s{background:transparent;border:1px solid var(--border);color:#fff}
-#playerModal,#trailerModal{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:650;padding:20px}#playerModal.open,#trailerModal.open{display:flex}
-#playerFrame,#trailerFrame{width:min(1100px,95vw);aspect-ratio:16/9;background:#000}
-#playerFrame iframe,#trailerFrame iframe{width:100%;height:100%;border:0}
+.admin-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
+.admin-item span:first-child{flex:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.icon-btn{background:var(--panel);border:1px solid var(--border);color:#fff;border-radius:5px;padding:4px 8px;cursor:pointer;font-size:.8rem}
+.icon-btn:disabled{opacity:.3}
 </style>
 </head>
 <body>
 <div id="root"></div>
-
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-
 <script>
 const e = React.createElement;
-const PER_PAGE = 18;
-const KEY = "miCine.movies";
+const KEY = "miCine.movies"; const PER_PAGE = 18;
 
 function App(){
-  const [movies,setMovies] = React.useState(()=>{
-    try{ const s=localStorage.getItem(KEY); if(s) return JSON.parse(s); }catch{}
-    return [];
-  });
-  const [q,setQ] = React.useState("");
-  const [page,setPage] = React.useState(1);
-  const [detail,setDetail] = React.useState(null);
-  const [player,setPlayer] = React.useState(null);
-  const [trailer,setTrailer] = React.useState(null);
-  const [admin,setAdmin] = React.useState(false);
-  const [editId,setEditId] = React.useState(null);
-  const [selectedSaga,setSelectedSaga] = React.useState(null);
-  const clicks = React.useRef(0);
+  const [movies,setMovies] = React.useState(()=>{ try{const s=localStorage.getItem(KEY); if(s) return JSON.parse(s);}catch{} return []; });
+  const [q,setQ]=React.useState(""); const [page,setPage]=React.useState(1);
+  const [detail,setDetail]=React.useState(null); const [player,setPlayer]=React.useState(null); const [trailer,setTrailer]=React.useState(null);
+  const [admin,setAdmin]=React.useState(false); const [editId,setEditId]=React.useState(null); const [selectedSaga,setSelectedSaga]=React.useState(null);
+  const clicks=React.useRef(0);
 
-  // form
-  const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState("");
-  const [fDesc,setFDesc]=React.useState(""); const [fEmbed,setFEmbed]=React.useState("");
-  const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
+  const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
+  const [fEmbed,setFEmbed]=React.useState(""); const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
   const [fSubs,setFSubs]=React.useState(""); const [fTrailer,setFTrailer]=React.useState("");
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
 
-  React.useEffect(()=>{
-    if(localStorage.getItem(KEY)) return;
-    fetch("movies.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(d=>{
-      if(Array.isArray(d)&&d.length){ setMovies(d); localStorage.setItem(KEY,JSON.stringify(d)); }
-    });
-  },[]);
-
+  React.useEffect(()=>{ if(localStorage.getItem(KEY)) return; fetch("movies.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(d=>{ if(d.length){ setMovies(d); localStorage.setItem(KEY,JSON.stringify(d)); } }); },[]);
   React.useEffect(()=>{ localStorage.setItem(KEY, JSON.stringify(movies)); },[movies]);
 
-  // agrupar
+  const move = (from,to)=>{
+    if(to<0||to>=movies.length) return;
+    setMovies(p=>{ const arr=[...p]; const [item]=arr.splice(from,1); arr.splice(to,0,item); return arr; });
+  };
+
   const collectionsMap = React.useMemo(()=>{
     const map={};
     movies.forEach(m=>{
       if(m.collectionId){
-        const id = m.collectionId.trim().toLowerCase().replace(/\s+/g,'-');
+        const id=m.collectionId.trim().toLowerCase().replace(/\s+/g,'-');
         if(!map[id]) map[id]={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[]};
         if(m.collectionPoster) map[id].poster=m.collectionPoster;
         if(m.collection) map[id].name=m.collection;
@@ -94,154 +76,128 @@ function App(){
     return map;
   },[movies]);
 
-  const standalone = React.useMemo(()=> movies.filter(m=>!m.collectionId), [movies]);
-  const sagas = React.useMemo(()=> Object.values(collectionsMap), [collectionsMap]);
+  const standalone = React.useMemo(()=>movies.filter(m=>!m.collectionId),[movies]);
+  const sagas = React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
 
-  // que se ve en home
-  let homeItems = [];
+  let homeItems=[];
   if(!selectedSaga){
     standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
     sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
     if(q.trim()){
       const qq=q.toLowerCase();
-      homeItems = homeItems.filter(it=>{
-        if(it.type==='movie') return it.data.title.toLowerCase().includes(qq);
-        return it.data.name.toLowerCase().includes(qq);
-      });
+      homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq));
     }
   } else {
-    const col = collectionsMap[selectedSaga];
-    if(col) homeItems = col.movies.map(m=>({type:'movie', data:m}));
+    const col=collectionsMap[selectedSaga];
+    if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
   }
 
-  const totalPages = Math.max(1, Math.ceil(homeItems.length / PER_PAGE));
-  const paginated = selectedSaga? homeItems : homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
+  const totalPages=Math.max(1,Math.ceil(homeItems.length/PER_PAGE));
+  const paginated=selectedSaga? homeItems : homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
 
   const save=()=>{
-    if(!fTitle.trim()){ alert("Falta titulo"); return; }
+    if(!fTitle.trim()){alert("Falta titulo");return;}
     const obj={
       id: editId || (crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)),
-      title: fTitle.trim(),
-      poster: fPoster.trim(),
-      desc: fDesc.trim(),
-      embed: fEmbed.trim(),
-      lang: fLang.trim(),
-      lang2: fLang2.trim(),
-      subs: fSubs.trim(),
-      trailer: fTrailer.trim(),
-      collectionId: fSagaId.trim().toLowerCase().replace(/\s+/g,'-') || undefined,
-      collection: fSagaName.trim() || undefined,
-      collectionPoster: fSagaPoster.trim() || undefined,
-      order: fOrder? parseInt(fOrder) : undefined
+      title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(),
+      lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(),
+      collectionId:fSagaId.trim().toLowerCase().replace(/\s+/g,'-')||undefined,
+      collection:fSagaName.trim()||undefined, collectionPoster:fSagaPoster.trim()||undefined,
+      order:fOrder?parseInt(fOrder):undefined
     };
-    Object.keys(obj).forEach(k=> obj[k]===undefined && delete obj[k]);
+    Object.keys(obj).forEach(k=>obj[k]===undefined&&delete obj[k]);
     if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m));
     else setMovies(p=>[...p,obj]);
-    setFTitle(""); setFPoster(""); setFDesc(""); setFEmbed(""); setFLang(""); setFLang2(""); setFSubs(""); setFTrailer(""); setFSagaId(""); setFSagaName(""); setFSagaPoster(""); setFOrder(""); setEditId(null);
-    alert("Guardado! Ahora descarga el JSON");
-  };
-
-  const handleTitle=()=>{
-    clicks.current++; setTimeout(()=>clicks.current=0,1500);
-    if(clicks.current>=5){ clicks.current=0; setAdmin(v=>!v); }
+    setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);
+    alert("Guardado, ahora descarga el JSON");
   };
 
   return e("div",{},[
     e("header",{key:"h"},[
-      e("h1",{key:"t", onClick:handleTitle}, ["MI ", e("span",{style:{color:"var(--red)"}},"CINE")]),
+      e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
       e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
-      e("div",{key:"tabs", className:"tabs"},[
-        selectedSaga? e("button",{key:"b", className:"tab active", onClick:()=>setSelectedSaga(null)}, "← Volver") : null,
-       !selectedSaga? e("div",{key:"i", style:{color:"var(--muted)", fontSize:".8rem", marginTop:"4px"}}, `${standalone.length} pelis + ${sagas.length} sagas`) : e("div",{key:"i", style:{color:"var(--gold)", fontSize:".9rem", fontWeight:700}}, collectionsMap[selectedSaga]?.name + ` (${collectionsMap[selectedSaga]?.movies.length} pelis)`)
-      ])
+      selectedSaga? e("div",{key:"back", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:()=>setSelectedSaga(null)}, "← Volver a inicio - "+(collectionsMap[selectedSaga]?.name||""))) : null
     ]),
     e("main",{key:"m"},[
       e("div",{key:"g", id:"grid"}, paginated.map(it=>{
         if(it.type==="collection"){
           const c=it.data;
-          return e("div",{key:c.id, className:"card", onClick:()=>{setSelectedSaga(c.id); setPage(1);}},[
-            e("div",{key:"w", className:"poster-wrap"},[
-              e("img",{key:"i", src:c.poster}),
-              e("div",{key:"cb", className:"collection-badge"}, c.movies.length+" PELIS")
-            ]),
+          return e("div",{key:c.id, className:"card", onClick:()=>setSelectedSaga(c.id)},[
+            e("div",{key:"w", className:"poster-wrap"},[e("img",{key:"i", src:c.poster}), e("div",{key:"b", className:"collection-badge"}, c.movies.length+" PELIS")]),
             e("div",{key:"t", className:"card-title"}, c.name)
           ]);
         } else {
           const p=it.data;
           return e("div",{key:p.id, className:"card", onClick:()=>setDetail(p)},[
-            e("div",{key:"w", className:"poster-wrap"},[
-              p.poster? e("img",{key:"i", src:p.poster}) : e("div",{key:"f"}, p.title),
-              p.collectionId? e("div",{key:"sb", className:"saga-badge"}, "SAGA") : null
-            ]),
+            e("div",{key:"w", className:"poster-wrap"},[p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title)]),
             e("div",{key:"t", className:"card-title"}, p.title)
           ]);
         }
       })),
-     !selectedSaga && totalPages>1? e("div",{key:"pag", id:"pagination", className:"show", style:{display:"flex"}},[
-        e("button",{key:"pr", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "Anterior"),
-        e("span",{key:"lb"}, `Pag ${page} de ${totalPages}`),
-        e("button",{key:"nx", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente")
+     !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", marginTop:"20px"}},[
+        e("button",{key:"pr", className:"btn btn-s", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "Anterior"),
+        e("span",{key:"lb", style:{fontSize:".85rem", color:"var(--muted)"}}, `Pag ${page} de ${totalPages}`),
+        e("button",{key:"nx", className:"btn btn-s", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente")
       ]) : null
     ]),
     detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[
-      e("div",{key:"box", style:{padding:"20px", maxWidth:"900px", margin:"0 auto"}},[
-        e("button",{key:"x", id:"closeDetail", style:{position:"fixed", top:"15px", right:"15px", width:"40px", height:"40px", borderRadius:"50%", fontSize:"1.8rem", cursor:"pointer"}, onClick:()=>setDetail(null)}, "×"),
-        e("img",{key:"img", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}),
+      e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
+        e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"40px", height:"40px", borderRadius:"50%", fontSize:"1.8rem"}, onClick:()=>setDetail(null)}, "×"),
+        e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}),
         e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2rem"}}, detail.title),
         e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line"}}, detail.desc),
-        e("div",{key:"btns", style:{display:"flex", gap:"10px", marginTop:"15px"}},[
-          detail.trailer? e("button",{key:"tr", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0] || detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null,
-          e("button",{key:"pl", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "Ver pelicula")
+        e("div",{key:"a", style:{display:"flex", gap:"10px", marginTop:"15px"}},[
+          e("button",{key:"p", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "Ver pelicula"),
+          detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null
         ])
       ])
     ]) : null,
-    player? e("div",{key:"plm", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
-      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff", cursor:"pointer"}, onClick:()=>setPlayer(null)}, "×"),
-      e("div",{key:"fr", id:"playerFrame"}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true}))
+    player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
+      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"),
+      e("div",{key:"f", id:"playerFrame"}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true}))
     ]) : null,
-    trailer? e("div",{key:"trl", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[
-      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff", cursor:"pointer"}, onClick:()=>setTrailer(null)}, "×"),
-      e("div",{key:"fr", id:"trailerFrame"}, e("iframe",{src:trailer, allowFullScreen:true}))
+    trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[
+      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"),
+      e("div",{key:"f", id:"trailerFrame"}, e("iframe",{src:trailer, allowFullScreen:true}))
     ]) : null,
-    admin? e("div",{key:"adm", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[
+    admin? e("div",{key:"ad", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[
       e("div",{key:"box", className:"admin-box"},[
-        e("h2",{key:"h"}, "Panel Secreto - SAGAS"),
-        e("p",{key:"p", style:{fontSize:".8rem", color:"var(--muted)"}}, "Para que una peli sea parte de una saga, ponle el MISMO ID de saga a todas. Ej: rocky. En el inicio solo se verá 1 portada de la saga."),
-        e("label",{key:"l1"}, "Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
-        e("label",{key:"l2"}, "Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
-        e("label",{key:"l3"}, "Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
-        e("label",{key:"l4"}, "Embed / iframe"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
-        e("div",{key:"saga", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"15px", borderRadius:"8px"}},[
-          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "--- CONFIGURACION DE SAGA ---"),
-          e("label",{key:"lsi"}, "ID de Saga (ej: rocky, candy, rapido-furioso) - OBLIGATORIO para agrupar"), e("input",{key:"isi", placeholder:"rocky", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
-          e("label",{key:"lsn"}, "Nombre Visible Saga (ej: Rocky Saga)"), e("input",{key:"isn", placeholder:"Rocky Saga", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
-          e("label",{key:"lsp"}, "Poster de la Saga (el que se ve en el inicio)"), e("input",{key:"isp", placeholder:"https://... (opcional)", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
-          e("label",{key:"lo"}, "Orden dentro de saga (1,2,3...)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel - Mover con flechas ↑ ↓"),
+        e("p",{key:"p", style:{fontSize:".8rem", color:"var(--muted)"}}, "Para crear saga: pon el MISMO ID de saga a todas las pelis de esa saga. Ej: rocky. Solo se verá 1 portada en el inicio."),
+        e("label",{key:"l1"},"Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
+        e("label",{key:"l2"},"Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
+        e("label",{key:"l3"},"Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
+        e("label",{key:"l4"},"Embed"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
+        e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"10px", borderRadius:"8px"}},[
+          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA"),
+          e("label",{key:"lsi"},"ID Saga (ej: rocky)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
+          e("label",{key:"lsn"},"Nombre Saga (ej: Rocky Saga)"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
+          e("label",{key:"lsp"},"Poster Saga (se ve en inicio)"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
+          e("label",{key:"lo"},"Orden (1,2,3)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
         ]),
-        e("label",{key:"l5"}, "Lang 1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
-        e("label",{key:"l6"}, "Lang 2"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value)}),
-        e("label",{key:"l7"}, "Subs"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value)}),
-        e("label",{key:"l8"}, "Trailer YT"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
-        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"15px", flexWrap:"wrap"}},[
+        e("label",{key:"l5"},"Lang1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
+        e("label",{key:"l6"},"Lang2"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value)}),
+        e("label",{key:"l7"},"Subs"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value)}),
+        e("label",{key:"l8"},"Trailer"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
+        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"12px", flexWrap:"wrap"}},[
           e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
-          e("button",{key:"cl", className:"btn btn-s", onClick:()=>{setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);}}, "Limpiar"),
           e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
-          e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
+          e("button",{key:"cl", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
         ]),
-        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map(m=>e("div",{key:m.id, style:{display:"flex", justifyContent:"space-between", fontSize:".8rem", borderBottom:"1px solid #333", padding:"5px 0"}},[
+        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:m.id, className:"admin-item"},[
           e("span",{key:"t"}, m.title + (m.collectionId?` [${m.collectionId}]`:"")),
-          e("span",{key:"b"},[
-            e("button",{key:"e", style:{fontSize:".7rem", marginRight:"5px"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||"");}}, "Editar"),
-            e("button",{key:"d", style:{fontSize:".7rem"}, onClick:()=>{if(confirm("Borrar?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")
+          e("div",{key:"b", style:{display:"flex", gap:"4px"}},[
+            e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"),
+            e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"),
+            e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"),
+            e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")
           ])
         ])))
       ])
     ]) : null
   ]);
 }
-
-const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(e(App));
+ReactDOM.createRoot(document.getElementById("root")).render(e(App));
 </script>
 </body>
 </html>
