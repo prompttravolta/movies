@@ -4,106 +4,89 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>My Moviez</title>
-<script type="importmap">
-{"imports":{"react":"https://esm.sh/react@18.3.1","react-dom/client":"https://esm.sh/react-dom@18.3.1/client"}}
-</script>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 :root{--bg:#0b0b0d;--panel:#161619;--card:#1c1c20;--red:#c8102e;--gold:#d4af37;--text:#f2f0ea;--muted:#8a8a8f;--border:#2a2a2f;}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;-webkit-user-select:none;user-select:none}
-input,textarea{user-select:text}img{-webkit-user-drag:none}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif}
 header{position:sticky;top:0;z-index:100;padding:14px 20px 12px;text-align:center;background:var(--bg);border-bottom:1px solid var(--border)}
 header h1{font-family:'Bebas Neue';font-size:clamp(2.2rem,5vw,3.2rem);margin:0;letter-spacing:4px;cursor:pointer}header h1 span{color:var(--red)}
-header p{margin:6px 0 0;color:var(--muted);font-size:.85rem;letter-spacing:2px;text-transform:uppercase}
 #searchBox{margin-top:10px;width:min(420px,90%);padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);outline:none}
-.tabs{margin-top:14px;display:flex;gap:8px;justify-content:center;flex-wrap:wrap}
-.tab{padding:8px 16px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer;letter-spacing:.5px}
+.tabs{display:flex;gap:8px;justify-content:center;margin-top:12px;flex-wrap:wrap}
+.tab{padding:7px 14px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-weight:700;font-size:.8rem;cursor:pointer}
 .tab.active{background:var(--gold);color:#000;border-color:var(--gold)}
 main{padding:20px clamp(12px,3vw,32px) 60px}
 #grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-@media(min-width:480px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}@media(min-width:1280px){#grid{grid-template-columns:repeat(6,1fr)}}
-#pagination{display:none;align-items:center;justify-content:center;gap:16px;margin-top:30px}#pagination.show{display:flex}
-#pagination button{background:var(--panel);border:1px solid var(--border);color:var(--text);padding:8px 16px;border-radius:6px;font-weight:600;cursor:pointer}#pagination button:disabled{opacity:.35}
-.card{position:relative;background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;transition:.2s}
-.card:hover{transform:translateY(-4px);border-color:var(--gold);box-shadow:0 10px 24px rgba(0,0,0,.5)}
-.poster-wrap{position:relative;aspect-ratio:2/3;background:linear-gradient(160deg,#2a2a30,#141416);display:flex;align-items:center;justify-content:center;overflow:hidden}
+@media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}@media(min-width:1280px){#grid{grid-template-columns:repeat(6,1fr)}}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;position:relative}
+.card:hover{border-color:var(--gold);transform:translateY(-3px)}
+.poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
 .poster-wrap img{width:100%;height:100%;object-fit:cover}
-.badge{position:absolute;left:6px;bottom:6px;background:rgba(11,11,13,.7);backdrop-filter:blur(3px);border:1px solid rgba(212,175,55,.75);color:var(--gold);font-size:.62rem;font-weight:700;padding:2px 6px;border-radius:4px}
-.collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px;letter-spacing:.5px}
-.poster-fallback{font-family:'Bebas Neue';font-size:2rem;color:var(--muted);text-align:center}
-.card-title{padding:8px 9px 10px;font-size:.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px}
+.saga-badge{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.7);border:1px solid var(--gold);color:var(--gold);font-size:.6rem;padding:2px 6px;border-radius:4px}
+.card-title{padding:8px 9px;font-size:.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #detailView{position:fixed;inset:0;background:var(--bg);display:none;z-index:550;overflow-y:auto}#detailView.open{display:block}
-.detail-box{position:relative;min-height:100%}
-.detail-poster-wrap{width:100%;max-height:68vh;background:#0e0e10;display:flex;justify-content:center;border-bottom:1px solid var(--border)}
-.detail-poster-wrap img{max-height:68vh;max-width:100%;object-fit:contain}
-#closeDetail{position:fixed;top:16px;right:18px;background:rgba(11,11,13,.75);border:1px solid var(--border);color:var(--text);font-size:1.9rem;width:40px;height:40px;border-radius:50%;cursor:pointer;z-index:3}
-.detail-body{padding:26px clamp(16px,5vw,64px) 80px;max-width:900px;margin:0 auto}
-.detail-body h2{font-family:'Bebas Neue';letter-spacing:2px;font-size:clamp(1.8rem,4vw,2.6rem);margin:18px 0 10px}
-.detail-desc{color:var(--muted);font-size:.98rem;line-height:1.7;white-space:pre-line;margin-bottom:24px}
-.play-btn{background:var(--red);color:#fff;border:none;padding:10px 20px;border-radius:6px;font-weight:700;cursor:pointer}.trailer-btn{background:transparent;border:1px solid var(--gold);color:var(--gold);padding:10px 20px;border-radius:6px;font-weight:700;cursor:pointer}
-#playerModal,#trailerModal{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;flex-direction:column;z-index:650;padding:20px}#playerModal.open,#trailerModal.open{display:flex}
-#playerFrame,#trailerFrame{width:min(1400px,96vw);aspect-ratio:16/9;background:#000;border-radius:6px;overflow:hidden}#playerFrame iframe,#trailerFrame iframe{width:100%;height:100%;border:0}
-#adminPanel{position:fixed;inset:0;background:rgba(0,0,0,.85);display:none;align-items:flex-start;justify-content:center;z-index:700;padding:30px 16px;overflow-y:auto}#adminPanel.open{display:flex}
-.admin-box{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(600px,100%);padding:24px}
-.admin-box h2{font-family:'Bebas Neue';letter-spacing:2px;color:var(--gold);margin:0 0 4px;font-size:1.6rem}
-.admin-box label{display:block;font-size:.78rem;color:var(--muted);margin:14px 0 5px;text-transform:uppercase}
-.admin-box input,.admin-box textarea{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:var(--text);padding:9px 11px;font-family:inherit;font-size:.88rem}
-.admin-actions{display:flex;gap:10px;margin-top:20px;flex-wrap:wrap}
-.btn{padding:9px 16px;border-radius:6px;border:none;font-weight:700;font-size:.85rem;cursor:pointer}.btn-primary{background:var(--red);color:#fff}.btn-secondary{background:transparent;border:1px solid var(--border);color:var(--text)}
+#adminPanel{position:fixed;inset:0;background:rgba(0,0,0,.9);display:none;z-index:700;overflow:auto;padding:20px}#adminPanel.open{display:flex;justify-content:center}
+.admin-box{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(600px,100%);padding:20px}
+.admin-box label{display:block;font-size:.75rem;color:var(--muted);margin:12px 0 4px;text-transform:uppercase}
+.admin-box input,.admin-box textarea{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:#fff;padding:8px 10px}
+.btn{padding:8px 14px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:.85rem}.btn-p{background:var(--red);color:#fff}.btn-s{background:transparent;border:1px solid var(--border);color:#fff}
+#playerModal,#trailerModal{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;align-items:center;justify-content:center;z-index:650;padding:20px}#playerModal.open,#trailerModal.open{display:flex}
+#playerFrame,#trailerFrame{width:min(1100px,95vw);aspect-ratio:16/9;background:#000}
+#playerFrame iframe,#trailerFrame iframe{width:100%;height:100%;border:0}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script type="module">
-import React from 'react';
-import {createRoot} from 'react-dom/client';
-const MOVIES_KEY="miCine.movies", PER_PAGE=18;
+
+<script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+
+<script>
+const e = React.createElement;
+const PER_PAGE = 18;
+const KEY = "miCine.movies";
 
 function App(){
-  const [movies,setMovies]=React.useState(()=>{
-    try{const s=localStorage.getItem(MOVIES_KEY); if(s) return JSON.parse(s)}catch{}
+  const [movies,setMovies] = React.useState(()=>{
+    try{ const s=localStorage.getItem(KEY); if(s) return JSON.parse(s); }catch{}
     return [];
   });
-  const [q,setQ]=React.useState("");
-  const [page,setPage]=React.useState(1);
-  const [detail,setDetail]=React.useState(null);
-  const [player,setPlayer]=React.useState(null);
-  const [trailer,setTrailer]=React.useState(null);
-  const [admin,setAdmin]=React.useState(false);
-  const [editingId,setEditingId]=React.useState(null);
-  const [viewMode,setViewMode]=React.useState("all"); // all | collections
-  const [selectedCollectionId,setSelectedCollectionId]=React.useState(null);
+  const [q,setQ] = React.useState("");
+  const [page,setPage] = React.useState(1);
+  const [detail,setDetail] = React.useState(null);
+  const [player,setPlayer] = React.useState(null);
+  const [trailer,setTrailer] = React.useState(null);
+  const [admin,setAdmin] = React.useState(false);
+  const [editId,setEditId] = React.useState(null);
+  const [selectedSaga,setSelectedSaga] = React.useState(null);
+  const clicks = React.useRef(0);
 
-  // form states
+  // form
   const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState("");
   const [fDesc,setFDesc]=React.useState(""); const [fEmbed,setFEmbed]=React.useState("");
   const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
   const [fSubs,setFSubs]=React.useState(""); const [fTrailer,setFTrailer]=React.useState("");
-  const [fCollId,setFCollId]=React.useState(""); const [fCollName,setFCollName]=React.useState("");
-  const [fCollPoster,setFCollPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
-  const [msg,setMsg]=React.useState("");
-
-  const clicksRef=React.useRef(0);
+  const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
+  const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
 
   React.useEffect(()=>{
-    if(localStorage.getItem(MOVIES_KEY)) return;
+    if(localStorage.getItem(KEY)) return;
     fetch("movies.json",{cache:"no-store"}).then(r=>r.ok?r.json():[]).then(d=>{
-      if(Array.isArray(d)&&d.length){ setMovies(d); localStorage.setItem(MOVIES_KEY, JSON.stringify(d));}
-    }).catch(()=>{});
+      if(Array.isArray(d)&&d.length){ setMovies(d); localStorage.setItem(KEY,JSON.stringify(d)); }
+    });
   },[]);
 
-  React.useEffect(()=>{ localStorage.setItem(MOVIES_KEY, JSON.stringify(movies)); },[movies]);
+  React.useEffect(()=>{ localStorage.setItem(KEY, JSON.stringify(movies)); },[movies]);
 
-  // AGRUPAR COLECCIONES
+  // agrupar
   const collectionsMap = React.useMemo(()=>{
     const map={};
     movies.forEach(m=>{
       if(m.collectionId){
-        const id = m.collectionId.toLowerCase().trim().replace(/\s+/g,'-');
-        if(!map[id]) map[id]={id, name: m.collection || id, poster: m.collectionPoster || m.poster, movies: []};
-        // si esta peli trae poster de coleccion, actualizar
-        if(m.collectionPoster) map[id].poster = m.collectionPoster;
-        if(m.collection) map[id].name = m.collection;
+        const id = m.collectionId.trim().toLowerCase().replace(/\s+/g,'-');
+        if(!map[id]) map[id]={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[]};
+        if(m.collectionPoster) map[id].poster=m.collectionPoster;
+        if(m.collection) map[id].name=m.collection;
         map[id].movies.push(m);
       }
     });
@@ -111,46 +94,33 @@ function App(){
     return map;
   },[movies]);
 
-  const standaloneMovies = React.useMemo(()=> movies.filter(m=>!m.collectionId), [movies]);
-  const collectionsList = React.useMemo(()=> Object.values(collectionsMap), [collectionsMap]);
+  const standalone = React.useMemo(()=> movies.filter(m=>!m.collectionId), [movies]);
+  const sagas = React.useMemo(()=> Object.values(collectionsMap), [collectionsMap]);
 
-  // LO QUE SE MUESTRA EN EL INICIO
-  const homeItems = React.useMemo(()=>{
-    // items pueden ser {type:'movie', data:movie} o {type:'collection', data:collection}
-    let items = [];
-    standaloneMovies.forEach(m=>items.push({type:'movie', data:m}));
-    collectionsList.forEach(c=>items.push({type:'collection', data:c}));
-
+  // que se ve en home
+  let homeItems = [];
+  if(!selectedSaga){
+    standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
+    sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
     if(q.trim()){
       const qq=q.toLowerCase();
-      items = items.filter(it=>{
+      homeItems = homeItems.filter(it=>{
         if(it.type==='movie') return it.data.title.toLowerCase().includes(qq);
-        return it.data.name.toLowerCase().includes(qq) || it.data.movies.some(mm=>mm.title.toLowerCase().includes(qq));
+        return it.data.name.toLowerCase().includes(qq);
       });
     }
-    return items;
-  },[standaloneMovies, collectionsList, q]);
-
-  const totalPages = Math.max(1, Math.ceil(homeItems.length / PER_PAGE));
-  React.useEffect(()=>{ if(page>totalPages) setPage(totalPages)},[totalPages]);
-  React.useEffect(()=>{ setPage(1)},[q]);
-
-  let paginated = homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
-
-  // Si entramos a una coleccion, mostrar sus pelis
-  if(selectedCollectionId){
-    const coll = collectionsMap[selectedCollectionId];
-    if(coll){
-      paginated = coll.movies.map(m=>({type:'movie', data:m}));
-    }
+  } else {
+    const col = collectionsMap[selectedSaga];
+    if(col) homeItems = col.movies.map(m=>({type:'movie', data:m}));
   }
 
-  const resetForm=()=>{setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFCollId("");setFCollName("");setFCollPoster("");setFOrder("");setEditingId(null)};
+  const totalPages = Math.max(1, Math.ceil(homeItems.length / PER_PAGE));
+  const paginated = selectedSaga? homeItems : homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
 
-  const saveMovie=()=>{
-    if(!fTitle.trim()){setMsg("Falta título");return}
-    const newMovie={
-      id: editingId || (crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)),
+  const save=()=>{
+    if(!fTitle.trim()){ alert("Falta titulo"); return; }
+    const obj={
+      id: editId || (crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)),
       title: fTitle.trim(),
       poster: fPoster.trim(),
       desc: fDesc.trim(),
@@ -159,109 +129,119 @@ function App(){
       lang2: fLang2.trim(),
       subs: fSubs.trim(),
       trailer: fTrailer.trim(),
-      collectionId: fCollId.trim().toLowerCase().replace(/\s+/g,'-') || undefined,
-      collection: fCollName.trim() || undefined,
-      collectionPoster: fCollPoster.trim() || undefined,
+      collectionId: fSagaId.trim().toLowerCase().replace(/\s+/g,'-') || undefined,
+      collection: fSagaName.trim() || undefined,
+      collectionPoster: fSagaPoster.trim() || undefined,
       order: fOrder? parseInt(fOrder) : undefined
     };
-    // limpiar undefineds
-    Object.keys(newMovie).forEach(k=> newMovie[k]===undefined && delete newMovie[k]);
-
-    if(editingId){
-      setMovies(p=>p.map(m=>m.id===editingId?{...m,...newMovie}:m));
-      setMsg("Cambios guardados");
-    } else {
-      setMovies(p=>[...p,newMovie]);
-      setMsg("Película agregada");
-    }
-    resetForm();
+    Object.keys(obj).forEach(k=> obj[k]===undefined && delete obj[k]);
+    if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m));
+    else setMovies(p=>[...p,obj]);
+    setFTitle(""); setFPoster(""); setFDesc(""); setFEmbed(""); setFLang(""); setFLang2(""); setFSubs(""); setFTrailer(""); setFSagaId(""); setFSagaName(""); setFSagaPoster(""); setFOrder(""); setEditId(null);
+    alert("Guardado! Ahora descarga el JSON");
   };
 
-  const handleTitleClick=()=>{
-    clicksRef.current+=1;
-    setTimeout(()=>clicksRef.current=0,1500);
-    if(clicksRef.current>=5){clicksRef.current=0; setAdmin(v=>!v);}
+  const handleTitle=()=>{
+    clicks.current++; setTimeout(()=>clicks.current=0,1500);
+    if(clicks.current>=5){ clicks.current=0; setAdmin(v=>!v); }
   };
 
-  return React.createElement("div",{},[
-    React.createElement("header",{key:"h"},[
-      React.createElement("h1",{key:"t", onClick:handleTitleClick, title:"5 toques para admin"}, ["MI ", React.createElement("span",{key:"s"},"CINE")]),
-      React.createElement("p",{key:"p"},"Colecciones y películas"),
-      React.createElement("input",{key:"sbox", id:"searchBox", placeholder:"Buscar película o saga...", value:q, onChange:e=>{setQ(e.target.value); setSelectedCollectionId(null);}}),
-      React.createElement("div",{key:"tabs", className:"tabs"},[
-        selectedCollectionId? React.createElement("button",{key:"back", className:"tab active", onClick:()=>setSelectedCollectionId(null)}, "← Volver al inicio") : null,
-       !selectedCollectionId? React.createElement("button",{key:"a", className:"tab "+(q===""?"active":""), onClick:()=>{setQ(""); setSelectedCollectionId(null)}}, "Todo") : null,
-       !selectedCollectionId? React.createElement("button",{key:"c", className:"tab", onClick:()=>{setQ("")}, style:{borderColor:"var(--gold)"}}, `${collectionsList.length} Sagas`) : null
-      ].filter(Boolean))
+  return e("div",{},[
+    e("header",{key:"h"},[
+      e("h1",{key:"t", onClick:handleTitle}, ["MI ", e("span",{style:{color:"var(--red)"}},"CINE")]),
+      e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
+      e("div",{key:"tabs", className:"tabs"},[
+        selectedSaga? e("button",{key:"b", className:"tab active", onClick:()=>setSelectedSaga(null)}, "← Volver") : null,
+       !selectedSaga? e("div",{key:"i", style:{color:"var(--muted)", fontSize:".8rem", marginTop:"4px"}}, `${standalone.length} pelis + ${sagas.length} sagas`) : e("div",{key:"i", style:{color:"var(--gold)", fontSize:".9rem", fontWeight:700}}, collectionsMap[selectedSaga]?.name + ` (${collectionsMap[selectedSaga]?.movies.length} pelis)`)
+      ])
     ]),
-    React.createElement("main",{key:"m"},[
-      selectedCollectionId? React.createElement("h2",{key:"ct", style:{fontFamily:"Bebas Neue", letterSpacing:"2px", marginBottom:"12px"}}, collectionsMap[selectedCollectionId]?.name) : null,
-      React.createElement("div",{key:"grid", id:"grid"}, paginated.map(item=>{
-        if(item.type==="collection"){
-          const c=item.data;
-          return React.createElement("div",{key:c.id, className:"card", onClick:()=>setSelectedCollectionId(c.id)},[
-            React.createElement("div",{key:"w", className:"poster-wrap"},[
-              React.createElement("img",{key:"i", src:c.poster, alt:c.name, onError:e=>e.target.style.display='none'}),
-              React.createElement("div",{key:"b", className:"collection-badge"}, `${c.movies.length} PELIS`),
+    e("main",{key:"m"},[
+      e("div",{key:"g", id:"grid"}, paginated.map(it=>{
+        if(it.type==="collection"){
+          const c=it.data;
+          return e("div",{key:c.id, className:"card", onClick:()=>{setSelectedSaga(c.id); setPage(1);}},[
+            e("div",{key:"w", className:"poster-wrap"},[
+              e("img",{key:"i", src:c.poster}),
+              e("div",{key:"cb", className:"collection-badge"}, c.movies.length+" PELIS")
             ]),
-            React.createElement("div",{key:"t", className:"card-title"}, c.name)
-          ])
+            e("div",{key:"t", className:"card-title"}, c.name)
+          ]);
         } else {
-          const p=item.data;
-          return React.createElement("div",{key:p.id, className:"card", onClick:()=>setDetail(p)},[
-            React.createElement("div",{key:"w", className:"poster-wrap"},[
-              p.poster? React.createElement("img",{key:"i", src:p.poster, alt:p.title}) : React.createElement("div",{key:"f", className:"poster-fallback"}, p.title),
-              p.collectionId? React.createElement("div",{key:"cb", className:"badge"}, "SAGA") : null
+          const p=it.data;
+          return e("div",{key:p.id, className:"card", onClick:()=>setDetail(p)},[
+            e("div",{key:"w", className:"poster-wrap"},[
+              p.poster? e("img",{key:"i", src:p.poster}) : e("div",{key:"f"}, p.title),
+              p.collectionId? e("div",{key:"sb", className:"saga-badge"}, "SAGA") : null
             ]),
-            React.createElement("div",{key:"t", className:"card-title"}, p.title)
-          ])
+            e("div",{key:"t", className:"card-title"}, p.title)
+          ]);
         }
       })),
-     !selectedCollectionId? React.createElement("div",{key:"pag", id:"pagination", className: totalPages>1?"show":""},[
-        React.createElement("button",{key:"pr", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "← Anterior"),
-        React.createElement("span",{key:"lb"}, `Página ${page} de ${totalPages}`),
-        React.createElement("button",{key:"nx", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente →")
+     !selectedSaga && totalPages>1? e("div",{key:"pag", id:"pagination", className:"show", style:{display:"flex"}},[
+        e("button",{key:"pr", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "Anterior"),
+        e("span",{key:"lb"}, `Pag ${page} de ${totalPages}`),
+        e("button",{key:"nx", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente")
       ]) : null
     ]),
-    detail? React.createElement("div",{key:"det", id:"detailView", className:"open", onClick:e=>{if(e.target.id==="detailView") setDetail(null)}},[
-      React.createElement("div",{key:"box", className:"detail-box"},[
-        React.createElement("button",{key:"x", id:"closeDetail", onClick:()=>setDetail(null)}, "×"),
-        React.createElement("div",{key:"pw", className:"detail-poster-wrap"}, React.createElement("img",{src:detail.poster, alt:detail.title})),
-        React.createElement("div",{key:"bd", className:"detail-body"},[
-          React.createElement("h2",{key:"h"}, detail.title),
-          detail.collection? React.createElement("div",{key:"cs", style:{color:"var(--gold)", fontSize:".85rem", marginBottom:"8px"}}, `Parte de: ${detail.collection}`) : null,
-          React.createElement("div",{key:"d", className:"detail-desc"}, detail.desc),
-          React.createElement("div",{key:"ac", style:{display:"flex", gap:"10px"}},[
-            detail.trailer? React.createElement("button",{key:"tr", className:"trailer-btn", onClick:()=>{let id=detail.trailer.split("v=")[1]||detail.trailer.split("/").pop(); setTrailer(`https://www.youtube.com/embed/${id}`)}}, "🎬 TRAILER") : null,
-            React.createElement("button",{key:"pl", className:"play-btn", onClick:()=>{setDetail(null); setPlayer(detail);}}, "▶ Ver película")
-          ])
+    detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[
+      e("div",{key:"box", style:{padding:"20px", maxWidth:"900px", margin:"0 auto"}},[
+        e("button",{key:"x", id:"closeDetail", style:{position:"fixed", top:"15px", right:"15px", width:"40px", height:"40px", borderRadius:"50%", fontSize:"1.8rem", cursor:"pointer"}, onClick:()=>setDetail(null)}, "×"),
+        e("img",{key:"img", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}),
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2rem"}}, detail.title),
+        e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line"}}, detail.desc),
+        e("div",{key:"btns", style:{display:"flex", gap:"10px", marginTop:"15px"}},[
+          detail.trailer? e("button",{key:"tr", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0] || detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null,
+          e("button",{key:"pl", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "Ver pelicula")
         ])
       ])
     ]) : null,
-    player? React.createElement("div",{key:"plm", id:"playerModal", className:"open", onClick:e=>{if(e.target.id==="playerModal") setPlayer(null)}},[
-      React.createElement("button",{key:"x", id:"closePlayer", style:{position:"absolute", top:"18px", right:"24px", background:"none", border:"none", color:"#fff", fontSize:"2rem", cursor:"pointer"}, onClick:()=>setPlayer(null)}, "×"),
-      React.createElement("div",{key:"fr", id:"playerFrame"}, player.embed.startsWith("<iframe")? React.createElement("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : React.createElement("iframe",{src:player.embed, allowFullScreen:true}))
+    player? e("div",{key:"plm", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
+      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff", cursor:"pointer"}, onClick:()=>setPlayer(null)}, "×"),
+      e("div",{key:"fr", id:"playerFrame"}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true}))
     ]) : null,
-    trailer? React.createElement("div",{key:"trl", id:"trailerModal", className:"open", onClick:e=>{if(e.target.id==="trailerModal") setTrailer(null)}},[
-      React.createElement("button",{key:"x", style:{position:"absolute", top:"18px", right:"24px", background:"none", border:"none", color:"#fff", fontSize:"2rem", cursor:"pointer"}, onClick:()=>setTrailer(null)}, "×"),
-      React.createElement("div",{key:"fr", id:"trailerFrame"}, React.createElement("iframe",{src:trailer, allowFullScreen:true}))
+    trailer? e("div",{key:"trl", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[
+      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff", cursor:"pointer"}, onClick:()=>setTrailer(null)}, "×"),
+      e("div",{key:"fr", id:"trailerFrame"}, e("iframe",{src:trailer, allowFullScreen:true}))
     ]) : null,
-    admin? React.createElement("div",{key:"adm", id:"adminPanel", className:"open", onClick:e=>{if(e.target.id==="adminPanel") setAdmin(false)}},[
-      React.createElement("div",{key:"box", className:"admin-box"},[
-        React.createElement("h2",{key:"h"}, editingId? "Editando" : "Panel secreto"),
-        React.createElement("p",{key:"hi", style:{color:"var(--muted)", fontSize:".8rem"}}, "Para crear una saga, llena los 3 campos de SAGA. Todas las pelis con el mismo ID de saga se agruparán."),
-        React.createElement("label",{key:"l1"}, "Título"), React.createElement("input",{key:"i1", value:fTitle, onChange:e=>setFTitle(e.target.value)}),
-        React.createElement("label",{key:"l2"}, "Poster URL"), React.createElement("input",{key:"i2", value:fPoster, onChange:e=>setFPoster(e.target.value)}),
-        React.createElement("label",{key:"l3"}, "Descripción"), React.createElement("textarea",{key:"i3", value:fDesc, onChange:e=>setFDesc(e.target.value)}),
-        React.createElement("label",{key:"l4"}, "Embed / Iframe"), React.createElement("textarea",{key:"i4", value:fEmbed, onChange:e=>setFEmbed(e.target.value)}),
-        React.createElement("div",{key:"sep", style:{borderTop:"1px solid var(--border)", margin:"20px 0", paddingTop:"10px"}}, [
-          React.createElement("label",{key:"ls", style:{color:"var(--gold)"}}, "— SAGA / COLECCIÓN (opcional) —"),
-          React.createElement("label",{key:"lci"}, "ID de la saga (ej: rocky, candy) - igual para todas"), React.createElement("input",{key:"ici", placeholder:"rocky", value:fCollId, onChange:e=>setFCollId(e.target.value)}),
-          React.createElement("label",{key:"lcn"}, "Nombre visible de la saga (ej: Rocky Saga)"), React.createElement("input",{key:"icn", placeholder:"Rocky Saga", value:fCollName, onChange:e=>setFCollName(e.target.value)}),
-          React.createElement("label",{key:"lcp"}, "Poster de la saga (portada que se ve en el inicio)"), React.createElement("input",{key:"icp", placeholder:"https://... si no, usa la del primer filme", value:fCollPoster, onChange:e=>setFCollPoster(e.target.value)}),
-          React.createElement("label",{key:"lo"}, "Orden dentro de la saga (1,2,3...)"), React.createElement("input",{key:"io", type:"number", placeholder:"1", value:fOrder, onChange:e=>setFOrder(e.target.value)}),
+    admin? e("div",{key:"adm", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[
+      e("div",{key:"box", className:"admin-box"},[
+        e("h2",{key:"h"}, "Panel Secreto - SAGAS"),
+        e("p",{key:"p", style:{fontSize:".8rem", color:"var(--muted)"}}, "Para que una peli sea parte de una saga, ponle el MISMO ID de saga a todas. Ej: rocky. En el inicio solo se verá 1 portada de la saga."),
+        e("label",{key:"l1"}, "Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
+        e("label",{key:"l2"}, "Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
+        e("label",{key:"l3"}, "Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
+        e("label",{key:"l4"}, "Embed / iframe"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
+        e("div",{key:"saga", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"15px", borderRadius:"8px"}},[
+          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "--- CONFIGURACION DE SAGA ---"),
+          e("label",{key:"lsi"}, "ID de Saga (ej: rocky, candy, rapido-furioso) - OBLIGATORIO para agrupar"), e("input",{key:"isi", placeholder:"rocky", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
+          e("label",{key:"lsn"}, "Nombre Visible Saga (ej: Rocky Saga)"), e("input",{key:"isn", placeholder:"Rocky Saga", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
+          e("label",{key:"lsp"}, "Poster de la Saga (el que se ve en el inicio)"), e("input",{key:"isp", placeholder:"https://... (opcional)", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
+          e("label",{key:"lo"}, "Orden dentro de saga (1,2,3...)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
         ]),
-        React.createElement("label",{key:"l5"}, "Idiomas / Subs / Trailer (opcionales)"),
-        React.createElement("div",{key:"langs", style:{display:"grid", gridTemplateColumns:"1fr 1fr", gap:"8px"}},[
-          React.createElement("input",{key:"a", placeholder:"Lang 1", value:fLang, onChange:e=>setFLang(e.target.value)}),
-          React.createElement("input",{key:"b", placeholder:"Lang 2", value:fLang2, onChange:e=>setFLang2(e.targe
+        e("label",{key:"l5"}, "Lang 1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
+        e("label",{key:"l6"}, "Lang 2"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value)}),
+        e("label",{key:"l7"}, "Subs"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value)}),
+        e("label",{key:"l8"}, "Trailer YT"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
+        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"15px", flexWrap:"wrap"}},[
+          e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
+          e("button",{key:"cl", className:"btn btn-s", onClick:()=>{setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);}}, "Limpiar"),
+          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
+          e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
+        ]),
+        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map(m=>e("div",{key:m.id, style:{display:"flex", justifyContent:"space-between", fontSize:".8rem", borderBottom:"1px solid #333", padding:"5px 0"}},[
+          e("span",{key:"t"}, m.title + (m.collectionId?` [${m.collectionId}]`:"")),
+          e("span",{key:"b"},[
+            e("button",{key:"e", style:{fontSize:".7rem", marginRight:"5px"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||"");}}, "Editar"),
+            e("button",{key:"d", style:{fontSize:".7rem"}, onClick:()=>{if(confirm("Borrar?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")
+          ])
+        ])))
+      ])
+    ]) : null
+  ]);
+}
+
+const root = ReactDOM.createRoot(document.getElementById("root"));
+root.render(e(App));
+</script>
+</body>
+</html>
