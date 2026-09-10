@@ -33,10 +33,12 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
 .meta-chip{background:var(--panel);border:1px solid var(--border);color:var(--text);font-size:.78rem;padding:5px 11px;border-radius:999px}
 .meta-chip.gold{border-color:var(--gold);color:var(--gold)}
+img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;display:inline-block}
 </style>
 </head>
 <body>
 <div id="root"></div>
+<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script>
@@ -65,6 +67,21 @@ function App(){
   };
   React.useEffect(()=>{loadFromGithub();},[]);
   React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},[movies]);
+  // FIX BANDERAS: Convierte 🇲🇽 🇺🇸 en imágenes para que se vean en Chrome/Edge/Brave en Windows
+  React.useEffect(()=>{
+    if(window.twemoji){
+      window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
+    }
+  },[movies, q, page, detail, selectedSaga]);
+  React.useEffect(()=>{
+    const id = setInterval(()=>{
+      if(window.twemoji && document.querySelector('.lang-chip')){
+        window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
+        clearInterval(id);
+      }
+    }, 500);
+    return ()=>clearInterval(id);
+  },[]);
   const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
   const collectionsMap=React.useMemo(()=>{
     const map={};
@@ -84,33 +101,13 @@ function App(){
   const sagas=React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
   const handleVolver=()=>{ setSelectedSaga(null); setPage(1); setQ(""); window.scrollTo({top:0, behavior:"smooth"}); };
   let homeItems=[];
-  if(selectedSaga){
-    const col=collectionsMap[selectedSaga];
-    if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
-    // dentro de la colección también busca en sinopsis
-    if(q.trim()){
-      const qq=q.toLowerCase();
-      homeItems=homeItems.filter(it=> {
-        const m=it.data;
-        return (m.title && m.title.toLowerCase().includes(qq)) ||
-               (m.desc && m.desc.toLowerCase().includes(qq)) ||
-               (m.collection && m.collection.toLowerCase().includes(qq));
-      });
-    }
-  } else if(q.trim()){
-    // MODO BÚSQUEDA: desagrupa y busca en título + sinopsis + colección
-    const qq=q.toLowerCase();
-    const filtered = movies.filter(m=>{
-      return (m.title && m.title.toLowerCase().includes(qq)) ||
-             (m.desc && m.desc.toLowerCase().includes(qq)) ||
-             (m.collection && m.collection.toLowerCase().includes(qq)) ||
-             (m.collectionId && m.collectionId.toLowerCase().includes(qq));
-    });
-    filtered.forEach(m=>homeItems.push({type:'movie', data:m}));
-  } else {
-    // MODO NORMAL: muestra colecciones agrupadas
+  if(!selectedSaga){
     standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
     sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
+    if(q.trim()){ const qq=q.toLowerCase(); homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq)); }
+  } else {
+    const col=collectionsMap[selectedSaga];
+    if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
   }
   const totalPages=Math.max(1,Math.ceil(homeItems.length/PER_PAGE));
   const paginated=selectedSaga? homeItems : homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
