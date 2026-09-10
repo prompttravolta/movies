@@ -33,12 +33,10 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
 .meta-chip{background:var(--panel);border:1px solid var(--border);color:var(--text);font-size:.78rem;padding:5px 11px;border-radius:999px}
 .meta-chip.gold{border-color:var(--gold);color:var(--gold)}
-img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;display:inline-block}
 </style>
 </head>
 <body>
 <div id="root"></div>
-<script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script>
@@ -67,21 +65,6 @@ function App(){
   };
   React.useEffect(()=>{loadFromGithub();},[]);
   React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},[movies]);
-  // FIX BANDERAS: Convierte 🇲🇽 🇺🇸 en imágenes para que se vean en Chrome/Edge/Brave en Windows
-  React.useEffect(()=>{
-    if(window.twemoji){
-      window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
-    }
-  },[movies, q, page, detail, selectedSaga]);
-  React.useEffect(()=>{
-    const id = setInterval(()=>{
-      if(window.twemoji && document.querySelector('.lang-chip')){
-        window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'});
-        clearInterval(id);
-      }
-    }, 500);
-    return ()=>clearInterval(id);
-  },[]);
   const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
   const collectionsMap=React.useMemo(()=>{
     const map={};
