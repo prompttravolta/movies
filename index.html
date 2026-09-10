@@ -2,7 +2,7 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
-<title>My Moviez - FINAL con idiomas</title>
+<title>Mi Cine - Fix Idiomas</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 :root{--bg:#0b0b0d;--panel:#161619;--card:#1c1c20;--red:#c8102e;--gold:#d4af37;--text:#f2f0ea;--muted:#8a8a8f;--border:#2a2a2f;}
@@ -15,14 +15,15 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;position:relative}
 .poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .poster-wrap img{width:100%;height:100%;object-fit:cover}
-.collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px}
-.lang-badge{position:absolute;left:6px;bottom:6px;background:rgba(0,0,0,.75);border:1px solid var(--border);color:#fff;font-size:.62rem;font-weight:700;padding:2px 6px;border-radius:4px}
+.collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px;z-index:2}
+.lang-stack{position:absolute;left:6px;bottom:6px;display:flex;flex-direction:column;gap:4px;z-index:2}
+.lang-chip{background:rgba(40,40,45,.85);backdrop-filter:blur(4px);border:1px solid rgba(255,255,255,.15);color:#fff;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:5px;display:flex;align-items:center;gap:3px}
 .card-title{padding:8px 9px;font-size:.84rem;font-weight:600;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 #detailView,#playerModal,#trailerModal{position:fixed;inset:0;background:rgba(0,0,0,.95);display:none;z-index:600;padding:20px}#detailView.open,#playerModal.open,#trailerModal.open{display:flex;align-items:center;justify-content:center}
 #detailView.open{display:block;overflow:auto;background:var(--bg)}
 #adminPanel{position:fixed;inset:0;background:rgba(0,0,0,.92);display:none;z-index:700;overflow:auto;padding:20px}#adminPanel.open{display:flex;justify-content:center}
 .admin-box{background:var(--panel);border:1px solid var(--gold);border-radius:10px;width:min(650px,100%);padding:20px}
-.admin-box label{display:block;font-size:.75rem;color:var(--muted);margin:12px 0 4px;text-transform:uppercase}
+.admin-box label{display:block;font-size:.75rem;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.5px}
 .admin-box input,.admin-box textarea{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:#fff;padding:8px 10px}
 .btn{padding:8px 14px;border-radius:6px;border:none;font-weight:700;cursor:pointer;font-size:.85rem}.btn-p{background:var(--red);color:#fff}.btn-s{background:transparent;border:1px solid var(--border);color:#fff}
 .admin-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:8px 0;border-bottom:1px solid var(--border);font-size:.85rem}
@@ -30,7 +31,7 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .icon-btn:disabled{opacity:.3}
 #importFile{display:none}
 .detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
-.meta-chip{background:var(--panel);border:1px solid var(--border);color:var(--text);font-size:.78rem;padding:4px 10px;border-radius:999px}
+.meta-chip{background:var(--panel);border:1px solid var(--border);color:var(--text);font-size:.78rem;padding:5px 11px;border-radius:999px}
 .meta-chip.gold{border-color:var(--gold);color:var(--gold)}
 </style>
 </head>
@@ -67,7 +68,15 @@ function App(){
   const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
   const collectionsMap=React.useMemo(()=>{
     const map={};
-    movies.forEach(m=>{ if(m.collectionId){ const id=m.collectionId.trim().toLowerCase().replace(/\s+/g,'-'); if(!map[id]) map[id]={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[]}; if(m.collectionPoster) map[id].poster=m.collectionPoster; if(m.collection) map[id].name=m.collection; map[id].movies.push(m); } });
+    movies.forEach(m=>{
+      if(m.collectionId){
+        const id=m.collectionId.trim().toLowerCase().replace(/\s+/g,'-');
+        if(!map[id]) map[id]={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[]};
+        if(m.collectionPoster) map[id].poster=m.collectionPoster;
+        if(m.collection) map[id].name=m.collection;
+        map[id].movies.push(m);
+      }
+    });
     Object.values(map).forEach(c=>c.movies.sort((a,b)=>(a.order||0)-(b.order||0)));
     return map;
   },[movies]);
@@ -109,9 +118,15 @@ function App(){
           ]);
         } else {
           const p=it.data;
-          const langLabel = p.lang || p.lang2 ? `${p.lang}${p.lang2? ' | '+p.lang2:''}` : "";
           return e("div",{key:`mov-${p.id}-${idx}`, className:"card", onClick:()=>setDetail(p)},[
-            e("div",{key:"w", className:"poster-wrap"},[p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title), langLabel? e("div",{key:"lb", className:"lang-badge"}, langLabel) : null]),
+            e("div",{key:"w", className:"poster-wrap"},[
+              p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title),
+              e("div",{key:"stack", className:"lang-stack"},[
+                p.lang? e("span",{key:"l1", className:"lang-chip"}, `🔊 ${p.lang}`) : null,
+                p.lang2? e("span",{key:"l2", className:"lang-chip"}, `🔊 ${p.lang2}`) : null,
+                p.subs? e("span",{key:"s", className:"lang-chip"}, `💬 ${p.subs}`) : null,
+              ].filter(Boolean))
+            ]),
             e("div",{key:"t", className:"card-title"}, p.title)
           ]);
         }
@@ -128,9 +143,9 @@ function App(){
         e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}),
         e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2rem", marginBottom:"4px"}}, detail.title),
         e("div",{key:"meta", className:"detail-meta"},[
-          detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, `🗣 ${detail.lang}`) : null,
-          detail.lang2? e("span",{key:"l2", className:"meta-chip gold"}, `🗣 ${detail.lang2}`) : null,
-          detail.subs? e("span",{key:"s", className:"meta-chip"}, `💬 SUBS: ${detail.subs}`) : null,
+          detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, `🔊 ${detail.lang}`) : null,
+          detail.lang2? e("span",{key:"l2", className:"meta-chip gold"}, `🔊 ${detail.lang2}`) : null,
+          detail.subs? e("span",{key:"s", className:"meta-chip"}, `💬 ${detail.subs}`) : null,
           detail.collection? e("span",{key:"c", className:"meta-chip"}, `📦 ${detail.collection}`) : null,
         ].filter(Boolean)),
         e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line"}}, detail.desc),
@@ -143,30 +158,34 @@ function App(){
     player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
     trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
     admin? e("div",{key:"ad", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[e("div",{key:"box", className:"admin-box"},[
-        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel Secreto - Idiomas restaurados"),
-        e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px"}}, msg),
-        e("label",{key:"l1"},"Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
-        e("label",{key:"l2"},"Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
-        e("label",{key:"l3"},"Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
-        e("label",{key:"l4"},"Embed / Iframe"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
-        e("div",{key:"langs", style:{border:"1px solid var(--border)", padding:"10px", borderRadius:"8px", marginTop:"10px"}},[
-          e("label",{key:"lh", style:{color:"var(--gold)", fontWeight:700, marginTop:"0"}}, "IDIOMAS - RESTAURADO"),
-          e("label",{key:"l5"},"LANG 1 (ej: ESP 🇲🇽)"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value), placeholder:"ESP 🇲🇽"}),
-          e("label",{key:"l6"},"LANG 2 (ej: Ingles 🇺🇲) - opcional"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value), placeholder:"Ingles 🇺🇲"}),
-          e("label",{key:"l7"},"SUBS (ej: ESP)"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value), placeholder:"ESP"}),
-          e("label",{key:"l8"},"Trailer YT (link)"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value), placeholder:"https://youtube.com/watch?v=..."}),
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)", fontSize:"1.6rem"}}, "PANEL DE ADMINISTRACIÓN"),
+        e("p",{key:"sub", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"-8px"}}, "Ctrl + Alt + P (o toca el titulo 5 veces en movil) para abrir/cerrar este panel."),
+        e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginTop:"10px"}}, msg),
+        e("label",{key:"lt"}, "TÍTULO"), e("input",{key:"it", value:fTitle, onChange:ev=>setFTitle(ev.target.value), placeholder:"Nombre de la pelicula"}),
+        e("label",{key:"lp"}, "URL DE LA PORTADA (IMAGEN)"), e("input",{key:"ip", value:fPoster, onChange:ev=>setFPoster(ev.target.value), placeholder:"https://..."}),
+        e("label",{key:"ld"}, "DESCRIPCIÓN"), e("textarea",{key:"id", value:fDesc, onChange:ev=>setFDesc(ev.target.value), placeholder:"Sinopsis breve..."}),
+        e("label",{key:"le"}, "CÓDIGO / ENLACE DEL REPRODUCTOR"), e("textarea",{key:"ie", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value), placeholder:"Pega aqui el <iframe>...</iframe> o solo la URL, ej: https://bysekoze.com/e/xxxxx"}),
+        // --- ESTO ES LO QUE PEDISTE DE VUELTA ---
+        e("div",{key:"langs-restore", style:{border:"1px solid var(--border)", padding:"12px", borderRadius:"8px", marginTop:"14px", background:"rgba(255,255,255,.02)"}},[
+          e("label",{key:"lh", style:{color:"var(--text)", fontWeight:700, marginTop:"0", fontSize:".8rem"}}, "IDIOMA (OPCIONAL)"),
+          e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value), placeholder:"Ej: Español, Latino, Inglés... o Ingles 🇺🇸"}),
+          e("label",{key:"lh2", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "IDIOMA 2 (OPCIONAL)"),
+          e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value), placeholder:"Ej: ESP 🇲🇽 - déjalo vacío si solo hay uno"}),
+          e("label",{key:"l7", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "SUBTÍTULOS (OPCIONAL)"),
+          e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value), placeholder:"Ej: Español, Sin subtitulos... o Español 🇲🇽"}),
+          e("label",{key:"l8", style:{color:"var(--muted)", marginTop:"12px"}}, "TRAILER YT (opcional)"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value), placeholder:"https://youtube.com/watch?v=..."}),
         ]),
-        e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"10px", borderRadius:"8px"}},[
-          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA / COLECCION"),
-          e("label",{key:"lsi"},"ID Saga (ej: rocky)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
-          e("label",{key:"lsn"},"Nombre Saga"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
-          e("label",{key:"lsp"},"Poster Saga"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
-          e("label",{key:"lo"},"Orden"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
+        e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"14px", borderRadius:"8px"}},[
+          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA / COLECCION (opcional)"),
+          e("label",{key:"lsi"},"ID Saga (ej: rocky)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value), placeholder:"rocky"}),
+          e("label",{key:"lsn"},"Nombre Saga"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value), placeholder:"Rocky Saga"}),
+          e("label",{key:"lsp"},"Poster Saga"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value), placeholder:"https://..."}),
+          e("label",{key:"lo"},"Orden"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value), placeholder:"1,2,3..."}),
         ]),
-        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"12px", flexWrap:"wrap"}},[
+        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"16px", flexWrap:"wrap"}},[
           e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
           e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
-          e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github?")) loadFromGithub();}}, "↺ Recargar"),
+          e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github? Se perderan cambios no guardados")) loadFromGithub();}}, "↺ Recargar desde movies.json"),
           e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar respaldo"),
           e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
         ]),
