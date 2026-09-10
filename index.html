@@ -84,13 +84,33 @@ function App(){
   const sagas=React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
   const handleVolver=()=>{ setSelectedSaga(null); setPage(1); setQ(""); window.scrollTo({top:0, behavior:"smooth"}); };
   let homeItems=[];
-  if(!selectedSaga){
-    standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
-    sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
-    if(q.trim()){ const qq=q.toLowerCase(); homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq)); }
-  } else {
+  if(selectedSaga){
     const col=collectionsMap[selectedSaga];
     if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
+    // dentro de la colección también busca en sinopsis
+    if(q.trim()){
+      const qq=q.toLowerCase();
+      homeItems=homeItems.filter(it=> {
+        const m=it.data;
+        return (m.title && m.title.toLowerCase().includes(qq)) ||
+               (m.desc && m.desc.toLowerCase().includes(qq)) ||
+               (m.collection && m.collection.toLowerCase().includes(qq));
+      });
+    }
+  } else if(q.trim()){
+    // MODO BÚSQUEDA: desagrupa y busca en título + sinopsis + colección
+    const qq=q.toLowerCase();
+    const filtered = movies.filter(m=>{
+      return (m.title && m.title.toLowerCase().includes(qq)) ||
+             (m.desc && m.desc.toLowerCase().includes(qq)) ||
+             (m.collection && m.collection.toLowerCase().includes(qq)) ||
+             (m.collectionId && m.collectionId.toLowerCase().includes(qq));
+    });
+    filtered.forEach(m=>homeItems.push({type:'movie', data:m}));
+  } else {
+    // MODO NORMAL: muestra colecciones agrupadas
+    standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
+    sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
   }
   const totalPages=Math.max(1,Math.ceil(homeItems.length/PER_PAGE));
   const paginated=selectedSaga? homeItems : homeItems.slice((page-1)*PER_PAGE, page*PER_PAGE);
