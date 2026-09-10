@@ -10,10 +10,9 @@
 header{position:sticky;top:0;z-index:100;padding:14px 20px;text-align:center;background:var(--bg);border-bottom:1px solid var(--border)}
 header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;cursor:pointer}header h1 span{color:var(--red)}
 #searchBox{margin-top:10px;width:min(420px,90%);padding:9px 16px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text)}
-main{padding:20px clamp(12px,3vw,32px) 60px}
 #grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
 @media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}@media(min-width:900px){#grid{grid-template-columns:repeat(5,1fr)}}
-.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer}
+.card{background:var(--card);border:1px solid var(--border);border-radius:10px;overflow:hidden;cursor:pointer;position:relative}
 .poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
 .poster-wrap img{width:100%;height:100%;object-fit:cover}
 .collection-badge{position:absolute;top:6px;right:6px;background:var(--red);color:#fff;font-size:.65rem;font-weight:800;padding:3px 7px;border-radius:4px}
@@ -36,56 +35,39 @@ main{padding:20px clamp(12px,3vw,32px) 60px}
 <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
 <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
 <script>
-const e = React.createElement;
-const KEY = "miCine.movies"; const PER_PAGE = 18;
-
+const e = React.createElement; const KEY="miCine.movies"; const PER_PAGE=18;
 function App(){
-  const [movies,setMovies] = React.useState([]);
-  const [q,setQ]=React.useState(""); const [page,setPage]=React.useState(1);
+  const [movies,setMovies]=React.useState([]); const [q,setQ]=React.useState(""); const [page,setPage]=React.useState(1);
   const [detail,setDetail]=React.useState(null); const [player,setPlayer]=React.useState(null); const [trailer,setTrailer]=React.useState(null);
   const [admin,setAdmin]=React.useState(false); const [editId,setEditId]=React.useState(null); const [selectedSaga,setSelectedSaga]=React.useState(null);
-  const [msg,setMsg]=React.useState("");
-  const clicks=React.useRef(0); const fileRef=React.useRef(null);
-
+  const [msg,setMsg]=React.useState(""); const clicks=React.useRef(0); const fileRef=React.useRef(null);
   const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
   const [fEmbed,setFEmbed]=React.useState(""); const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
   const [fSubs,setFSubs]=React.useState(""); const [fTrailer,setFTrailer]=React.useState("");
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
 
-  // --- PRIORIDAD: CARGAR SIEMPRE DE GITHUB ---
-  const loadFromGithub = async ()=>{
+  const loadFromGithub=async()=>{
     try{
-      const r = await fetch("movies.json?v="+Date.now(), {cache:"no-store"});
-      if(!r.ok) throw Error("no ok");
-      const d = await r.json();
-      if(Array.isArray(d) && d.length>0){
-        setMovies(d);
-        localStorage.setItem(KEY, JSON.stringify(d));
-        setMsg("Cargado desde movies.json de Github ("+d.length+" pelis)");
-        return;
+      const r=await fetch("movies.json?v="+Date.now(),{cache:"no-store"});
+      const d=await r.json();
+      if(Array.isArray(d)&&d.length>0){
+        const seen=new Set();
+        const fixed=d.map((m,i)=>{
+          if(seen.has(m.id)){ return {...m, id:m.id+"-"+i+"-"+Date.now()}; }
+          seen.add(m.id); return m;
+        });
+        setMovies(fixed); localStorage.setItem(KEY,JSON.stringify(fixed));
+        setMsg("Cargado desde Github ("+fixed.length+")");
       }
-    }catch(err){
-      // si falla, intenta localStorage
-      try{
-        const s = localStorage.getItem(KEY);
-        if(s){ setMovies(JSON.parse(s)); setMsg("Sin conexión, cargado desde cache local"); }
-      }catch{}
-    }
+    }catch{ try{const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s));}catch{} }
   };
+  React.useEffect(()=>{loadFromGithub();},[]);
+  React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},[movies]);
 
-  React.useEffect(()=>{ loadFromGithub(); },[]);
+  const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
 
-  React.useEffect(()=>{
-    if(movies.length>0) localStorage.setItem(KEY, JSON.stringify(movies));
-  },[movies]);
-
-  const move = (from,to)=>{
-    if(to<0||to>=movies.length) return;
-    setMovies(p=>{ const arr=[...p]; const [item]=arr.splice(from,1); arr.splice(to,0,item); return arr; });
-  };
-
-  const collectionsMap = React.useMemo(()=>{
+  const collectionsMap=React.useMemo(()=>{
     const map={};
     movies.forEach(m=>{
       if(m.collectionId){
@@ -100,17 +82,15 @@ function App(){
     return map;
   },[movies]);
 
-  const standalone = React.useMemo(()=>movies.filter(m=>!m.collectionId),[movies]);
-  const sagas = React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
+  const standalone=React.useMemo(()=>movies.filter(m=>!m.collectionId),[movies]);
+  const sagas=React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
+  const handleVolver=()=>{ setSelectedSaga(null); setPage(1); setQ(""); window.scrollTo({top:0, behavior:"smooth"}); };
 
   let homeItems=[];
   if(!selectedSaga){
     standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
     sagas.forEach(s=>homeItems.push({type:'collection', data:s}));
-    if(q.trim()){
-      const qq=q.toLowerCase();
-      homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq));
-    }
+    if(q.trim()){ const qq=q.toLowerCase(); homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq)); }
   } else {
     const col=collectionsMap[selectedSaga];
     if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
@@ -121,114 +101,45 @@ function App(){
 
   const save=()=>{
     if(!fTitle.trim()){alert("Falta titulo");return;}
-    const obj={
-      id: editId || (crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)),
-      title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(),
-      lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(),
-      collectionId:fSagaId.trim().toLowerCase().replace(/\s+/g,'-')||undefined,
-      collection:fSagaName.trim()||undefined, collectionPoster:fSagaPoster.trim()||undefined,
-      order:fOrder?parseInt(fOrder):undefined
-    };
+    const obj={id: editId||(crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)), title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(), lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(), collectionId:fSagaId.trim().toLowerCase().replace(/\s+/g,'-')||undefined, collection:fSagaName.trim()||undefined, collectionPoster:fSagaPoster.trim()||undefined, order:fOrder?parseInt(fOrder):undefined};
     Object.keys(obj).forEach(k=>obj[k]===undefined&&delete obj[k]);
-    if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m));
-    else setMovies(p=>[...p,obj]);
+    if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m)); else setMovies(p=>[...p,obj]);
     setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);
-    setMsg("Guardado local. Descarga el JSON y súbelo a Github para que todos lo vean.");
+    setMsg("Guardado local. Descarga JSON y súbelo a Github");
   };
 
   return e("div",{},[
     e("header",{key:"h"},[
       e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
       e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
-      selectedSaga? e("div",{key:"back", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:()=>setSelectedSaga(null)}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
+      selectedSaga? e("div",{key:"b", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:handleVolver}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
     ]),
     e("main",{key:"m"},[
-      e("div",{key:"g", id:"grid"}, paginated.map(it=>{
+      e("div",{key:"g", id:"grid"}, paginated.map((it,idx)=>{
         if(it.type==="collection"){
           const c=it.data;
-          return e("div",{key:c.id, className:"card", onClick:()=>setSelectedSaga(c.id)},[
+          return e("div",{key:`col-${c.id}-${idx}`, className:"card", onClick:()=>{setSelectedSaga(c.id); setPage(1); window.scrollTo(0,0);}},[
             e("div",{key:"w", className:"poster-wrap"},[e("img",{key:"i", src:c.poster}), e("div",{key:"b", className:"collection-badge"}, c.movies.length+" PELIS")]),
             e("div",{key:"t", className:"card-title"}, c.name)
           ]);
         } else {
           const p=it.data;
-          return e("div",{key:p.id, className:"card", onClick:()=>setDetail(p)},[
+          return e("div",{key:`mov-${p.id}-${idx}`, className:"card", onClick:()=>setDetail(p)},[
             e("div",{key:"w", className:"poster-wrap"},[p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title)]),
             e("div",{key:"t", className:"card-title"}, p.title)
           ]);
         }
       })),
-    !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", marginTop:"20px"}},[
+   !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", marginTop:"20px"}},[
         e("button",{key:"pr", className:"btn btn-s", disabled:page<=1, onClick:()=>setPage(p=>Math.max(1,p-1))}, "Anterior"),
         e("span",{key:"lb", style:{fontSize:".85rem", color:"var(--muted)"}}, `Pag ${page} de ${totalPages}`),
         e("button",{key:"nx", className:"btn btn-s", disabled:page>=totalPages, onClick:()=>setPage(p=>Math.min(totalPages,p+1))}, "Siguiente")
       ]) : null
     ]),
-    detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[
-      e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
-        e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"40px", height:"40px", borderRadius:"50%", fontSize:"1.8rem"}, onClick:()=>setDetail(null)}, "×"),
-        e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}),
-        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2rem"}}, detail.title),
-        e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line"}}, detail.desc),
-        e("div",{key:"a", style:{display:"flex", gap:"10px", marginTop:"15px"}},[
-          e("button",{key:"p", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "Ver pelicula"),
-          detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null
-        ])
-      ])
-    ]) : null,
-    player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
-      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"),
-      e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
-    ]) : null,
-    trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[
-      e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"),
-      e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
-    ]) : null,
-    admin? e("div",{key:"ad", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[
-      e("div",{key:"box", className:"admin-box"},[
-        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel Secreto"),
-        e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginBottom:"8px"}}, msg),
-        e("label",{key:"l1"},"Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
-        e("label",{key:"l2"},"Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
-        e("label",{key:"l3"},"Descripcion"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
-        e("label",{key:"l4"},"Embed"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
-        e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"10px", borderRadius:"8px"}},[
-          e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA - Agrupar"),
-          e("label",{key:"lsi"},"ID Saga (ej: rocky - IGUAL para todas)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}),
-          e("label",{key:"lsn"},"Nombre Saga (ej: Rocky Saga)"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}),
-          e("label",{key:"lsp"},"Poster Saga (portada en inicio)"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}),
-          e("label",{key:"lo"},"Orden (1,2,3)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),
-        ]),
-        e("label",{key:"l5"},"Lang1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
-        e("label",{key:"l6"},"Lang2"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value)}),
-        e("label",{key:"l7"},"Subs"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value)}),
-        e("label",{key:"l8"},"Trailer"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
-        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"12px", flexWrap:"wrap"}},[
-          e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
-          e("button",{key:"cl", className:"btn btn-s", onClick:()=>{setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);}}, "Limpiar"),
-          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click(); URL.revokeObjectURL(u); setMsg("movies.json descargado, súbelo a Github");}}, "⬇ Descargar movies.json"),
-          e("button",{key:"rg", className:"btn btn-s", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{ if(confirm("¿Recargar desde movies.json de Github? Perderás cambios no descargados")) loadFromGithub(); }}, "↺ Recargar desde movies.json"),
-          e("button",{key:"exp", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="respaldo-mi-cine.json"; a.click();}}, "Exportar respaldo"),
-          e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar respaldo"),
-          e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
-        ]),
-        e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{
-          const f=ev.target.files[0]; if(!f) return;
-          const reader=new FileReader();
-          reader.onload=()=>{ try{ const j=JSON.parse(reader.result); if(Array.isArray(j)){ setMovies(j); setMsg("Respaldo importado ("+j.length+" pelis)"); } else throw ""; }catch{ setMsg("Error: archivo inválido"); } };
-          reader.readAsText(f); ev.target.value="";
-        }}),
-        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:m.id, className:"admin-item"},[
-          e("span",{key:"t"}, m.title + (m.collectionId?` [${m.collectionId}]`:"")),
-          e("div",{key:"b", style:{display:"flex", gap:"4px"}},[
-            e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"),
-            e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"),
-            e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"),
-            e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")
-          ])
-        ])))
-      ])
-    ]) : null
+    detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"40px", height:"40px", borderRadius:"50%", fontSize:"1.8rem"}, onClick:()=>setDetail(null)}, "×"), e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"10px"}}), e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2rem"}}, detail.title), e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line"}}, detail.desc), e("div",{key:"a", style:{display:"flex", gap:"10px", marginTop:"15px"}},[e("button",{key:"p", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "Ver pelicula"), detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null])])]) : null,
+    player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
+    trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
+    admin? e("div",{key:"ad", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[e("div",{key:"box", className:"admin-box"},[e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)"}}, "Panel"), e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px"}}, msg), e("label",{key:"l1"},"Titulo"), e("input",{key:"i1", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}), e("label",{key:"l2"},"Poster"), e("input",{key:"i2", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}), e("label",{key:"l3"},"Desc"), e("textarea",{key:"i3", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}), e("label",{key:"l4"},"Embed"), e("textarea",{key:"i4", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}), e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"10px", marginTop:"10px", borderRadius:"8px"}},[e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700}}, "SAGA"), e("label",{key:"lsi"},"ID Saga"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value)}), e("label",{key:"lsn"},"Nombre Saga"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value)}), e("label",{key:"lsp"},"Poster Saga"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value)}), e("label",{key:"lo"},"Orden"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value)}),]), e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"12px", flexWrap:"wrap"}},[e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"), e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"), e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github?")) loadFromGithub();}}, "↺ Recargar"), e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar"), e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")]), e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const j=JSON.parse(r.result); if(Array.isArray(j)){ setMovies(j); setMsg("Importado "+j.length);}}catch{setMsg("Error archivo");}}; r.readAsText(f);}}), e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:`admin-${m.id}-${idx}`, className:"admin-item"},[e("span",{key:"t"}, m.title+(m.collectionId?` [${m.collectionId}]`:"")), e("div",{key:"b", style:{display:"flex", gap:"4px"}},[e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"), e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"), e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||"");}}, "Editar"), e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")])])) )])]) : null
   ]);
 }
 ReactDOM.createRoot(document.getElementById("root")).render(e(App));
