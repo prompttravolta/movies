@@ -523,7 +523,7 @@
     "title": "Jugando con el destino 2002",
     "poster": "https://m.media-amazon.com/images/M/MV5BZTc4M2Y5ODEtNjMzNy00Nzg1LTlhYzAtN2IxZTYwNDYxYjg4XkEyXkFqcGc@._V1_.jpg",
     "desc": "Jugando con el destino\nBend It Like Beckham\nComedia dramática de 2002 que cuenta la historia de Jess (Parminder Nagra), una joven sikh que vive en Londres y sueña con ser jugadora profesional de fútbol, inspirada por su ídolo David Beckham.\nLos padres de Jess quieren que sea una chica tradicional india, que aprenda a cocinar y se case, a diferencia de su hermana Pinky.\nJules (Keira Knightley) descubre el talento de Jess y la invita a unirse a un equipo femenino local dirigido por el entrenador Joe (Jonathan Rhys Meyers).\nJess debe ocultar sus partidos a su familia mientras intenta equilibrar la tradición cultural con su pasión por el deporte y los sentimientos compartidos por su entrenador",
-    "embed": "ffmpeg -ss 00:20:00 -t 60 -i \"D:\\Downloads\\Mi Subtitulador Videos\\ffmpeg 6.1\\bin\\Zurdo_2003.mkv\" -map 0:v:0 -map 0:a:0 -vf \"crop=720:360:0:60,setsar=1,scale=1920:1080:flags=lanczos,format=yuv420p\" -c:v h264_nvenc -preset p4 -rc constqp -qp 18 -profile:v high -c:a copy -sn -movflags +faststart \"D:\\Downloads\\Mi Subtitulador Videos\\ffmpeg 6.1\\bin\\PROCESADO\\Zurdo_prueba_1080.mp4\"",
+    "embed": "https://bysekoze.com/e/bd20vzc3pshx",
     "lang": "Ingles 🇺🇸",
     "lang2": "",
     "subs": "Español",
