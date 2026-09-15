@@ -26,8 +26,8 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 #grid{grid-template-columns:repeat(2,1fr)}
 @media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:900px){#grid{grid-template-columns:repeat(4,1fr)}}
-@media(min-width:1280px){#grid{grid-template-columns:repeat(5,1fr)}}
-@media(min-width:1600px){#grid{grid-template-columns:repeat(6,1fr)}} /* 6 EN TV 32" y MONITORES 27" */
+@media(min-width:1024px){#grid{grid-template-columns:repeat(5,1fr)}}
+@media(min-width:1280px){#grid{grid-template-columns:repeat(6,1fr)}} /* 6 EN TV 32" y MONITORES 27" */
 .card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;cursor:pointer;position:relative;transition:.18s}
 .card:hover{transform:translateY(-3px);border-color:#3a3a40}
 .poster-wrap{aspect-ratio:2/3;background:#141416;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
@@ -72,15 +72,22 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;disp
 <script>
 const e = React.createElement;
 const KEY="miCine.movies";
-function getColumns(){const w=window.innerWidth; if(w>=1600) return 6; if(w>=1280) return 5; if(w>=900) return 4; if(w>=600) return 3; return 2;}
+function getColumns(){
+  const w=window.innerWidth; 
+  if(w>=1280) return 6; // AHORA 6 columnas desde 1280px, así tu 32" ya entra en 6
+  if(w>=1024) return 5; 
+  if(w>=768)  return 4; 
+  if(w>=600)  return 3; 
+  return 2;
+}
 
 function getPerPage(){
   const w=window.innerWidth; 
-  if(w>=1600) return 30; // 6 x 5  -> tu idea para 32" / TV
-  if(w>=1280) return 25; // 5 x 5
-  if(w>=900)  return 20; // 4 x 5
+  if(w>=1280) return 30; // 6 x 5 = 30 para tu 32" / TV
+  if(w>=1024) return 25; // 5 x 5
+  if(w>=768)  return 20; // 4 x 5
   if(w>=600)  return 18; // 3 x 6
-  return 12;             // 2 x 6  -> tu idea para celular, largo hacia abajo
+  return 18;             // 2 x 9 = 18 para celular, tu nueva idea
 }
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 
