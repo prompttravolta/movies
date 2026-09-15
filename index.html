@@ -73,7 +73,16 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;disp
 const e = React.createElement;
 const KEY="miCine.movies";
 function getColumns(){const w=window.innerWidth; if(w>=1600) return 6; if(w>=1280) return 5; if(w>=900) return 4; if(w>=600) return 3; return 2;}
-function getPerPage(){return getColumns()*3;} // 3 filas = 18 en 6 cols, 15 en 5 cols... siempre múltiplo, nunca huecos
+function getColumns(){const w=window.innerWidth; if(w>=1600) return 6; if(w>=1280) return 5; if(w>=900) return 4; if(w>=600) return 3; return 2;}
+
+function getPerPage(){
+  const w=window.innerWidth; 
+  if(w>=1600) return 30; // 6 x 5  -> tu idea para 32" / TV
+  if(w>=1280) return 25; // 5 x 5
+  if(w>=900)  return 20; // 4 x 5
+  if(w>=600)  return 18; // 3 x 6
+  return 12;             // 2 x 6  -> tu idea para celular, largo hacia abajo
+}
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 
 function App(){
