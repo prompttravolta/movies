@@ -254,6 +254,7 @@ function App(){
         e("button",{key:"pelicula", className:"type-btn"+(typeFilter==="pelicula"?" active":""), onClick:()=>{setTypeFilter("pelicula"); setPage(1);}}, "Películas"),
         e("button",{key:"coleccion", className:"type-btn gold"+(typeFilter==="coleccion"?" active":""), onClick:()=>{setTypeFilter("coleccion"); setPage(1);}}, "📦 Colecciones"),
         e("button",{key:"serie", className:"type-btn gold"+(typeFilter==="serie"?" active":""), onClick:()=>{setTypeFilter("serie"); setPage(1);}}, "📺 Series"),
+        e("button",{key:"app", className:"type-btn", title:"App no subida a Play Store, por lo que puede indicar que no es segura, pero no hay problema: puedes analizarla con VirusTotal.com. Instala sin miedo.", onClick:()=>window.open("https://drive.google.com/file/d/1e7x4AyFitZp8cGfJIbj7F30EomY2SX-m/view?usp=sharing","_blank","noopener,noreferrer")}, "📱 Prueba la app"),
       ]) : null,
       !selectedSaga ? e("div",{key:"alpha", className:"alpha-bar"},[
         e("button",{key:"all", className:"alpha-btn"+(letter===null?" active":""), onClick:()=>{setLetter(null); setPage(1);}}, "★"),
