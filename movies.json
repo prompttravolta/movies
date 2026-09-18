@@ -1,5 +1,17 @@
 [
   {
+    "id": "73b14792-5497-4aec-9ec9-18462b56d8f1",
+    "title": "Resident Evil 2026 CALIDAD FEA",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZmE0NzRlN2UtMjk3ZS00ODIzLWJkYjktZTcyMjIxM2Y4ZmFjXkEyXkFqcGc@._V1_FMjpg_UY600_.jpg",
+    "desc": "Sigue a un desafortunado mensajero encargado de entregar un paquete a un hospital remoto. Pronto se encuentra atrapado en medio de una epidemia y debe luchar contra hordas de criaturas mutantes para sobrevivir.",
+    "embed": "https://bysekoze.com/e/neo7sdzdwzkh",
+    "lang": "Español 🇲🇽",
+    "lang2": "",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "pelicula"
+  },
+  {
     "id": "6348c7ef-218a-4dfc-9486-eb950a68f34f",
     "title": "Dos contra el crimen 1977",
     "poster": "https://m.media-amazon.com/images/M/MV5BM2RiYTQ5YzgtMzEyMC00NWI0LWI1NTctOWM3YmJkNDdjMmMyXkEyXkFqcGc@._V1_.jpg",
@@ -11,7 +23,8 @@
     "trailer": "",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "1a8027a9-4507-4224-90c7-47eefc5ceaaa",
@@ -25,7 +38,8 @@
     "trailer": "",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "c2c2d01f-4f48-43ec-8b56-ae2359deaed7",
@@ -39,7 +53,8 @@
     "trailer": "",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "35dcd947-af84-4564-937f-ebe072e4db39",
@@ -50,7 +65,8 @@
     "lang": "ESP 🇲🇽",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "4dd16295-4147-49df-804e-c240ea2e308d",
@@ -61,7 +77,8 @@
     "lang": "ESP 🇲🇽",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "b1530ddd-0591-45f0-96cc-58a3d2832521",
@@ -72,7 +89,8 @@
     "lang": "ESP 🇲🇽",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "dfd015bc-dc95-447c-8c8e-273d2ad2b29b",
@@ -83,7 +101,8 @@
     "lang": "ESP 🇲🇽",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "135ae058-794d-46da-9e98-f73409e473f6",
@@ -94,7 +113,8 @@
     "lang": "ESP 🇲🇽",
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
-    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg"
+    "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
+    "tipo": "coleccion"
   },
   {
     "id": "8d36bb78-5635-49cf-a24a-0ff6220bca44",
@@ -105,7 +125,8 @@
     "lang": "Español 🇪🇸",
     "lang2": "",
     "subs": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "f3a10813-ceb0-45c5-a470-f2a2737bfb67",
@@ -116,7 +137,8 @@
     "lang": "Español 🇲🇽",
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
-    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg"
+    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
+    "tipo": "coleccion"
   },
   {
     "id": "5d517717-9fb2-47a0-8639-f8d942ec3586",
@@ -127,7 +149,8 @@
     "lang": "Español 🇲🇽",
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
-    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg"
+    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
+    "tipo": "coleccion"
   },
   {
     "id": "44aad9fd-20eb-4ee5-b91e-5e9ad5bea7f9",
@@ -138,7 +161,8 @@
     "lang": "Español 🇲🇽",
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
-    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg"
+    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
+    "tipo": "coleccion"
   },
   {
     "id": "d85688dc-0000-436d-8a9c-3322f75c6050",
@@ -149,7 +173,8 @@
     "lang": "Español 🇲🇽",
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
-    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg"
+    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
+    "tipo": "coleccion"
   },
   {
     "id": "9ae58bc7-fe8a-4ba0-9e8f-da8049ae26f1",
@@ -160,7 +185,8 @@
     "lang": "Portugués 🇧🇷",
     "subs": "Español",
     "lang2": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "b6c999b7-8540-4875-a84a-cc736ddaa09f",
@@ -171,21 +197,24 @@
     "lang": "Ingles 🇺🇸",
     "lang2": "Español 🇲🇽",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "3cdbc580-4c63-46ca-b275-5bd8172ca43d",
     "title": "El vuelo del Navegante 1986",
     "poster": "https://m.media-amazon.com/images/M/MV5BMjEwMTcwNzU5Nl5BMl5BanBnXkFtZTcwMDM5OTUyMQ@@._V1_.jpg",
     "desc": "Flight of the Navigator 1986. En 1978, una oscura noche, David, un niño de 12 años, se da un golpe y queda inconsciente. Ocho años después, despierta y se da cuenta de que su familia se ha mudado.",
-    "embed": "https://bysekoze.com/e/0dqdmpvf5mu2"
+    "embed": "https://bysekoze.com/e/0dqdmpvf5mu2",
+    "tipo": "pelicula"
   },
   {
     "id": "7b343814-8a7e-4d94-879c-ef8da2d25952",
     "title": "Canción del Sur 1946",
     "poster": "https://m.media-amazon.com/images/M/MV5BZmFiYzBlZjAtNzkwYi00YTEyLTgwMTMtODQwYzQ0ZGMwODkwXkEyXkFqcGc@._V1_.jpg",
     "desc": "Song of the South 1946. La película se basa en las historias del Tío Remus adaptados por Joel Chandler Harris.",
-    "embed": "https://bysekoze.com/e/4drxm761j0an"
+    "embed": "https://bysekoze.com/e/4drxm761j0an",
+    "tipo": "pelicula"
   },
   {
     "id": "751d7019-95b6-425d-9dc0-97a2f9d480ec",
@@ -193,7 +222,8 @@
     "poster": "https://m.media-amazon.com/images/M/MV5BMTQ3MjM3ODU1NV5BMl5BanBnXkFtZTgwMjU3NDU2MTE@._V1_.jpg",
     "desc": "Están vivos - The Live 1988. Un vagabundo encuentra casualmente unas gafas que permiten ver a las personas tal y como son. Gracias a ellas descubrirá que importantes personajes de la vida política y social son en realidad extraterrestres.",
     "embed": "https://bysekoze.com/e/36s9a2cftb7z",
-    "lang": "ESP 🇲🇽"
+    "lang": "ESP 🇲🇽",
+    "tipo": "pelicula"
   },
   {
     "id": "46ced1e3-c8ee-45bf-8e2c-3e4553e24ac8",
@@ -204,7 +234,8 @@
     "lang": "Ingles 🇺🇲",
     "lang2": "Español 🇲🇽",
     "subs": "ESP",
-    "trailer": "https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+    "trailer": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+    "tipo": "pelicula"
   },
   {
     "id": "33b25750-98fd-4aef-9894-c090879560aa",
@@ -215,7 +246,8 @@
     "lang": "Italiano 🇮🇹",
     "subs": "ESP",
     "lang2": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "eebf274a-58a3-4c18-9b75-e2dac4f4daca",
@@ -226,7 +258,8 @@
     "lang": "ESP 🇲🇽",
     "subs": "ESP",
     "lang2": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "4b6bea7d-23ca-4c2b-bac5-86965ac9a5fb",
@@ -234,7 +267,8 @@
     "poster": "https://m.media-amazon.com/images/M/MV5BY2RmZTY0MTgtZGQzMy00YzRhLTg3NDEtZWFkMWI1NTBhYzE3XkEyXkFqcGc@._V1_.jpg",
     "desc": "Cambio de suerte (2008) es una película mexicana de historias cruzadas y comedia negra dirigida por Jorge Ramírez Rivera, que se desarrolla por completo durante una vertiginosa noche en la Ciudad de México, específicamente en la emblemática colonia Santa María la Ribera.",
     "embed": "https://bysekoze.com/e/zx1ohdnyz645",
-    "lang": "Español 🇲🇽"
+    "lang": "Español 🇲🇽",
+    "tipo": "pelicula"
   },
   {
     "id": "crapston-01",
@@ -247,7 +281,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 1
+    "order": 1,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-02",
@@ -260,7 +295,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 2
+    "order": 2,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-03",
@@ -273,7 +309,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 3
+    "order": 3,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-04",
@@ -286,7 +323,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 4
+    "order": 4,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-05",
@@ -299,7 +337,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 5
+    "order": 5,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-06",
@@ -312,7 +351,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 6
+    "order": 6,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-07",
@@ -325,7 +365,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 7
+    "order": 7,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-08",
@@ -338,7 +379,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 8
+    "order": 8,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-09",
@@ -351,7 +393,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 9
+    "order": 9,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-10",
@@ -364,7 +407,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 10
+    "order": 10,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-11",
@@ -377,7 +421,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 11
+    "order": 11,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-12",
@@ -390,7 +435,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 12
+    "order": 12,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-13",
@@ -403,7 +449,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 13
+    "order": 13,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-14",
@@ -416,7 +463,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 14
+    "order": 14,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-15",
@@ -429,7 +477,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 15
+    "order": 15,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-16",
@@ -442,7 +491,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 16
+    "order": 16,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-17",
@@ -455,7 +505,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 17
+    "order": 17,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-18",
@@ -468,7 +519,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 18
+    "order": 18,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-19",
@@ -481,7 +533,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 19
+    "order": 19,
+    "tipo": "coleccion"
   },
   {
     "id": "crapston-20",
@@ -494,7 +547,8 @@
     "collectionId": "crapstonvillas",
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
-    "order": 20
+    "order": 20,
+    "tipo": "coleccion"
   },
   {
     "id": "c465a303-178b-4399-bf08-1c273d2c48d2",
@@ -505,7 +559,8 @@
     "lang": "Ingles 🇺🇸",
     "subs": "Español",
     "lang2": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "534c95f1-4774-4136-a35d-bd2bc96250dd",
@@ -516,7 +571,8 @@
     "lang": "Ingles 🇺🇸",
     "lang2": "Español 🇲🇽",
     "subs": "Español",
-    "trailer": "https://www.youtube.com/watch?v=9_mi3qoA_QY"
+    "trailer": "https://www.youtube.com/watch?v=9_mi3qoA_QY",
+    "tipo": "pelicula"
   },
   {
     "id": "c6a6ef93-5d2c-4f9a-8739-11827b0af673",
@@ -527,7 +583,8 @@
     "lang": "Ingles 🇺🇸",
     "lang2": "",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "2675ed97-dfa5-4a90-b02a-60a7e38f657a",
@@ -538,7 +595,8 @@
     "lang": "Español 🇲🇽",
     "lang2": "",
     "subs": "",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "f9b04f14-de32-493e-92a2-dafc7235fe10",
@@ -549,7 +607,8 @@
     "lang": "Libano/Frances 🇱🇧/🇫🇷",
     "lang2": "",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "657051f2-a79e-42bf-a66e-151dee844069",
@@ -560,7 +619,8 @@
     "lang": "Frances 🇫🇷",
     "lang2": "Español España 🇪🇸",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "244bbe64-ff34-4a12-93a0-10e54c90827d",
@@ -571,7 +631,8 @@
     "lang": "Ingles 🇺🇸",
     "lang2": "",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
     "id": "7b82e08d-2270-4fc6-b3c5-d1fdb78954bc",
@@ -582,20 +643,10 @@
     "lang": "Ingles 🇺🇸",
     "lang2": "Español 🇲🇽",
     "subs": "Español",
-    "trailer": ""
+    "trailer": "",
+    "tipo": "pelicula"
   },
   {
-    "id": "4569953e-9741-4328-95fa-a37c104f619e",
-    "title": "Pure Country 1992",
-    "poster": "https://m.media-amazon.com/images/M/MV5BMTg5ZTI4MmUtOTAwOS00ZjNiLWJjYzctZWZkOTg0NzZmZTc3XkEyXkFqcGc@._V1_.jpg",
-    "desc": "Película dramática y musical.\nWyatt \"Dusty\" Chandler (George Strait) es un famoso cantante internacional de música country.\nSus conciertos se han vuelto gigantescos espectáculos llenos de luces y efectos que parecen de rock de los años 70, lo que hace que pierda la conexión con su verdadera música.\nEn un show olvida la letra de una canción y se da cuenta de que sus fans ni siquiera lo notan, eclipsados por el show.\nEn este viaje anónimo, intenta reconectar con el estilo musical genuino que lo hizo feliz y encuentra la oportunidad de un romance real.\nDecide desaparecer sin avisar a su mánager, se corta el cabello, se afeita y busca un regreso a sus raíces y a una vida más sencilla.",
-    "embed": "https://bysekoze.com/e/hx7oq9wr2bl7",
-    "lang": "Ingles 🇺🇸",
-    "lang2": "",
-    "subs": "Español",
-    "trailer": ""
-  },
-    {
     "id": "2a54a299-8d75-4207-ae46-dc752a855a55",
     "title": "El pequeño vampiro",
     "poster": "https://m.media-amazon.com/images/M/MV5BOTU4NDQ3NzY1NV5BMl5BanBnXkFtZTYwMTQ3NTk2._V1_.jpg",
@@ -607,7 +658,19 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
+    "id": "4569953e-9741-4328-95fa-a37c104f619e",
+    "title": "Pure Country 1992",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTg5ZTI4MmUtOTAwOS00ZjNiLWJjYzctZWZkOTg0NzZmZTc3XkEyXkFqcGc@._V1_.jpg",
+    "desc": "Película dramática y musical.\nWyatt \"Dusty\" Chandler (George Strait) es un famoso cantante internacional de música country.\nSus conciertos se han vuelto gigantescos espectáculos llenos de luces y efectos que parecen de rock de los años 70, lo que hace que pierda la conexión con su verdadera música.\nEn un show olvida la letra de una canción y se da cuenta de que sus fans ni siquiera lo notan, eclipsados por el show.\nEn este viaje anónimo, intenta reconectar con el estilo musical genuino que lo hizo feliz y encuentra la oportunidad de un romance real.\nDecide desaparecer sin avisar a su mánager, se corta el cabello, se afeita y busca un regreso a sus raíces y a una vida más sencilla.",
+    "embed": "https://bysekoze.com/e/hx7oq9wr2bl7",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "pelicula"
+  },
+  {
     "id": "cf310940-9fa2-449b-9c9c-c80cd142214e",
     "title": "Enemigo mío 1985",
     "poster": "https://m.media-amazon.com/images/M/MV5BYjBjYzc3MTgtNTI2YS00YzNjLWEzM2YtMDQxYTU3YzE0OTkxXkEyXkFqcGc@._V1_FMjpg_UY485_.jpg",
@@ -619,7 +682,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "6d102361-0731-4486-b9db-9042c61c6ff5",
     "title": "Los crímenes de la casa de muñecas 1992",
     "poster": "https://m.media-amazon.com/images/M/MV5BZTgxNzhhMTAtOWUwNS00NzQyLThmMTgtYjFjYmQ2N2FkZjNlXkEyXkFqcGc@._V1_.jpg",
@@ -631,7 +694,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "b5f07d86-04ad-4e1a-bffd-09ef6e2f6766",
     "title": "Pánico en la montaña 1989",
     "poster": "https://m.media-amazon.com/images/M/MV5BYmIwOThhYzgtMzI2Ni00NDIyLTk1MmUtM2UwNmFjM2VmYjExXkEyXkFqcGc@._V1_.jpg",
@@ -643,7 +706,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "d4bbd648-4fd1-4ac3-b1b8-5200273c3f87",
     "title": "La novicia 2017",
     "poster": "https://m.media-amazon.com/images/M/MV5BZGUxNjQyNTktNzg0NC00ZTMzLTkzYjktMWE2NDZmNGViZGY0XkEyXkFqcGc@._V1_.jpg",
@@ -655,7 +718,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "92286ea8-71e9-4ddc-801b-e04e67aa9495",
     "title": "Rock Star La Voz del Dragón 2001",
     "poster": "https://m.media-amazon.com/images/M/MV5BNDI4YWY2ZWItMDNkMi00NzRjLThjYjgtZDZiMzhlZmNiMDBmXkEyXkFqcGc@._V1_.jpg",
@@ -667,7 +730,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "7f9e432b-7f76-42a9-8ff4-bd55ba4fa01a",
     "title": "Jumanji 1995",
     "poster": "https://m.media-amazon.com/images/M/MV5BMzk4ZjJmNmYtOWQyZC00NDNlLWJiN2UtNDU0Y2QyNmZiN2ExXkEyXkFqcGc@._V1_.jpg",
@@ -679,7 +742,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "80a62b0f-95ee-4a74-b986-055aed642d06",
     "title": "Savage streets 1984",
     "poster": "https://m.media-amazon.com/images/M/MV5BZDFkMTQ5OGItMTc4MC00N2QxLWJkMmMtNDNiMjFlNzU4ZDU3XkEyXkFqcGc@._V1_.jpg",
