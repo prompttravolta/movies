@@ -1083,5 +1083,50 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
-  }
+  },
+  {
+    "id": "0b0d3b3e-8557-4887-acbe-f32cbc85ead5",
+    "title": "Volver al futuro 1 1985",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZmM3ZjE0NzctNjBiOC00MDZmLTgzMTUtNGVlOWFlOTNiZDJiXkEyXkFqcGc@._V1_FMjpg_UY497_.jpg",
+    "desc": "Back to the Future 1985\nNarra las aventuras de Marty McFly, un joven de 1985 que viaja accidentalmente al año 1955 en un automóvil DeLorean modificado como máquina del tiempo por su amigo, el excéntrico científico Dr. Emmett Brown.\nDoc Brown es atacado por terroristas tras probar su invento, obligando a Marty a huir usando el DeLorean y transportándose 30 años al pasado.\nEn 1955, Marty interfiere sin querer en el primer encuentro de sus padres (Lorraine y George), poniendo en riesgo su propia existencia al borrar gradualmente su futuro.\nMarty debe buscar al joven Doc Brown de 1955 y lograr que sus padres se enamoren y se besen en el baile de la escuela, mientras lidia con el acoso del villano Biff Tannen.\nCon la ayuda de un rayo que impactará en la torre del reloj del pueblo, logran generar la energía necesaria para que Marty vuelva a 1985 y prevenga el destino de Doc.",
+    "embed": "https://bysekoze.com/e/d8o1ioufwttn",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "Español 🇲🇽",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "coleccion",
+    "collectionId": "volveralfuturo",
+    "collection": "Volver al futuro",
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+  },
+  {
+    "id": "79028a1b-bdb6-4b94-bf44-ab4a1d5bd6f0",
+    "title": "Volver al futuro 2 1989",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjc3MmU5NmQtZWIwNC00NDc0LTg2MmEtOWZmZTQwN2VhNWVlXkEyXkFqcGc@._V1_.jpg",
+    "desc": "Back to the Future Part II 1989\nViaje a 2015\nEl doctor Emmett “Doc” Brown busca a Marty McFly y a su novia Jennifer.\nViajan al año 2015 para evitar que el hijo de Marty cometa un grave error que destruya a su familia.\nUn anciano Biff Tannen roba la máquina del tiempo (el DeLorean) y le entrega un almanaque deportivo con los resultados a su versión joven en 1955.",
+    "embed": "https://bysekoze.com/e/7dfloe5t9g94",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "Español 🇲🇽",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "coleccion",
+    "collectionId": "volveralfuturo",
+    "collection": "Volver al futuro",
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+  },
+  {
+    "id": "ea808f7e-c094-4cf0-a562-6693dab4adea",
+    "title": "Volver al futuro 3 1993",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMzI1Yzk2YTUtYjJhZC00NTZiLWI5YTUtNzQ2ZjA1ODQ3NTYxXkEyXkFqcGc@._V1_.jpg",
+    "desc": "Back to the Future Part III 1990\nMarty McFly viaja al año 1885 en el Salvaje Oeste para rescatar al Dr. Emmett \"Doc\" Brown.\nAtrapado en 1955, Marty descubre una carta y una vieja lápida que revelan que Doc se instaló felizmente como herrero en 1885, pero fue asesinado por el pistolero Buford \"Perro Loco\" Tannen solo unos días después.\nDecidido a salvar a su amigo, Marty usa el DeLorean para ir al año 1885. Allí encuentra a Doc, pero el plan de huida se complica porque el auto se queda sin gasolina y no hay forma de conseguir más en esa época.\nDecidido a salvar a su amigo, Marty usa el DeLorean para ir al año 1885. Allí encuentra a Doc, pero el plan de huida se complica porque el auto se queda sin gasolina y no hay forma de conseguir más en esa época.\nPara lograr que el DeLorean alcance las 88 millas por hora necesarias para saltar en el tiempo, ambos idean un arriesgado plan usando una locomotora de vapor antes de enfrentarse por última vez a Tannen.",
+    "embed": "https://bysekoze.com/e/yvktom0ebgn5",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "Español 🇲🇽",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "coleccion",
+    "collectionId": "volveralfuturo",
+    "collection": "Volver al futuro",
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+  }  
 ]
