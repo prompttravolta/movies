@@ -1565,7 +1565,9 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "coleccion",
+    "collectionId": "guyvercollection",
+    "collection": "Guyver Colección"
   },
   {
     "id": "71f0ce2a-feea-4a60-a261-81ea5f4f4a2c",
@@ -1602,5 +1604,20 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
+  },
+  {
+    "id": "db81285c-cc8b-4edc-84f2-7120d0d0937c",
+    "title": "Guyver 2: súper héroe 1994",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMGVlZWIzZjgtZGJkOC00MzM5LTliOTYtMDE3Yzc4NTQwOTYyXkEyXkFqcGc@._V1_FMjpg_UY456_.jpg",
+    "desc": "https://bysekoze.com/e/8k6gpevzndb8",
+    "embed": "Guyver Dark Hero 1994\nSean Barker, portador de una bio-armadura alienígena llamada Guyver, busca respuestas sobre el origen violento del traje un año después de destruir la Corporación Kronos.\nSean es atormentado por visiones y por el impulso de la armadura que lo obliga a luchar y matar.\nEs conducido a unas excavaciones arqueológicas donde se ha encontrado una nave espacial extraterrestre antigua.\nLa Corporación Kronos reaparece para investigar el yacimiento y apoderarse de los secretos sobre el origen del Guyver.\nSean debe combatir nuevamente a los mutantes para evitar que descubran el misterio de la armadura y encontrar una forma de liberarse de ella.",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "coleccion",
+    "collectionId": "guyvercollection",
+    "collection": "Guyver Colección",
+    "collectionPoster": "https://www.mediafire.com/convkey/478b/wpqut5bk4i34tahag.jpg"
   }  
 ]
