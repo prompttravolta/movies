@@ -1519,7 +1519,7 @@
     "trailer": "",
     "tipo": "pelicula"
   },
-    {
+  {
     "id": "f67e82c8-bce7-4ea4-ab89-d2fd273299c6",
     "title": "Las Tortugas Ninja 1990",
     "poster": "https://m.media-amazon.com/images/M/MV5BMTJjYjk3MWEtMzZiOS00NGViLThkZTktNTcwODM1NDE0Y2M0XkEyXkFqcGc@._V1_FMjpg_UY720_.jpg",
@@ -1676,7 +1676,7 @@
     "collectionId": "jaimemaussan",
     "collection": "Jaime Maussan Ovnis",
     "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg"
-  }
+  },
   {
     "id": "abaf2faf-5635-4457-8192-9c3fad435c79",
     "title": "Kids 1995",
@@ -1724,5 +1724,5 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
-  }  
+  }
 ]
