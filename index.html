@@ -103,9 +103,9 @@ function App(){
   const [selectedSaga,setSelectedSaga]=React.useState(null);
   const [msg,setMsg]=React.useState("");
   const [letter,setLetter]=React.useState(null);
-  const [typeFilter,setTypeFilter]=React.useState("todos"); // todos | pelicula | coleccion | serie
+  const [typeFilter,setTypeFilter]=React.useState("todos"); // todos | pelicula | coleccion | serie | hentai | x
   const [showAd,setShowAd]=React.useState(false);
-  const clicks=React.useRef(0); const fileRef=React.useRef(null);
+  const clicks=React.useRef(0); const xClicks=React.useRef(0); const fileRef=React.useRef(null);
   // form
   const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
   const [fEmbed,setFEmbed]=React.useState(""); const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
@@ -177,25 +177,36 @@ function App(){
   // FILTRADO TOTAL
   let homeItems=[];
   if(!selectedSaga){
-    if(typeFilter==="todos" || typeFilter==="pelicula"){
-      standalone.forEach(m=>homeItems.push({type:'movie', data:m}));
-    }
-    if(typeFilter==="todos" || typeFilter==="coleccion" || typeFilter==="serie"){
-      sagas.forEach(s=>{
-        if(typeFilter==="todos" || s.tipo===typeFilter) homeItems.push({type:'collection', data:s});
-      });
-    }
-    // si tipo es pelicula, no mostrar colecciones (ya hecho). Si es coleccion/serie, no mostrar standalone pelis sueltas (ya hecho)
-    if(typeFilter==="coleccion" || typeFilter==="serie"){
-      // solo colecciones
-    } else if(typeFilter==="pelicula"){
-      // homeItems ya solo tiene pelis sueltas, pero si quieres que pelis dentro de coleccion NO se mezclen, asi está bien
+    // Hentai y X son pantallas independientes: muestran únicamente películas
+    // marcadas exactamente con ese tipo, aunque tengan campos de colección.
+    if(typeFilter==="hentai" || typeFilter==="x"){
+      movies.filter(m=>m.tipo===typeFilter).forEach(m=>homeItems.push({type:'movie', data:m}));
+    } else {
+      if(typeFilter==="todos" || typeFilter==="pelicula"){
+        standalone.filter(m=>m.tipo==="pelicula").forEach(m=>homeItems.push({type:'movie', data:m}));
+      }
+      if(typeFilter==="todos" || typeFilter==="coleccion" || typeFilter==="serie"){
+        sagas.forEach(s=>{
+          if(typeFilter==="todos" || s.tipo===typeFilter) homeItems.push({type:'collection', data:s});
+        });
+      }
     }
 
-    // búsqueda texto
+    // Búsqueda: título + sinopsis + colección + idiomas/subtítulos.
+    // En colecciones también busca dentro de títulos y sinopsis de sus películas.
     if(q.trim()){
-      const qq=q.toLowerCase();
-      homeItems=homeItems.filter(it=> it.type==='movie'? it.data.title.toLowerCase().includes(qq) : it.data.name.toLowerCase().includes(qq));
+      const qq=q.trim().toLowerCase();
+      homeItems=homeItems.filter(it=>{
+        if(it.type==='movie'){
+          const m=it.data;
+          return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs]
+            .filter(Boolean).some(v=>String(v).toLowerCase().includes(qq));
+        }
+        const c=it.data;
+        return [c.name,c.id].filter(Boolean).some(v=>String(v).toLowerCase().includes(qq))
+          || c.movies.some(m=>[m.title,m.desc,m.collection].filter(Boolean)
+            .some(v=>String(v).toLowerCase().includes(qq)));
+      });
     }
     // filtro abecedario
     if(letter){
@@ -250,10 +261,21 @@ function App(){
     ]),
     e("div",{key:"ctrl", id:"controls"},[
       !selectedSaga ? e("div",{key:"type", className:"type-bar"},[
-        e("button",{key:"todos", className:"type-btn"+(typeFilter==="todos"?" active":""), onClick:()=>{setTypeFilter("todos"); setPage(1);}}, "Todas"),
-        e("button",{key:"pelicula", className:"type-btn"+(typeFilter==="pelicula"?" active":""), onClick:()=>{setTypeFilter("pelicula"); setPage(1);}}, "Películas"),
-        e("button",{key:"coleccion", className:"type-btn gold"+(typeFilter==="coleccion"?" active":""), onClick:()=>{setTypeFilter("coleccion"); setPage(1);}}, "📦 Colecciones"),
-        e("button",{key:"serie", className:"type-btn gold"+(typeFilter==="serie"?" active":""), onClick:()=>{setTypeFilter("serie"); setPage(1);}}, "📺 Series"),
+        e("button",{key:"todos", className:"type-btn"+(typeFilter==="todos"?" active":""), onClick:()=>{setTypeFilter("todos"); setLetter(null); setPage(1);}}, "Todas"),
+        e("button",{key:"pelicula", className:"type-btn"+(typeFilter==="pelicula"?" active":""), onClick:()=>{setTypeFilter("pelicula"); setLetter(null); setPage(1);}}, "Películas"),
+        e("button",{key:"coleccion", className:"type-btn gold"+(typeFilter==="coleccion"?" active":""), onClick:()=>{setTypeFilter("coleccion"); setLetter(null); setPage(1);}}, "📦 Colecciones"),
+        e("button",{key:"serie", className:"type-btn gold"+(typeFilter==="serie"?" active":""), onClick:()=>{setTypeFilter("serie"); setLetter(null); setPage(1);}}, "📺 Series"),
+        e("button",{key:"hentai", className:"type-btn"+(typeFilter==="hentai"?" active":""), onClick:()=>{setTypeFilter("hentai"); setLetter(null); setPage(1); window.scrollTo(0,0);}}, "🔞 Hentai"),
+        e("button",{key:"x", className:"type-btn"+(typeFilter==="x"?" active":""), onClick:()=>{
+          xClicks.current++;
+          if(xClicks.current>=3){
+            xClicks.current=0;
+            setTypeFilter("x"); setLetter(null); setPage(1); window.scrollTo(0,0);
+          } else {
+            clearTimeout(window.__miCineXClickTimer);
+            window.__miCineXClickTimer=setTimeout(()=>{xClicks.current=0;},1500);
+          }
+        }}, "🐷 X"),
         e("button",{key:"app", className:"type-btn", title:"App no subida a Play Store, por lo que puede indicar que no es segura, pero no hay problema: puedes analizarla con VirusTotal.com. Instala sin miedo.", onClick:()=>window.open("https://drive.google.com/file/d/1e7x4AyFitZp8cGfJIbj7F30EomY2SX-m/view?usp=sharing","_blank","noopener,noreferrer")}, "📱 Prueba la app"),
       ]) : null,
       !selectedSaga ? e("div",{key:"alpha", className:"alpha-bar"},[
@@ -284,7 +306,7 @@ function App(){
             e("div",{key:"t", className:"card-title"}, p.title)
           ]);
         }
-      }) : e("div",{key:"empty", className:"empty-state"}, `No hay ${typeFilter==="todos"?"películas":typeFilter} ${letter?`con letra ${letter}`:""} ${q?`para "${q}"`:""}`)),
+      }) : e("div",{key:"empty", className:"empty-state"}, `No hay ${typeFilter==="todos"?"películas":typeFilter==="hentai"?"Hentai":typeFilter==="x"?"películas X":typeFilter} ${letter?`con letra ${letter}`:""} ${q?`para "${q}"`:""}`)),
    !selectedSaga && totalPages>1? e("div",{key:"pag", style:{display:"flex", justifyContent:"center", gap:"12px", margin:"22px 0", alignItems:"center"}},[
         e("button",{key:"pr", className:"btn btn-s", disabled:page<=1, onClick:()=>{setPage(p=>Math.max(1,p-1)); window.scrollTo(0,0);}}, "Anterior"),
         e("span",{key:"lb", style:{fontSize:".85rem", color:"var(--muted)"}}, `Pag ${page} de ${totalPages} · ${homeItems.length} · ${getColumns()} x ${perPage/getColumns()}`),
@@ -331,6 +353,8 @@ function App(){
           e("option",{key:"pel", value:"pelicula"}, "Pelicula (suelta)"),
           e("option",{key:"col", value:"coleccion"}, "Coleccion (ej: Rambo, Rocky)"),
           e("option",{key:"ser", value:"serie"}, "Serie (ej: X-Files, capitulos)"),
+          e("option",{key:"hen", value:"hentai"}, "Hentai"),
+          e("option",{key:"xxx", value:"x"}, "X"),
         ]),
         e("label",{key:"lp"}, "URL DE LA PORTADA (IMAGEN)"), e("input",{key:"ip", value:fPoster, onChange:ev=>setFPoster(ev.target.value), placeholder:"https://..."}),
         e("label",{key:"ld"}, "DESCRIPCIÓN"), e("textarea",{key:"id", value:fDesc, onChange:ev=>setFDesc(ev.target.value), placeholder:"Sinopsis breve..."}),
