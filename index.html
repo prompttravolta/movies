@@ -90,6 +90,8 @@ function getPerPage(){
   return 18;             // 2 x 9 = 18 para celular, tu nueva idea
 }
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
+function normalize(s){return String(s||"").toLowerCase().normalize("NFD").replace(/\u0300-\u036f/g,"").trim();}
+
 
 function App(){
   const [movies,setMovies]=React.useState([]);
@@ -113,7 +115,7 @@ function App(){
   const [fTipo,setFTipo]=React.useState("pelicula"); // NUEVO CAMPO TIPO
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
-  const [fTags,setFTags]=React.useState(""); // TAGS ocultos para busqueda
+  const [fTags,setFTags]=React.useState("");
 
   const loadFromGithub=async()=>{
     try{
@@ -193,20 +195,19 @@ function App(){
       }
     }
 
-    // Búsqueda: título + sinopsis + colección + idiomas/subtítulos + tags ocultos.
-    // En colecciones también busca dentro de títulos, sinopsis y tags de sus películas.
+    // Búsqueda: ignora acentos y mayúsculas + tags
     if(q.trim()){
-      const qq=q.trim().toLowerCase();
+      const qq=normalize(q);
       homeItems=homeItems.filter(it=>{
         if(it.type==='movie'){
           const m=it.data;
           return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs,m.tags]
-            .filter(Boolean).some(v=>String(v).toLowerCase().includes(qq));
+            .filter(Boolean).some(v=>normalize(v).includes(qq));
         }
         const c=it.data;
-        return [c.name,c.id].filter(Boolean).some(v=>String(v).toLowerCase().includes(qq))
+        return [c.name,c.id].filter(Boolean).some(v=>normalize(v).includes(qq))
           || c.movies.some(m=>[m.title,m.desc,m.collection,m.tags].filter(Boolean)
-            .some(v=>String(v).toLowerCase().includes(qq)));
+            .some(v=>normalize(v).includes(qq)));
       });
     }
     // filtro abecedario
@@ -237,8 +238,9 @@ function App(){
 
   const save=()=>{
     if(!fTitle.trim()){alert("Falta titulo");return;}
+    const getNextId=()=>{let maxNum=0; movies.forEach(m=>{const num=parseInt(String(m.id).replace(/[^0-9]/g,''),10); if(!isNaN(num)&&num>maxNum) maxNum=num;}); if(maxNum===0) maxNum=movies.length; return String(maxNum+1);};
     const obj={
-      id: editId||(crypto.randomUUID?crypto.randomUUID():Math.random().toString(36).slice(2)),
+      id: editId||getNextId(),
       title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(),
       lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(),
       tipo: fTipo||"pelicula",
@@ -257,7 +259,10 @@ function App(){
   return e("div",{},[
     e("header",{key:"h"},[
       e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
-      e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
+      e("div",{key:"searchRow", style:{display:"flex", alignItems:"center", justifyContent:"center", gap:"10px", flexWrap:"wrap", marginTop:"10px"}},[
+        e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
+        e("span",{key:"cnt", style:{color:"var(--gold)", fontWeight:900, fontSize:".95rem", letterSpacing:"1px", background:"rgba(212,175,55,.12)", border:"1px solid rgba(212,175,55,.3)", padding:"6px 12px", borderRadius:"999px"}}, `${movies.length} Videos`)
+      ]),
       selectedSaga? e("div",{key:"b", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:handleVolver}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
     ]),
     e("div",{key:"ctrl", id:"controls"},[
@@ -368,8 +373,8 @@ function App(){
           e("label",{key:"l7", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "SUBTÍTULOS (OPCIONAL)"),
           e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value), placeholder:"Ej: Español, Sin subtitulos... o Español 🇲🇽"}),
           e("label",{key:"l8", style:{color:"var(--muted)", marginTop:"12px"}}, "TRAILER YT (opcional)"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value), placeholder:"https://youtube.com/watch?v=..."}),
-          e("label",{key:"l9", style:{color:"var(--gold)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "TAGS OCULTOS (para busqueda, separados por comas)"),
-          e("input",{key:"i9", value:fTags, onChange:ev=>setFTags(ev.target.value), placeholder:"Ej: terror, suspenso, comedia, 1990, chucky, zombies"}),
+          e("label",{key:"l9", style:{color:"var(--gold)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "TAGS OCULTOS (para busqueda)"),
+          e("input",{key:"i9", value:fTags, onChange:ev=>setFTags(ev.target.value), placeholder:"terror, comedia, 1990"}),
         ]),
         e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"12px", marginTop:"14px", borderRadius:"8px"}},[
           e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700, fontSize:".9rem"}}, "SAGA / COLECCION / SERIE (opcional) - Si es colección o serie, todas las pelis con mismo ID se agrupan"),
