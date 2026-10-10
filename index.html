@@ -113,6 +113,7 @@ function App(){
   const [fTipo,setFTipo]=React.useState("pelicula"); // NUEVO CAMPO TIPO
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
+  const [fTags,setFTags]=React.useState(""); // TAGS ocultos para busqueda
 
   const loadFromGithub=async()=>{
     try{
@@ -192,19 +193,19 @@ function App(){
       }
     }
 
-    // Búsqueda: título + sinopsis + colección + idiomas/subtítulos.
-    // En colecciones también busca dentro de títulos y sinopsis de sus películas.
+    // Búsqueda: título + sinopsis + colección + idiomas/subtítulos + tags ocultos.
+    // En colecciones también busca dentro de títulos, sinopsis y tags de sus películas.
     if(q.trim()){
       const qq=q.trim().toLowerCase();
       homeItems=homeItems.filter(it=>{
         if(it.type==='movie'){
           const m=it.data;
-          return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs]
+          return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs,m.tags]
             .filter(Boolean).some(v=>String(v).toLowerCase().includes(qq));
         }
         const c=it.data;
         return [c.name,c.id].filter(Boolean).some(v=>String(v).toLowerCase().includes(qq))
-          || c.movies.some(m=>[m.title,m.desc,m.collection].filter(Boolean)
+          || c.movies.some(m=>[m.title,m.desc,m.collection,m.tags].filter(Boolean)
             .some(v=>String(v).toLowerCase().includes(qq)));
       });
     }
@@ -248,7 +249,7 @@ function App(){
     };
     Object.keys(obj).forEach(k=>obj[k]===undefined&&delete obj[k]);
     if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m)); else setMovies(p=>[...p,obj]);
-    setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFTipo("pelicula");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);
+    setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFTags("");setFTipo("pelicula");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null);
     setMsg("Guardado local. Descarga JSON y súbelo a Github");
   };
   const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
@@ -367,6 +368,8 @@ function App(){
           e("label",{key:"l7", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "SUBTÍTULOS (OPCIONAL)"),
           e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value), placeholder:"Ej: Español, Sin subtitulos... o Español 🇲🇽"}),
           e("label",{key:"l8", style:{color:"var(--muted)", marginTop:"12px"}}, "TRAILER YT (opcional)"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value), placeholder:"https://youtube.com/watch?v=..."}),
+          e("label",{key:"l9", style:{color:"var(--gold)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "TAGS OCULTOS (para busqueda, separados por comas)"),
+          e("input",{key:"i9", value:fTags, onChange:ev=>setFTags(ev.target.value), placeholder:"Ej: terror, suspenso, comedia, 1990, chucky, zombies"}),
         ]),
         e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"12px", marginTop:"14px", borderRadius:"8px"}},[
           e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700, fontSize:".9rem"}}, "SAGA / COLECCION / SERIE (opcional) - Si es colección o serie, todas las pelis con mismo ID se agrupan"),
@@ -383,7 +386,7 @@ function App(){
           e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
         ]),
         e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const j=JSON.parse(r.result); if(Array.isArray(j)){ setMovies(j); setMsg("Importado "+j.length);}}catch{setMsg("Error archivo");}}; r.readAsText(f);}}),
-        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:`admin-${m.id}-${idx}`, className:"admin-item"},[e("span",{key:"t", style:{flex:1}}, `[${(m.tipo||'pelicula').toUpperCase()}] ${m.title}${m.collectionId?` [${m.collectionId}]`:""} `), e("div",{key:"b", style:{display:"flex", gap:"4px"}},[e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"), e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"), e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFTipo(m.tipo||"pelicula"); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"), e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")])])) )
+        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:`admin-${m.id}-${idx}`, className:"admin-item"},[e("span",{key:"t", style:{flex:1}}, `[${(m.tipo||'pelicula').toUpperCase()}] ${m.title}${m.collectionId?` [${m.collectionId}]`:""} `), e("div",{key:"b", style:{display:"flex", gap:"4px"}},[e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"), e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"), e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFTags(m.tags||""); setFTipo(m.tipo||"pelicula"); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"), e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")])])) )
       ])]) : null
   ]);
 }
