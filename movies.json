@@ -9,7 +9,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "terror, accion, ciencia ficcion, zombies, supervivencia, 2026, resident evil, capcom, reboot"
   },
   {
     "id": "6348c7ef-218a-4dfc-9486-eb950a68f34f",
@@ -24,7 +25,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, crimen, bud spencer, terence hill, 1977, policia, miami, duo"
   },
   {
     "id": "1a8027a9-4507-4224-90c7-47eefc5ceaaa",
@@ -39,7 +41,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, aventura, bud spencer, terence hill, 1983, camioneros, cia, miami"
   },
   {
     "id": "c2c2d01f-4f48-43ec-8b56-ae2359deaed7",
@@ -54,7 +57,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, crimen, bud spencer, terence hill, 1984, rio de janeiro, dobles, millonarios"
   },
   {
     "id": "35dcd947-af84-4564-937f-ebe072e4db39",
@@ -66,7 +70,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, crimen, bud spencer, terence hill, 1985, miami, policia, robo banco"
   },
   {
     "id": "4dd16295-4147-49df-804e-c240ea2e308d",
@@ -78,7 +83,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, aventura, bud spencer, terence hill, 1981, tesoro, isla, piratas"
   },
   {
     "id": "b1530ddd-0591-45f0-96cc-58a3d2832521",
@@ -90,7 +96,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, bud spencer, terence hill, 1974, vaqueros, western, pelea, dinamita"
   },
   {
     "id": "dfd015bc-dc95-447c-8c8e-273d2ad2b29b",
@@ -102,7 +109,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, bud spencer, terence hill, 1978, apuestas, poker, miami"
   },
   {
     "id": "135ae058-794d-46da-9e98-f73409e473f6",
@@ -114,7 +122,8 @@
     "collectionId": "budterence",
     "collection": "Bud Spencer/Terence Hill",
     "collectionPoster": "https://en.budspencerofficial.com/images/photos/budTerence_set2.jpg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "accion, comedia, ciencia ficcion, bud spencer, terence hill, 1980, policia, fbi, nuclear"
   },
   {
     "id": "8d36bb78-5635-49cf-a24a-0ff6220bca44",
@@ -126,7 +135,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "animacion, aventura, infantil, familiar, anime, abejas, 2010, hutch"
   },
   {
     "id": "f3a10813-ceb0-45c5-a470-f2a2737bfb67",
@@ -138,7 +148,8 @@
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
     "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "comedia, musical, romance, mexicana, juan gabriel, 1979, primavera"
   },
   {
     "id": "5d517717-9fb2-47a0-8639-f8d942ec3586",
@@ -150,7 +161,8 @@
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
     "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "drama, musical, mexicana, juan gabriel, 1978, chicano, los angeles, puente, frontera"
   },
   {
     "id": "44aad9fd-20eb-4ee5-b91e-5e9ad5bea7f9",
@@ -162,7 +174,8 @@
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
     "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "drama, musica, mexicana, juan gabriel, 1982, biografica"
   },
   {
     "id": "d85688dc-0000-436d-8a9c-3322f75c6050",
@@ -174,7 +187,8 @@
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
     "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "musical, ranchera, mexicana, juan gabriel, veronica castro, 1975"
   },
   {
     "id": "9ae58bc7-fe8a-4ba0-9e8f-da8049ae26f1",
@@ -186,7 +200,8 @@
     "subs": "Español",
     "lang2": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "comedia, parodia, navidad, brasileña, porta dos fundos, 2018, biblica, corto"
   },
   {
     "id": "b6c999b7-8540-4875-a84a-cc736ddaa09f",
@@ -198,7 +213,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "accion, comedia, artes marciales, kung fu, parodia, 2002, venganza"
   },
   {
     "id": "3cdbc580-4c63-46ca-b275-5bd8172ca43d",
@@ -206,7 +222,8 @@
     "poster": "https://m.media-amazon.com/images/M/MV5BMjEwMTcwNzU5Nl5BMl5BanBnXkFtZTcwMDM5OTUyMQ@@._V1_.jpg",
     "desc": "Flight of the Navigator 1986. En 1978, una oscura noche, David, un niño de 12 años, se da un golpe y queda inconsciente. Ocho años después, despierta y se da cuenta de que su familia se ha mudado.",
     "embed": "https://bysekoze.com/e/0dqdmpvf5mu2",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "ciencia ficcion, aventura, familia, disney, 1986, nave espacial, nasa, viaje tiempo"
   },
   {
     "id": "7b343814-8a7e-4d94-879c-ef8da2d25952",
@@ -214,7 +231,8 @@
     "poster": "https://m.media-amazon.com/images/M/MV5BZmFiYzBlZjAtNzkwYi00YTEyLTgwMTMtODQwYzQ0ZGMwODkwXkEyXkFqcGc@._V1_.jpg",
     "desc": "Song of the South 1946. La película se basa en las historias del Tío Remus adaptados por Joel Chandler Harris.",
     "embed": "https://bysekoze.com/e/4drxm761j0an",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "animacion, musical, familiar, disney, 1946, cancion del sur, live action, polemico"
   },
   {
     "id": "751d7019-95b6-425d-9dc0-97a2f9d480ec",
@@ -223,7 +241,8 @@
     "desc": "Están vivos - The Live 1988. Un vagabundo encuentra casualmente unas gafas que permiten ver a las personas tal y como son. Gracias a ellas descubrirá que importantes personajes de la vida política y social son en realidad extraterrestres.",
     "embed": "https://bysekoze.com/e/36s9a2cftb7z",
     "lang": "ESP 🇲🇽",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "ciencia ficcion, terror, accion, 1988, john carpenter, alienigenas, distopia, culto, roddy piper"
   },
   {
     "id": "46ced1e3-c8ee-45bf-8e2c-3e4553e24ac8",
@@ -235,7 +254,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "ESP",
     "trailer": "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "accion, drama, ciencia ficcion, superheroes, marvel, wolverine, 2017, hugh jackman, x-men, western"
   },
   {
     "id": "33b25750-98fd-4aef-9894-c090879560aa",
@@ -247,7 +267,8 @@
     "subs": "ESP",
     "lang2": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1991, pelicula, burdeles, paprika"
   },
   {
     "id": "eebf274a-58a3-4c18-9b75-e2dac4f4daca",
@@ -259,7 +280,8 @@
     "subs": "ESP",
     "lang2": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "drama, historico, politico, mexicana, tlatelolco, 1968, 1990, masacre, rojo amanecer"
   },
   {
     "id": "4b6bea7d-23ca-4c2b-bac5-86965ac9a5fb",
@@ -268,7 +290,8 @@
     "desc": "Cambio de suerte (2008) es una película mexicana de historias cruzadas y comedia negra dirigida por Jorge Ramírez Rivera, que se desarrolla por completo durante una vertiginosa noche en la Ciudad de México, específicamente en la emblemática colonia Santa María la Ribera.",
     "embed": "https://bysekoze.com/e/zx1ohdnyz645",
     "lang": "Español 🇲🇽",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2008, pelicula, cambio, suerte"
   },
   {
     "id": "crapston-01",
@@ -282,7 +305,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 1,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e01"
   },
   {
     "id": "crapston-02",
@@ -296,7 +320,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 2,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e02"
   },
   {
     "id": "crapston-03",
@@ -310,7 +335,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 3,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e03"
   },
   {
     "id": "crapston-04",
@@ -324,7 +350,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 4,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e04"
   },
   {
     "id": "crapston-05",
@@ -338,7 +365,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 5,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e05"
   },
   {
     "id": "crapston-06",
@@ -352,7 +380,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 6,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e06"
   },
   {
     "id": "crapston-07",
@@ -366,7 +395,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 7,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e07"
   },
   {
     "id": "crapston-08",
@@ -380,7 +410,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 8,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e08"
   },
   {
     "id": "crapston-09",
@@ -394,7 +425,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 9,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e09"
   },
   {
     "id": "crapston-10",
@@ -408,7 +440,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 10,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s01e10"
   },
   {
     "id": "crapston-11",
@@ -422,7 +455,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 11,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e01"
   },
   {
     "id": "crapston-12",
@@ -436,7 +470,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 12,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e02"
   },
   {
     "id": "crapston-13",
@@ -450,7 +485,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 13,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e03"
   },
   {
     "id": "crapston-14",
@@ -464,7 +500,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 14,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e04"
   },
   {
     "id": "crapston-15",
@@ -478,7 +515,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 15,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e05"
   },
   {
     "id": "crapston-16",
@@ -492,7 +530,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 16,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e06"
   },
   {
     "id": "crapston-17",
@@ -506,7 +545,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 17,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e07"
   },
   {
     "id": "crapston-18",
@@ -520,7 +560,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 18,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e08"
   },
   {
     "id": "crapston-19",
@@ -534,7 +575,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 19,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e09"
   },
   {
     "id": "crapston-20",
@@ -548,7 +590,8 @@
     "collection": "Crapston Villas",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTU3MTA5NTM1NV5BMl5BanBnXkFtZTcwNTIyMDUyMQ@@._V1_.jpg",
     "order": 20,
-    "tipo": "coleccion"
+    "tipo": "coleccion",
+    "tags": "animacion, comedia negra, claymation, stop motion, adultos, britanica, 1995, channel 4, satira, londres, coleccion, comedia, crapston, villas, s02e10"
   },
   {
     "id": "c465a303-178b-4399-bf08-1c273d2c48d2",
@@ -560,7 +603,8 @@
     "subs": "Español",
     "lang2": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1967, pelicula, comedia, playtime"
   },
   {
     "id": "534c95f1-4774-4136-a35d-bd2bc96250dd",
@@ -572,7 +616,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "https://www.youtube.com/watch?v=9_mi3qoA_QY",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, romance, buscando, eva"
   },
   {
     "id": "c6a6ef93-5d2c-4f9a-8739-11827b0af673",
@@ -584,7 +629,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2002, pelicula, romance, jugando, destino"
   },
   {
     "id": "2675ed97-dfa5-4a90-b02a-60a7e38f657a",
@@ -596,7 +642,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2003, pelicula, ciencia ficcion, zurdo"
   },
   {
     "id": "f9b04f14-de32-493e-92a2-dafc7235fe10",
@@ -608,7 +655,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, caramelo"
   },
   {
     "id": "657051f2-a79e-42bf-a66e-151dee844069",
@@ -620,7 +668,8 @@
     "lang2": "Español España 🇪🇸",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1996, pelicula, animacion, familia, fantasia, planeta, libre"
   },
   {
     "id": "244bbe64-ff34-4a12-93a0-10e54c90827d",
@@ -632,7 +681,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1999, pelicula, último, suspiro"
   },
   {
     "id": "7b82e08d-2270-4fc6-b3c5-d1fdb78954bc",
@@ -644,7 +694,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1988, pelicula, terror, horror, payasos, asesinos, espacio, exterior"
   },
   {
     "id": "2a54a299-8d75-4207-ae46-dc752a855a55",
@@ -656,7 +707,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, terror, horror, pequeño, vampiro"
   },
   {
     "id": "4569953e-9741-4328-95fa-a37c104f619e",
@@ -668,7 +720,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1992, pelicula, musical, mexicana, pure, country"
   },
   {
     "id": "cf310940-9fa2-449b-9c9c-c80cd142214e",
@@ -680,7 +733,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1985, pelicula, enemigo, mío"
   },
   {
     "id": "6d102361-0731-4486-b9db-9042c61c6ff5",
@@ -692,7 +746,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1992, pelicula, crímenes, casa, muñecas"
   },
   {
     "id": "b5f07d86-04ad-4e1a-bffd-09ef6e2f6766",
@@ -704,7 +759,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1989, pelicula, terror, horror, pánico, montaña"
   },
   {
     "id": "d4bbd648-4fd1-4ac3-b1b8-5200273c3f87",
@@ -716,7 +772,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2017, pelicula, terror, horror, novicia"
   },
   {
     "id": "92286ea8-71e9-4ddc-801b-e04e67aa9495",
@@ -728,7 +785,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, musical, mexicana, rock, star, voz, dragón"
   },
   {
     "id": "7f9e432b-7f76-42a9-8ff4-bd55ba4fa01a",
@@ -740,7 +798,8 @@
     "lang2": "Español 🇲🇽 y 🇦🇷",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, animacion, familia, fantasia, aventura, jumanji"
   },
   {
     "id": "80a62b0f-95ee-4a74-b986-055aed642d06",
@@ -752,7 +811,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1984, pelicula, savage, streets"
   },
   {
     "id": "bc20bf3e-e5bb-4f48-a79f-924c8bc82489",
@@ -767,7 +827,8 @@
     "tipo": "coleccion",
     "collectionId": "daynightwatch",
     "collection": "Day-Night Watch",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTI3MDI5ODUxNl5BMl5BanBnXkFtZTcwMjIwMDU1MQ@@._V1_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTI3MDI5ODUxNl5BMl5BanBnXkFtZTcwMjIwMDU1MQ@@._V1_.jpg",
+    "tags": "fantasia, accion, thriller, rusia, vampiros, magos, 2006, timur bekmambetov, noche, dia, guardianes, coleccion, ciencia ficcion, day, watch"
   },
   {
     "id": "ce2579fb-b7b2-45af-b148-8d29f575a227",
@@ -779,7 +840,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, boogeymen, killer, compilation"
   },
   {
     "id": "40a5a812-2f41-4b1f-b662-f2657482d629",
@@ -791,7 +853,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1985, pelicula, lost, chapter, snow, passion"
   },
   {
     "id": "16e9e18c-c869-446f-a4c6-3fc71fed9209",
@@ -806,7 +869,8 @@
     "tipo": "coleccion",
     "collectionId": "barbershopcollection",
     "collection": "La Barberia colección",
-    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg",
+    "tags": "comedia, barberia, urbana, ice cube, 2002, 2016, chicago, peluqueria, coleccion, barbershop, next, cut"
   },
   {
     "id": "5e5a67a4-5c08-420d-bdcd-1d3c8f89534f",
@@ -818,7 +882,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2007, pelicula, guldhornene"
   },
   {
     "id": "f93eedbc-1ba0-40ea-93ac-f9149a356361",
@@ -833,7 +898,8 @@
     "tipo": "coleccion",
     "collectionId": "caperucitamx",
     "collection": "Trilogía Caperucita MX 1960-1962",
-    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6"
+    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6",
+    "tags": "infantil, familiar, fantasia, mexicana, caperucita roja, cuento, 1960, aventura, coleccion, animacion, familia, caperucita, roja"
   },
   {
     "id": "89d5590d-91d8-41da-a922-5fcb2d7a0ecf",
@@ -848,7 +914,8 @@
     "tipo": "coleccion",
     "collectionId": "caperucitamx",
     "collection": "Trilogía Caperucita MX 1960-1962",
-    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6"
+    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6",
+    "tags": "infantil, familiar, fantasia, mexicana, caperucita roja, cuento, 1960, aventura, 1961, coleccion, animacion, familia, caperucita, sus, tres, amigos"
   },
   {
     "id": "289faebb-9f80-4ff2-a811-d5e1a00538e4",
@@ -863,7 +930,8 @@
     "tipo": "coleccion",
     "collectionId": "caperucitamx",
     "collection": "Trilogía Caperucita MX 1960-1962",
-    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6"
+    "collectionPoster": "https://www.mediafire.com/convkey/f11d/bomeecouldeuavzag.jpg?size_id=6",
+    "tags": "infantil, familiar, fantasia, mexicana, caperucita roja, cuento, 1960, aventura, 1962, coleccion, animacion, familia, caperucita, pulgarcito, contra, monstruos"
   },
   {
     "id": "01cc1b8d-a287-44f8-8891-1620b9101d08",
@@ -875,7 +943,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1980, pelicula, watcher, woods"
   },
   {
     "id": "c5ef0e24-f344-4b39-afbf-3c0f2a6f466b",
@@ -887,7 +956,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, terror, horror, langoliers"
   },
   {
     "id": "5f92f086-1e91-4cd6-bdb8-05293d65e43d",
@@ -899,7 +969,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1997, pelicula, comedia, pest"
   },
   {
     "id": "d998f879-db40-48fc-aa4a-566cdbfa0709",
@@ -911,7 +982,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1987, pelicula, ciencia ficcion, running, man"
   },
   {
     "id": "9423528a-8ab0-423e-b2ab-26a5b8450bcb",
@@ -926,7 +998,8 @@
     "tipo": "coleccion",
     "collectionId": "arabiannights",
     "collection": "Arabian Nights 2000",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BZWY0YzExMmQtNDE4OC00NmYzLWJjMTUtZWY4Zjc4ZTVjOTJhXkEyXkFqcGc@._V1_QL75_UX190_CR0"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BZWY0YzExMmQtNDE4OC00NmYzLWJjMTUtZWY4Zjc4ZTVjOTJhXkEyXkFqcGc@._V1_QL75_UX190_CR0",
+    "tags": "fantasia, aventura, romance, magia, 2000, mil y una noches, aladino, miniserie, hallmark, coleccion, mil, noches, parte"
   },
   {
     "id": "4941d27b-9ed1-4409-b8dd-4e27f03c4384",
@@ -941,7 +1014,8 @@
     "tipo": "coleccion",
     "collectionId": "arabiannights",
     "collection": "Arabian Nights 2000",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BZWY0YzExMmQtNDE4OC00NmYzLWJjMTUtZWY4Zjc4ZTVjOTJhXkEyXkFqcGc@._V1_QL75_UX190_CR0"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BZWY0YzExMmQtNDE4OC00NmYzLWJjMTUtZWY4Zjc4ZTVjOTJhXkEyXkFqcGc@._V1_QL75_UX190_CR0",
+    "tags": "fantasia, aventura, romance, magia, 2000, mil y una noches, aladino, miniserie, hallmark, coleccion, mil, noches, parte"
   },
   {
     "id": "23269078-cfcb-4564-9f24-98a23985570c",
@@ -953,7 +1027,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1992, pelicula, terror, horror, midori, chica, camelias"
   },
   {
     "id": "153531c3-7a68-4d65-96ec-b70753f085a7",
@@ -968,7 +1043,8 @@
     "tipo": "coleccion",
     "collectionId": "starwarsdespecialized",
     "collection": "Star Wars Despecialized Edition",
-    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg",
+    "tags": "ciencia ficcion, aventura, accion, space opera, 1977, star wars, george lucas, jedi, luke skywalker, culto, despecialized, coleccion, romance, star, wars, episodio, nueva, esperanza"
   },
   {
     "id": "7a366b72-8a48-4bef-8ad6-26c82d0aad3e",
@@ -983,7 +1059,8 @@
     "tipo": "coleccion",
     "collectionId": "starwarsdespecialized",
     "collection": "Star Wars Despecialized Edition",
-    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg",
+    "tags": "ciencia ficcion, aventura, accion, space opera, 1977, star wars, george lucas, jedi, luke skywalker, culto, despecialized, 1980, coleccion, star, wars, episodio, imperio, contraataca"
   },
   {
     "id": "5a649ba3-69fe-4934-b791-b6d3fc477904",
@@ -998,7 +1075,8 @@
     "tipo": "coleccion",
     "collectionId": "starwarsdespecialized",
     "collection": "Star Wars Despecialized Edition",
-    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/bdbf/knlileyzu11vmsuag.jpg",
+    "tags": "ciencia ficcion, aventura, accion, space opera, 1977, star wars, george lucas, jedi, luke skywalker, culto, despecialized, 1983, coleccion, star, wars, episodio, retorno"
   },
   {
     "id": "10cd719e-e597-4b37-ad01-23ced2937b9b",
@@ -1010,7 +1088,8 @@
     "lang2": "Español 🇪🇸",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1991, pelicula, zapato, volador"
   },
   {
     "id": "313cbbfd-93ea-408f-a21c-506dd57b8b96",
@@ -1022,7 +1101,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, wrestlemaniac"
   },
   {
     "id": "3725cdb4-b58d-42e6-b5fb-264baf9bfd47",
@@ -1034,7 +1114,8 @@
     "lang2": "Español 🇪🇸",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, princess, blade"
   },
   {
     "id": "4e6ac44a-c228-4f52-9e84-e92266de2a87",
@@ -1046,7 +1127,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1987, pelicula, casi, humano"
   },
   {
     "id": "532ed770-f3ad-4ba7-8066-492c23e48da6",
@@ -1058,7 +1140,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2015, pelicula, tres, historia, autorizada"
   },
   {
     "id": "d9aa065d-6ad1-49ba-9d8d-5f1a77a3d4ac",
@@ -1070,7 +1153,8 @@
     "lang2": "Español 🇲🇽 Orig./Redob.",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, terror, horror, romance, masacre, nueva, york"
   },
   {
     "id": "2961f479-dfcb-4891-ada9-20a411a7ade9",
@@ -1082,7 +1166,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2013, pelicula, juego, media, noche"
   },
   {
     "id": "0b0d3b3e-8557-4887-acbe-f32cbc85ead5",
@@ -1097,7 +1182,8 @@
     "tipo": "coleccion",
     "collectionId": "volveralfuturo",
     "collection": "Volver al futuro",
-    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg",
+    "tags": "ciencia ficcion, aventura, comedia, 1985, volver al futuro, back to the future, robert zemeckis, viaje en el tiempo, delorean, marty mcfly, coleccion, volver, futuro"
   },
   {
     "id": "79028a1b-bdb6-4b94-bf44-ab4a1d5bd6f0",
@@ -1112,7 +1198,8 @@
     "tipo": "coleccion",
     "collectionId": "volveralfuturo",
     "collection": "Volver al futuro",
-    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg",
+    "tags": "ciencia ficcion, aventura, comedia, 1985, volver al futuro, back to the future, robert zemeckis, viaje en el tiempo, delorean, marty mcfly, 1989, coleccion, volver, futuro"
   },
   {
     "id": "ea808f7e-c094-4cf0-a562-6693dab4adea",
@@ -1127,7 +1214,8 @@
     "tipo": "coleccion",
     "collectionId": "volveralfuturo",
     "collection": "Volver al futuro",
-    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/4f7a/qz3fnunb7p1gsv6ag.jpg",
+    "tags": "ciencia ficcion, aventura, comedia, 1985, volver al futuro, back to the future, robert zemeckis, viaje en el tiempo, delorean, marty mcfly, 1993, coleccion, volver, futuro"
   },
   {
     "id": "4654111c-3eaf-4773-919d-f48a8c029737",
@@ -1142,7 +1230,8 @@
     "tipo": "coleccion",
     "collectionId": "puppermastercollection",
     "collection": "Puppet Master Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/4077/rkr4hw6nbqopi94ag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/4077/rkr4hw6nbqopi94ag.jpg",
+    "tags": "terror, horror, muñecos, puppet master, 1989, slasher, culto, marionetas asesinas, coleccion, juguetero, diablo"
   },
   {
     "id": "7eb8952d-74bf-499d-a761-faaf2876ada5",
@@ -1154,7 +1243,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1966, pelicula, cine mexicano, javier, solis, gaviota"
   },
   {
     "id": "eb8bde54-6981-47d6-af8a-8f80bbf6cee0",
@@ -1169,7 +1259,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, coleccion, doblaje, latino, original"
   },
   {
     "id": "7c99354b-66c5-42a4-8b16-86a85285f621",
@@ -1184,7 +1275,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, coleccion, muñeco, diabólico"
   },
   {
     "id": "b24e3132-4d79-48b1-b34b-7aedd69e6186",
@@ -1199,7 +1291,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 1990, coleccion, muñeco, diabólico"
   },
   {
     "id": "c2e0aa64-b16e-4125-b39b-26de4a828f3c",
@@ -1214,7 +1307,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 1991, coleccion, muñeco, diabólico"
   },
   {
     "id": "6a8c2df3-5c5c-44a8-9a8b-caca2db9ff2b",
@@ -1229,7 +1323,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 1998, coleccion, novia"
   },
   {
     "id": "c585c9a6-9697-4200-ae74-e84132713c53",
@@ -1244,7 +1339,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 2004, coleccion, hijo"
   },
   {
     "id": "0ecc31a0-a41e-4755-8b83-30a31d2bea50",
@@ -1259,7 +1355,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 2013, coleccion, maldición"
   },
   {
     "id": "ce1ab08e-ede2-430e-be0c-e293a905128d",
@@ -1274,7 +1371,8 @@
     "tipo": "coleccion",
     "collectionId": "chucky",
     "collection": "Chucky Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/6401/ljctynw4hb2i1mnag.jpg",
+    "tags": "terror, horror, slasher, muñeco diabolico, chucky, child's play, brad dourif, 1988, muñeco poseido, vudu, saga chucky, 2017, coleccion, culto"
   },
   {
     "id": "df8903b9-3bb5-409a-b316-35190b862e6a",
@@ -1286,7 +1384,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1985, pelicula, malditas, vacaciones"
   },
   {
     "id": "f30ed953-5d7f-4c99-8093-6c4b9fc0ef49",
@@ -1298,7 +1397,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1986, pelicula, aventura, laberinto"
   },
   {
     "id": "113981b6-7bab-4871-be48-ef7da1178e14",
@@ -1310,7 +1410,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, beso, dragón"
   },
   {
     "id": "ca71ed92-cffe-4fbe-84ff-5d6df5878374",
@@ -1322,7 +1423,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1963, pelicula, maldición, llorona"
   },
   {
     "id": "e77a5db1-aef9-4abf-b9b2-925ec7005507",
@@ -1334,7 +1436,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1969, pelicula, libro, piedra"
   },
   {
     "id": "0789a55f-0268-43f0-b68a-fc9125c7c855",
@@ -1346,7 +1449,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1961, pelicula, gato, botas"
   },
   {
     "id": "0ed8b218-75f0-4c3f-bad0-6fd9ca9c67b3",
@@ -1358,7 +1462,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, marcelino, pan, vino"
   },
   {
     "id": "d021dc5c-a50d-45f0-85d5-7c12024b40aa",
@@ -1370,7 +1475,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1969, pelicula, sandro, quiero, llenarme"
   },
   {
     "id": "707caa39-b82d-466f-8f0c-ec1d2dde75b1",
@@ -1382,7 +1488,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1968, pelicula, hasta, viento, tiene, miedo"
   },
   {
     "id": "f7485bf7-95a4-49c4-899a-f8a4b83aa1e3",
@@ -1394,7 +1501,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1978, pelicula, vaselina"
   },
   {
     "id": "77c9277f-0d77-4050-b5e9-7f2d2cf1f6e2",
@@ -1406,7 +1514,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2004, pelicula, kill, bill, whole, bloody, affair"
   },
   {
     "id": "22ec1979-9e73-438c-ad6e-be40e8eb4bce",
@@ -1418,7 +1527,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2014, pelicula, musical, mexicana, cine mexicano, juan, gabriel, mis, bellas, artes"
   },
   {
     "id": "7024a11b-f94d-44f4-9e81-2147ba7faf73",
@@ -1430,7 +1540,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1956, pelicula, planeta, prohibido"
   },
   {
     "id": "c1011491-fe7e-4ce9-88a4-a04bdb2370df",
@@ -1442,7 +1553,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2013, pelicula, camino, vuelta"
   },
   {
     "id": "e721b650-d9b3-4646-9364-551833227968",
@@ -1454,7 +1566,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, aventura, laberinto, fauno"
   },
   {
     "id": "ac5a375f-e46a-4330-b12c-5ff65e346aa0",
@@ -1466,7 +1579,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1993, pelicula, fuego, cielo"
   },
   {
     "id": "04d4b50e-e310-4077-8430-a40fd6764faa",
@@ -1481,7 +1595,8 @@
     "tipo": "coleccion",
     "collectionId": "puppermastercollection",
     "collection": "Puppet Master Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/4077/rkr4hw6nbqopi94ag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/4077/rkr4hw6nbqopi94ag.jpg",
+    "tags": "terror, horror, muñecos, puppet master, 1989, slasher, culto, marionetas asesinas, 1991, coleccion, puppet, master, venganza, toulon"
   },
   {
     "id": "e7a32c05-def7-4838-aef9-8c5e9a27d09f",
@@ -1493,7 +1608,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2005, pelicula, ritmo, sueño"
   },
   {
     "id": "286a7674-80fd-47b0-99db-6485267e5b49",
@@ -1505,7 +1621,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1997, pelicula, selena"
   },
   {
     "id": "a3ff982b-9e0e-48ba-8554-376e02e33f00",
@@ -1517,7 +1634,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1987, pelicula, pandilla, basura"
   },
   {
     "id": "f67e82c8-bce7-4ea4-ab89-d2fd273299c6",
@@ -1529,7 +1647,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1990, pelicula, tortugas, ninja"
   },
   {
     "id": "ef2b8b3d-6081-4a23-a967-3e86c460f4d5",
@@ -1541,7 +1660,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, sobrevivir"
   },
   {
     "id": "27466fe4-2bee-4e8d-8788-b75a69a6ec6f",
@@ -1553,7 +1673,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, picapiedras, rocas"
   },
   {
     "id": "6fdcf647-0494-4255-8ff8-7878331452db",
@@ -1567,7 +1688,8 @@
     "trailer": "",
     "tipo": "coleccion",
     "collectionId": "guyvercollection",
-    "collection": "Guyver Colección"
+    "collection": "Guyver Colección",
+    "tags": "ciencia ficcion, accion, terror, superheroes, 1991, guyver, mutronics, manga, bio armadura, coleccion, soldados, universo"
   },
   {
     "id": "71f0ce2a-feea-4a60-a261-81ea5f4f4a2c",
@@ -1579,7 +1701,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1991, pelicula, patrullero"
   },
   {
     "id": "d70d225d-e7cd-4363-9d45-744304b76d96",
@@ -1591,7 +1714,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1982, pelicula, jorobado, notre, dame"
   },
   {
     "id": "92750389-5a62-4593-92c4-0efa5e611927",
@@ -1603,7 +1727,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1999, pelicula, jovenes, tramposos"
   },
   {
     "id": "db81285c-cc8b-4edc-84f2-7120d0d0937c",
@@ -1618,7 +1743,8 @@
     "tipo": "coleccion",
     "collectionId": "guyvercollection",
     "collection": "Guyver Colección",
-    "collectionPoster": "https://www.mediafire.com/convkey/478b/wpqut5bk4i34tahag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/478b/wpqut5bk4i34tahag.jpg",
+    "tags": "ciencia ficcion, accion, terror, superheroes, 1991, guyver, mutronics, manga, bio armadura, 1994, coleccion, súper, héroe"
   },
   {
     "id": "5aae08ae-2363-4841-bfec-ef2909fb4197",
@@ -1630,7 +1756,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2002, pelicula, banda, tramposos"
   },
   {
     "id": "31dc2775-8db7-43bc-af4c-a85b87e88661",
@@ -1645,7 +1772,8 @@
     "tipo": "coleccion",
     "collectionId": "jaimemaussan",
     "collection": "Jaime Maussan Ovnis",
-    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg",
+    "tags": "documental, ovni, ufologia, jaime maussan, extraterrestres, 1993, tercer milenio, coleccion, luces, cielo"
   },
   {
     "id": "bb73f5ae-a142-4707-b4f3-eedf317e4a25",
@@ -1660,7 +1788,8 @@
     "tipo": "coleccion",
     "collectionId": "jaimemaussan",
     "collection": "Jaime Maussan Ovnis",
-    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg",
+    "tags": "documental, ovni, ufologia, jaime maussan, extraterrestres, 1993, tercer milenio, coleccion, luces, cielo"
   },
   {
     "id": "b1b03450-754d-4c77-a75c-b827755ae17a",
@@ -1675,7 +1804,8 @@
     "tipo": "coleccion",
     "collectionId": "jaimemaussan",
     "collection": "Jaime Maussan Ovnis",
-    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg"
+    "collectionPoster": "https://www.mediafire.com/convkey/8ca1/860x5gsqfief1nkag.jpg",
+    "tags": "documental, ovni, ufologia, jaime maussan, extraterrestres, 1993, tercer milenio, coleccion, contacto, desde, pleyades"
   },
   {
     "id": "abaf2faf-5635-4457-8192-9c3fad435c79",
@@ -1687,7 +1817,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, kids"
   },
   {
     "id": "cfb4c7f1-13a3-40d1-94bb-d403dbb985d2",
@@ -1699,7 +1830,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1998, pelicula, iqbal"
   },
   {
     "id": "eaaba63a-86aa-43de-9e3f-23e2c4cec382",
@@ -1711,7 +1843,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, aventura, loca"
   },
   {
     "id": "b78e9089-29d5-429d-b3d6-97129b03cce6",
@@ -1723,7 +1856,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1994, pelicula, dos, sabuesos, isla, edén"
   },
   {
     "id": "13ffe9b0-68a2-4215-87a3-73a16f52e0fc",
@@ -1738,7 +1872,8 @@
     "tipo": "coleccion",
     "collectionId": "barbershopcollection",
     "collection": "La Barberia colección",
-    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg",
+    "tags": "comedia, barberia, urbana, ice cube, 2002, 2016, chicago, peluqueria, coleccion"
   },
   {
     "id": "cc079787-62fa-4775-9a89-2b64c2d05f1b",
@@ -1753,7 +1888,8 @@
     "tipo": "coleccion",
     "collectionId": "barbershopcollection",
     "collection": "La Barberia colección",
-    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg",
+    "tags": "comedia, barberia, urbana, ice cube, 2002, 2016, chicago, peluqueria, 2005, coleccion, salón, belleza"
   },
   {
     "id": "a26f1e0e-1113-4163-9483-5109db2258e4",
@@ -1768,7 +1904,8 @@
     "tipo": "coleccion",
     "collectionId": "barbershopcollection",
     "collection": "La Barberia colección",
-    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/S/pv-target-images/de917ab8f9f7712a0cddccd670e861b45cda684c88ad28a80cc9ea66ead9ba00.jpg",
+    "tags": "comedia, barberia, urbana, ice cube, 2002, 2016, chicago, peluqueria, 2004, coleccion, barbería, vuelta, negocio"
   },
   {
     "id": "254c314b-d08f-42fe-a0df-503c7c6e19f2",
@@ -1780,7 +1917,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, dog, bite"
   },
   {
     "id": "ceee6724-b031-4bfb-b4b5-53131a8b932c",
@@ -1792,7 +1930,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2010, pelicula, dahmer, gacy"
   },
   {
     "id": "5610f4bb-de00-401f-bfbc-77ae2b9fea96",
@@ -1804,7 +1943,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1989, pelicula, begotten"
   },
   {
     "id": "66601793-3c95-4f05-be2e-7c2480812b6f",
@@ -1816,7 +1956,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1988, pelicula, teléfono, infierno"
   },
   {
     "id": "cefd113f-18b6-4156-9560-04a8c4d66190",
@@ -1828,7 +1969,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Españolf",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2000, pelicula, hijo, viento"
   },
   {
     "id": "a0cfa473-74b5-46cd-a3a8-a99f5e496ab7",
@@ -1840,7 +1982,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2004, pelicula, fantasma, opera"
   },
   {
     "id": "fe389206-11c2-4b2d-9350-becf5f685b9a",
@@ -1852,7 +1995,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1989, pelicula, academia, ninja"
   },
   {
     "id": "0a89187b-dfce-47a5-94f9-8a5cb01d3094",
@@ -1867,7 +2011,8 @@
     "tipo": "serie",
     "collectionId": "candyindonesia",
     "collection": "Candy Indonesia 2007",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/x4yZVBPtNlezDFxTPoLU5naalFV.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/x4yZVBPtNlezDFxTPoLU5naalFV.jpg",
+    "tags": "drama, romance, indonesia, sinetron, candy candy, adolescente, 2007, serie, candy, episodio"
   },
   {
     "id": "ddad133f-723a-4d6c-9d3d-58dd17faa0fa",
@@ -1882,7 +2027,8 @@
     "tipo": "serie",
     "collectionId": "candyindonesia",
     "collection": "Candy Indonesia 2007",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/x4yZVBPtNlezDFxTPoLU5naalFV.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/x4yZVBPtNlezDFxTPoLU5naalFV.jpg",
+    "tags": "drama, romance, indonesia, sinetron, candy candy, adolescente, 2007, serie, candy, episodio, 151, final"
   },
   {
     "id": "8e371475-5a61-4f5c-8903-8fac754a537c",
@@ -1894,7 +2040,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1968, pelicula, mujer, murcielago"
   },
   {
     "id": "1958a83b-c4eb-4769-b559-492f349960e2",
@@ -1909,7 +2056,8 @@
     "tipo": "coleccion",
     "collectionId": "raphaeldivodelinares",
     "collection": "Raphael Colección",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNTkwNGQ0MjMtMDViZi00YjkzLTk2MzktZjRhMWY3ZTVlMWE5XkEyXkFqcGc@._V1_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNTkwNGQ0MjMtMDViZi00YjkzLTk2MzktZjRhMWY3ZTVlMWE5XkEyXkFqcGc@._V1_.jpg",
+    "tags": "1968, coleccion, raphael, digan, que"
   },
   {
     "id": "086a0750-3be9-42cd-aadd-913608dec5ad",
@@ -1924,7 +2072,8 @@
     "tipo": "coleccion",
     "collectionId": "raphaeldivodelinares",
     "collection": "Raphael Colección",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNTkwNGQ0MjMtMDViZi00YjkzLTk2MzktZjRhMWY3ZTVlMWE5XkEyXkFqcGc@._V1_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNTkwNGQ0MjMtMDViZi00YjkzLTk2MzktZjRhMWY3ZTVlMWE5XkEyXkFqcGc@._V1_.jpg",
+    "tags": "1966, coleccion, raphael, cuando, estás"
   },
   {
     "id": "51665a55-fd65-4152-841e-4e513020b53e",
@@ -1936,7 +2085,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1991, pelicula, pelo, suelto, gloria, trevi"
   },
   {
     "id": "c70027bf-f3cd-4630-93b8-bfcde6be5b56",
@@ -1948,7 +2098,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1985, pelicula, hechiceros, reino, perdido"
   },
   {
     "id": "0dfc70d1-c301-4ec5-a541-3be4c6059cd5",
@@ -1960,7 +2111,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2014, pelicula, salvados, campana, detrás, cámaras"
   },
   {
     "id": "feb07254-e95a-4c61-ac96-89d5abc6a9b5",
@@ -1972,7 +2124,8 @@
     "lang2": "Español 🇲🇽 Modismos",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2012, pelicula, dictador"
   },
   {
     "id": "8b73a1d3-b67d-4f8b-9296-2b78744e3106",
@@ -1984,7 +2137,8 @@
     "lang2": "Español 🇲🇽 3 versiones",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2003, pelicula, todo, poderoso"
   },
   {
     "id": "cd80e13b-7e81-47f8-810f-d354b8379efc",
@@ -1996,7 +2150,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1996, pelicula, susie"
   },
   {
     "id": "bb6ddbf1-e11e-4891-89ed-2f14640a216c",
@@ -2008,7 +2163,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2002, pelicula, archivos, exhibicionista"
   },
   {
     "id": "c2e55b7c-740e-4ce8-903e-f65a4dcb6980",
@@ -2020,7 +2176,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, icarly, s05e01, perdí, cabeza"
   },
   {
     "id": "e9a37b1c-557c-4ee4-9027-71b2f563b780",
@@ -2032,7 +2189,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1977, pelicula, alucarda, hija, tinieblas"
   },
   {
     "id": "5824b32d-61a4-431b-972d-bb3eb7acc874",
@@ -2044,7 +2202,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, fantasmas"
   },
   {
     "id": "8e0cf881-7ffb-4ded-bcdd-ff521cdbca23",
@@ -2059,7 +2218,8 @@
     "tipo": "coleccion",
     "collectionId": "juanga",
     "collection": "Juan Gabriel",
-    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg"
+    "collectionPoster": "https://cdn.prod.website-files.com/663960405f780f0926d0f7f0/663960405f780f0926d0f8bb_gracias%20por%20esperar.jpeg",
+    "tags": "drama, musical, romance, mexicana, juan gabriel, cine mexicano, 70s, veronica castro, ranchera, 1980, coleccion, noa"
   },
   {
     "id": "2cfefc71-ece1-43a5-93d5-1f5a5427a20a",
@@ -2074,7 +2234,8 @@
     "tipo": "coleccion",
     "collectionId": "mortalkombat",
     "collection": "Mortal Kombat",
-    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg",
+    "tags": "1995, coleccion, mortal, kombat"
   },
   {
     "id": "b8970ddc-41a2-4614-8d34-90f81904232a",
@@ -2089,7 +2250,8 @@
     "tipo": "coleccion",
     "collectionId": "mortalkombat",
     "collection": "Mortal Kombat",
-    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg",
+    "tags": "1997, coleccion, mortal, kombat, aniquilación"
   },
   {
     "id": "66dce833-7dc6-4b29-8bd4-f3085fa4ad42",
@@ -2104,7 +2266,8 @@
     "tipo": "coleccion",
     "collectionId": "mortalkombat",
     "collection": "Mortal Kombat",
-    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/I/81KCI5mWa2L._SX342_.jpg",
+    "tags": "2021, coleccion, mortal, kombat"
   },
   {
     "id": "2a6ee076-2924-4975-86be-af08415a5fad",
@@ -2116,7 +2279,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2008, pelicula, cj7, juguete, espacio"
   },
   {
     "id": "331c81bf-8938-4263-bdc3-dc20b637307d",
@@ -2128,7 +2292,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2009, pelicula, coraline, puerta, secreta"
   },
   {
     "id": "93e8571d-caf7-43d4-bd3c-1aabe28e0631",
@@ -2140,7 +2305,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, priscilla, reina, desierto"
   },
   {
     "id": "7e342821-2028-4039-a40a-beccaa2067d3",
@@ -2152,7 +2318,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2011, pelicula, monstruo, parís"
   },
   {
     "id": "66d87944-4ee4-4426-8071-45df236319fa",
@@ -2164,7 +2331,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1994, pelicula, ace, ventura"
   },
   {
     "id": "20028d7d-c947-45cc-b295-afc236bfe600",
@@ -2176,7 +2344,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1997, pelicula, contacto"
   },
   {
     "id": "1d857b70-bedc-4ae8-b6f1-fd92eb692eeb",
@@ -2188,7 +2357,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1979, pelicula, bandera, rota"
   },
   {
     "id": "7197240c-ce27-4ea1-894c-40d190da3ebd",
@@ -2200,7 +2370,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, buscadores, oro, secreto, montaña, oso"
   },
   {
     "id": "77475e52-18bb-4790-ac7b-d592b5be7dc9",
@@ -2212,7 +2383,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "x"
+    "tipo": "x",
+    "tags": "1994, x, castillo, pasión"
   },
   {
     "id": "11546b29-c5d4-445e-9bea-b0fb22a81d0e",
@@ -2224,7 +2396,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1986, pelicula, manhunter"
   },
   {
     "id": "3b2a7681-e5dd-4da0-b140-d82acb499867",
@@ -2236,7 +2409,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1995, pelicula, siete, pecados, capitales"
   },
   {
     "id": "326e0f95-b4b3-487a-ae17-e499247fa8a4",
@@ -2248,7 +2422,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2000, pelicula, tintan"
   },
   {
     "id": "6b5eabe0-2ed9-4af6-88a5-253adbd18ffd",
@@ -2260,7 +2435,8 @@
     "lang2": "Español 🇲🇽 ORIG - REDO",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2009, pelicula, nine"
   },
   {
     "id": "9974b9ab-96cc-4a1d-8abd-f16690c64ecc",
@@ -2272,7 +2448,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1968, pelicula, cuatro, ave, maría"
   },
   {
     "id": "04705eef-5382-429c-b5be-dec5256ea952",
@@ -2284,7 +2461,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, terror, horror, hui, buh, castillo"
   },
   {
     "id": "9175cbde-4553-4bc8-bef0-9b48fb753cee",
@@ -2299,7 +2477,8 @@
     "tipo": "coleccion",
     "collectionId": "daynightwatch",
     "collection": "Day-Night Watch",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTI3MDI5ODUxNl5BMl5BanBnXkFtZTcwMjIwMDU1MQ@@._V1_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTI3MDI5ODUxNl5BMl5BanBnXkFtZTcwMjIwMDU1MQ@@._V1_.jpg",
+    "tags": "fantasia, accion, thriller, rusia, vampiros, magos, 2006, timur bekmambetov, noche, dia, guardianes, 2004, coleccion, night, watch"
   },
   {
     "id": "fa481b1c-da3e-4b8f-ab0f-8144a6f73882",
@@ -2311,7 +2490,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1978, pelicula, nuevo, mundo"
   },
   {
     "id": "b267b3c5-3253-4f10-a5e4-339c756cc88a",
@@ -2323,7 +2503,8 @@
     "lang2": "Español 🇲🇽 🇪🇸",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1976, pelicula, profecia"
   },
   {
     "id": "5928c9df-e676-48cc-a11c-c47f69442e5f",
@@ -2338,7 +2519,8 @@
     "tipo": "coleccion",
     "collectionId": "brucelee",
     "collection": "Bruce Lee Colección",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTc2NzM3MTI3NV5BMl5BanBnXkFtZTcwODIzMjEzMQ@@._V1_FMjpg_UY440_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTc2NzM3MTI3NV5BMl5BanBnXkFtZTcwODIzMjEzMQ@@._V1_FMjpg_UY440_.jpg",
+    "tags": "1972, coleccion, way, dragon"
   },
   {
     "id": "4f0522e0-47fd-44c9-aba3-01a17f52ea09",
@@ -2353,7 +2535,8 @@
     "tipo": "coleccion",
     "collectionId": "brucelee",
     "collection": "Bruce Lee Colección",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTc2NzM3MTI3NV5BMl5BanBnXkFtZTcwODIzMjEzMQ@@._V1_FMjpg_UY440_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTc2NzM3MTI3NV5BMl5BanBnXkFtZTcwODIzMjEzMQ@@._V1_FMjpg_UY440_.jpg",
+    "tags": "1973, coleccion, operación, dragón"
   },
   {
     "id": "a45aae2d-6e56-48da-a7f3-028400cd0863",
@@ -2365,7 +2548,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2004, pelicula, choupi, misterio, juguetes"
   },
   {
     "id": "8325de7a-49cb-456e-b502-89f330bd172f",
@@ -2377,7 +2561,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1969, pelicula, marlowe, detective, privado"
   },
   {
     "id": "81fdaee5-0aaa-4690-83e4-72246a944a05",
@@ -2389,7 +2574,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2016, pelicula, tras, puerta, azul"
   },
   {
     "id": "b2eadacb-1f6a-4a01-b32f-246ce0a750a3",
@@ -2401,7 +2587,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2005, pelicula, oscar, josefina"
   },
   {
     "id": "183fab6f-6984-450d-b0c8-ec75f7717c4d",
@@ -2413,7 +2600,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2007, pelicula, leyenda, santa, claus"
   },
   {
     "id": "fe27e477-0846-4247-8b78-47f632dac555",
@@ -2425,7 +2613,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2020, pelicula, advertencia"
   },
   {
     "id": "57a33965-32dc-4508-bc43-e9b785a59a12",
@@ -2437,7 +2626,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, que, cambia, tiempos"
   },
   {
     "id": "f8d0ecdc-4e37-47c1-9ed3-653514cb97ba",
@@ -2449,7 +2639,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1998, pelicula, quien, soy"
   },
   {
     "id": "6ab4f7f3-592c-43b1-a5c6-65f3fee5e1b3",
@@ -2461,7 +2652,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2003, pelicula, reyes, salsa"
   },
   {
     "id": "0250b781-1e27-412c-a31f-022fb6224120",
@@ -2473,7 +2665,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "x"
+    "tipo": "x",
+    "tags": "x, chibolo"
   },
   {
     "id": "044cb3f0-26c5-4147-bd9f-0c65795bb492",
@@ -2485,7 +2678,8 @@
     "lang2": "Español 🇪🇸",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, dulces, peligrosas"
   },
   {
     "id": "04cd045d-d280-4fd7-a111-f8ecddb2606e",
@@ -2497,7 +2691,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2016, pelicula, terror, horror, midori, camellia, girl, japones"
   },
   {
     "id": "9c3b3d63-0892-4342-9c0a-0bd8b31f3393",
@@ -2512,7 +2707,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "1995, coleccion, toy, story"
   },
   {
     "id": "ed30260c-4ea3-46de-b9ea-fac863c87ea3",
@@ -2527,7 +2723,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "1999, coleccion, toy, story"
   },
   {
     "id": "e55265df-689c-41e8-8b3e-0b087f1a1350",
@@ -2542,7 +2739,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2010, coleccion, toy, story"
   },
   {
     "id": "bc81cc23-5df1-4615-ab5c-c1f7dbf2c308",
@@ -2557,7 +2755,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2019, coleccion, toy, story"
   },
   {
     "id": "6902fb33-8017-466d-b4f3-f45b802024f6",
@@ -2572,7 +2771,8 @@
     "tipo": "pelicula",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2026, pelicula, toy, story"
   },
   {
     "id": "3aed461a-52f8-4f0d-99fe-e04a5813b663",
@@ -2587,7 +2787,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2011, coleccion, toy, story, vacaciones, hawái"
   },
   {
     "id": "8c1ed5fa-79fd-42bb-a383-e6fe8373d020",
@@ -2602,7 +2803,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2012, coleccion, toy, story, fiesta, saurus, rex"
   },
   {
     "id": "9f600137-51f4-4007-9111-d4df4ecf2d1f",
@@ -2617,7 +2819,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2011, coleccion, toy, story, pequeño, gran, buzz"
   },
   {
     "id": "86da61ae-bad7-4bae-aa8e-9814dcade26d",
@@ -2632,7 +2835,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2013, coleccion, terror, horror, toy, story"
   },
   {
     "id": "38abf62d-f803-4a0d-935f-1fee27a2b95e",
@@ -2647,7 +2851,8 @@
     "tipo": "coleccion",
     "collectionId": "toystory",
     "collection": "Toy Story Colección",
-    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg"
+    "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
+    "tags": "2014, coleccion, toy, story, olvidados, tiempo"
   },
   {
     "id": "e63025ef-2efd-4f76-8a06-2dde08e77662",
@@ -2659,7 +2864,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2026, pelicula, spider, man, nuevo, día"
   },
   {
     "id": "4833cd86-df98-4434-ac6d-466c1ac7697a",
@@ -2671,7 +2877,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1996, pelicula, jim, durazno, gigante"
   },
   {
     "id": "677a1952-2538-4334-aabe-58c43f5ae21d",
@@ -2683,7 +2890,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2017, pelicula, michael, jackson, halloween"
   },
   {
     "id": "0f41ab49-41aa-4b45-850e-2831e31e0551",
@@ -2695,7 +2903,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, michael, jackson, thriller"
   },
   {
     "id": "0fa3b23d-e0c9-48d4-9b23-e4adddf11894",
@@ -2710,7 +2919,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap1"
   },
   {
     "id": "0b1a35cb-74cd-4117-922e-078218de4266",
@@ -2725,7 +2935,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap2"
   },
   {
     "id": "c032702b-ac7b-4413-9980-23624cf37fd0",
@@ -2740,7 +2951,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap3"
   },
   {
     "id": "64c638f4-05ad-494c-82ec-382394e52bec",
@@ -2755,7 +2967,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap4"
   },
   {
     "id": "ebeab454-7099-4e49-be15-994e46b8042d",
@@ -2770,7 +2983,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap5"
   },
   {
     "id": "3f1e7430-a449-4572-be21-d0789a8e619c",
@@ -2785,7 +2999,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap6"
   },
   {
     "id": "f2cab6a8-5159-4825-b734-4d02ad8a9826",
@@ -2800,7 +3015,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap7"
   },
   {
     "id": "46e7cb47-38f6-4da4-b9d6-67d3cd9a06b7",
@@ -2815,7 +3031,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap8"
   },
   {
     "id": "432a278b-9815-4f0d-a971-32ac870e8b0b",
@@ -2830,7 +3047,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap9"
   },
   {
     "id": "412c01a6-4055-41d4-8f74-f402b3d79e43",
@@ -2845,7 +3063,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp1, cap10"
   },
   {
     "id": "31566e19-20aa-400f-9cbf-f6e5838a95ea",
@@ -2860,7 +3079,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap1"
   },
   {
     "id": "e6663b16-a8ea-4b69-9655-9293b1950b31",
@@ -2875,7 +3095,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap2"
   },
   {
     "id": "3a1a76fb-97f9-4bf2-9921-f5bd273e9dd3",
@@ -2890,7 +3111,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap3"
   },
   {
     "id": "68c37cc6-76c8-41a1-b5a7-fedac4b60e00",
@@ -2905,7 +3127,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap4"
   },
   {
     "id": "6b02c1a4-f741-4a14-a346-800a63923859",
@@ -2920,7 +3143,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap5"
   },
   {
     "id": "f8b6c386-4691-4e08-8934-8bcfe9ec0159",
@@ -2935,7 +3159,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap6"
   },
   {
     "id": "017276b5-a241-4372-b14b-f4233f3a343c",
@@ -2950,7 +3175,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap7"
   },
   {
     "id": "6cc71ed8-0477-4b7b-9873-2c5ca7866671",
@@ -2965,7 +3191,8 @@
     "tipo": "coleccion",
     "collectionId": "scarredmtv",
     "collection": "Scarred MTV",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTk5Mjg5MzQ4N15BMl5BanBnXkFtZTcwNTk3MzU1OA@@._V1_FMjpg_UY474_.jpg",
+    "tags": "coleccion, temp2, cap8"
   },
   {
     "id": "2b33cfd7-cf52-4a80-93bd-01a6751ecb2a",
@@ -2977,7 +3204,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2010, pelicula, romance, desde, parís, amor"
   },
   {
     "id": "a55d279e-d51c-476b-809b-7439ab0d62b8",
@@ -2992,7 +3220,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, epidosio"
   },
   {
     "id": "b611bcd2-e7c3-4c21-8a95-3ed3ed388c1d",
@@ -3007,7 +3236,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "c36f7a5e-4f46-4462-9f83-48805cf73075",
@@ -3022,7 +3252,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "be74028d-b322-472b-ad3c-568e92e3b140",
@@ -3037,7 +3268,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "c0cf3dc8-f746-40b3-96e8-bbeb7d45bdf0",
@@ -3052,7 +3284,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "ea917398-742f-4681-967a-cd52d68736bf",
@@ -3067,7 +3300,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "bb707a3b-1e2e-410f-8c37-8f39c7caa700",
@@ -3082,7 +3316,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "69525096-bdb7-4423-91b6-9afbd2545904",
@@ -3097,7 +3332,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "a434d420-4ae1-466b-86e4-6c295227173c",
@@ -3112,7 +3348,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "54e9f82a-b8ea-482e-9c18-097d176026c8",
@@ -3127,7 +3364,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "052ea138-9c18-405c-9f42-de875341b4ac",
@@ -3142,7 +3380,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "c6b8601e-725e-4c4b-bffe-cfb4be392100",
@@ -3157,7 +3396,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "f0cf2011-45f1-4803-82c1-68faa414758c",
@@ -3172,7 +3412,8 @@
     "tipo": "serie",
     "collectionId": "themaxx",
     "collection": "The Maxx 1995",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg"
+    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNWU3Yzc3MTQtZWRkZC00ZjhjLWJlNDMtOTg5N2NhMDJmZDEyXkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
+    "tags": "serie, episodio"
   },
   {
     "id": "4769b641-d615-4ca8-a18e-0cc2db10f0c2",
@@ -3184,7 +3425,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2006, pelicula, shakira, vivo, desde, madrid"
   },
   {
     "id": "f14cb94a-70ec-43f7-a0a9-49ed39b01d8d",
@@ -3196,7 +3438,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1990, pelicula, brujas, dual"
   },
   {
     "id": "3b0c174d-51b9-448f-ac4c-cb9f333529e9",
@@ -3208,7 +3451,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1987, pelicula, brujas, eastwick"
   },
   {
     "id": "3e2646b2-149f-4f4f-a282-411e0456cae4",
@@ -3220,7 +3464,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1953, pelicula, crímenes, museo, cera"
   },
   {
     "id": "6091913e-608d-4961-b320-7d6d0729e1f0",
@@ -3232,7 +3477,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, crystal, lake, historia, viernes"
   },
   {
     "id": "8af57012-c091-4f0e-95ad-e1adf6862226",
@@ -3244,7 +3490,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "pelicula, crystal, lake, historia, viernes"
   },
   {
     "id": "f508b857-b41f-4a6c-89db-952b48d8f941",
@@ -3256,7 +3503,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "1996, pelicula, maldicion, gitana"
   },
   {
     "id": "918611df-a4e5-4925-a0ef-110bd5daa065",
@@ -3268,7 +3516,8 @@
     "lang2": "",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2001, pelicula, gang, tapes"
   },
   {
     "id": "7b8b6c6c-c504-413f-8be4-26f54f2052ff",
@@ -3280,7 +3529,8 @@
     "lang2": "",
     "subs": "",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2003, pelicula, madrina, hechicera"
   },
   {
     "id": "58a25263-8155-4505-bc49-08e9bbf19786",
@@ -3292,7 +3542,8 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "trailer": "",
-    "tipo": "pelicula"
+    "tipo": "pelicula",
+    "tags": "2003, pelicula, hulk"
   },
   {
     "id": "shazam01",
@@ -3308,7 +3559,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 1
+    "order": 1,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam02",
@@ -3324,7 +3576,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 2
+    "order": 2,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam03",
@@ -3340,7 +3593,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 3
+    "order": 3,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam04",
@@ -3356,7 +3610,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 4
+    "order": 4,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam05",
@@ -3372,7 +3627,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 5
+    "order": 5,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam06",
@@ -3388,7 +3644,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 6
+    "order": 6,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam07",
@@ -3404,7 +3661,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 7
+    "order": 7,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam08",
@@ -3420,7 +3678,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 8
+    "order": 8,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam09",
@@ -3436,7 +3695,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 9
+    "order": 9,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam10",
@@ -3452,7 +3712,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 10
+    "order": 10,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam11",
@@ -3468,7 +3729,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 11
+    "order": 11,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam12",
@@ -3484,7 +3746,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 12
+    "order": 12,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam13",
@@ -3500,7 +3763,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 13
+    "order": 13,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam14",
@@ -3516,7 +3780,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 14
+    "order": 14,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam15",
@@ -3532,7 +3797,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 15
+    "order": 15,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam16",
@@ -3548,7 +3814,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 16
+    "order": 16,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam17",
@@ -3564,7 +3831,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 17
+    "order": 17,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam18",
@@ -3580,7 +3848,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 18
+    "order": 18,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam19",
@@ -3596,7 +3865,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 19
+    "order": 19,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam20",
@@ -3612,7 +3882,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 20
+    "order": 20,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam21",
@@ -3628,7 +3899,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 21
+    "order": 21,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam22",
@@ -3644,7 +3916,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 22
+    "order": 22,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam23",
@@ -3660,7 +3933,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 23
+    "order": 23,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam24",
@@ -3676,7 +3950,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 24
+    "order": 24,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam25",
@@ -3692,7 +3967,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 25
+    "order": 25,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam26",
@@ -3708,7 +3984,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 26
+    "order": 26,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam27",
@@ -3724,7 +4001,8 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 27
+    "order": 27,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
   },
   {
     "id": "shazam28",
@@ -3740,6 +4018,7 @@
     "collectionId": "shazam",
     "collection": "Shazam 1974",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTcyMDg1MzQ4M15BMl5BanBnXkFtZTgwODU5NDkwMDE@._V1_FMjpg_UY423_.jpg",
-    "order": 28
-  }  
+    "order": 28,
+    "tags": "accion, aventura, fantasia, superheroes, familia, serie tv, 1974, dc comics, capitan marvel, shazam, filmation, cbs, infancia, moraleja, serie, temp, cap"
+  }
 ]
