@@ -4074,6 +4074,7 @@
     "subs": "",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "2007, terror, horror, trejo, méxico"
   },
   {
     "id": "284",
@@ -4086,6 +4087,7 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "1988, hills, colinas, terror, horror"
   },
   {
     "id": "285",
@@ -4098,6 +4100,7 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "2006, hills, colinas, terror, horror"
   },
   {
     "id": "286",
@@ -4110,6 +4113,7 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "2007, hills, colinas, terror, horror"
   },
   {
     "id": "287",
@@ -4122,6 +4126,7 @@
     "subs": "Español 🇲🇽 REDOBLAJE",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "2003, terror, horror"
   },
   {
     "id": "288",
@@ -4138,5 +4143,18 @@
     "collection": "Toy Story Colección",
     "collectionPoster": "https://image.tmdb.org/t/p/w300_and_h450_face/ss7QQlifXEiDVE4krmCsNHuIovh.jpg",
     "tags": "1999, coleccion, toy, story"
-  }  
+  },
+  {
+    "id": "289",
+    "title": "Super Cool EXT 2007",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOWQwYTI4YzktZTQxMy00OWI3LTkzODAtM2U3MDIzZGZlY2ZkXkEyXkFqcGc@._V1_FMjpg_UY479_.jpg",
+    "desc": "Superbad Version extendida\nComedia adolescente dirigida por Greg Mottola y producida por Judd Apatow.\nSeth (Jonah Hill) y Evan (Michael Cera) son dos mejores amigos inseparables que están a pocos días de graduarse de la preparatoria.\nAntes de ir a universidades distintas, los jóvenes buscan integrarse con sus compañeros, ir a una gran fiesta de graduación y conseguir alcohol para impresionar a las chicas que les gustan (Jules y Becca), con la intención de perder la virginidad.\nPara conseguir las bebidas, recurren a su amigo Fogell (Christopher Mintz-Plasse), quien consigue una identificación falsa con el nombre de \"McLovin\".\nLa noche se transforma en una serie de eventos absurdos, desastres cómicos y enredos con dos policías (Seth Rogen y Bill Hader).\nDetrás del humor y el desastre de la fiesta, la película explora el miedo y la ansiedad de dos amigos cercanos ante su inminente separación y el paso a la adultez.",
+    "embed": "https://bysekoze.com/e/cfx4ib1r7thu",
+    "lang": "Ingles 🇺🇸",
+    "lang2": "Español 🇲🇽",
+    "subs": "Español",
+    "trailer": "",
+    "tipo": "pelicula"
+    "tags": "2007, comedia, dumb, tontos, risas"
+  }
 ]
