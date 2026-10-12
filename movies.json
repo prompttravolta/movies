@@ -4180,7 +4180,6 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
-    "tags": "1995, Disney"
   },
   {
     "id": "292",
@@ -4337,7 +4336,6 @@
     "subs": "",
     "trailer": "",
     "tipo": "pelicula"
-    "tags": "1997, mexicana, drama, infantil"
   },
   {
     "id": "304",
@@ -4959,5 +4957,5 @@
     "collectionId": "reboot1994",
     "collection": "Reboot 1994",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BMTY1ODU3MDc1NF5BMl5BanBnXkFtZTYwMjI4NTg4._V1_FMjpg_UY460_.jpg"
-  }  
+  }
 ]
