@@ -4180,6 +4180,7 @@
     "subs": "Español",
     "trailer": "",
     "tipo": "pelicula"
+    "tags": "1995, Disney"
   },
   {
     "id": "292",
@@ -4324,5 +4325,18 @@
     "collectionId": "motorratones",
     "collection": "Motorratones",
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BYjRmZmUwNmMtYjdmYS00MDhlLTk0ODYtMWZhY2M2MDQ0MGZlXkEyXkFqcGc@._V1_FMjpg_UY479_.jpg"
+  },
+  {
+    "id": "303",
+    "title": "Elisa antes del fin del mundo 1997",
+    "poster": "https://m.media-amazon.com/images/M/MV5BOWYzOGJhZDQtMGQ3YS00MDgxLWExNDYtOTY5MWYwYzkzYzMwXkEyXkFqcGc@._V1_FMjpg_UY454_.jpg",
+    "desc": "Elisa antes del fin del mundo (1997) es una película mexicana de drama social dirigida por Juan Antonio de la Riva y producida por Roberto Gómez Bolaños (\"Chespirito\") a través de Televicine.\nLa historia se desarrolla en la Ciudad de México durante los años 90, en medio de una profunda crisis económica derivada del llamado \"Error de diciembre\".\nEl padre de Elisa —una niña de 9 o 10 años interpretada por Sherlyn— pierde su empleo y la familia acumula graves deudas bancarias.\nMientras tanto, la madre se empeña en mantener las apariencias de su estatus social de clase alta.\nAl escuchar a su padre decir que la situación está tan mal que la gente tendrá que comer cucarachas para sobrevivir, Elisa comienza a coleccionar estos insectos convencida de que serán el alimento del futuro.\nAl ver la angustia en su hogar, Elisa decide que debe intervenir.\nJunto con su amigo Miguel y un adolescente mayor llamado Paco, idea un plan extremo y peligroso para salvar a su familia de la ruina económica: asaltar un banco.\nLa trama retrata con crudeza y a través de los ojos de la infancia cómo las crisis financieras de los adultos arrastran y destruyen la inocencia de los niños.",
+    "embed": "https://bysekoze.com/e/85olbr7j0cin",
+    "lang": "Español 🇲🇽",
+    "lang2": "",
+    "subs": "",
+    "trailer": "",
+    "tipo": "pelicula"
+    "tags": "1997, mexicana, drama, infantil"
   }  
 ]
