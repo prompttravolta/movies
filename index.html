@@ -207,10 +207,18 @@ function App(){
   React.useEffect(()=>{ if(RV_KEY && !window.responsiveVoice && !document.getElementById("rvScript")){ const sc=document.createElement("script"); sc.id="rvScript"; sc.src="https://code.responsivevoice.org/responsivevoice.js?key="+encodeURIComponent(RV_KEY); document.head.appendChild(sc); } },[]);
   /* ===== NUEVO: transmitir a TV / proyector ===== */
   const getSrc=s=>{s=(s||"").trim();const m=s.match(/src=["']([^"']+)/i);return m?m[1]:s;};
+  const [castHelp,setCastHelp]=React.useState(false);
+  React.useEffect(()=>{ setCastHelp(false); },[player]);
   const cast=async(url)=>{
-    if(!window.PresentationRequest){alert("Tu navegador no permite transmitir desde la página. Usa el menú ⋮ → Transmitir.");return;}
+    if(!window.PresentationRequest){ setCastHelp(true); return; }
     try{ await new PresentationRequest([getSrc(url)]).start(); }
-    catch(err){ if(err&&err.name!=="NotAllowedError"&&err.name!=="AbortError") alert("No se pudo transmitir. Prueba con ⋮ → Transmitir pestaña."); }
+    catch(err){ if(!(err&&err.name==="AbortError")) setCastHelp(true); }
+  };
+  const castSteps=()=>{
+    const ua=navigator.userAgent||"";
+    if(/Android/i.test(ua)) return ["Android: desliza hacia abajo el panel rápido y toca «Transmitir», «Smart View» o «Duplicar pantalla».","Elige tu TV o proyector. Con la pantalla duplicada funciona igual en la app y en el navegador.","Gira el celular a horizontal y pon el video en pantalla completa."];
+    if(/iPhone|iPad|iPod/i.test(ua)) return ["iPhone/iPad: abre el Centro de control y toca «Duplicar pantalla».","Elige tu TV (Apple TV o TV compatible con AirPlay).","Pon el video en pantalla completa."];
+    return ["PC con Chrome: menú ⋮ → Guardar y compartir → Transmitir. En Edge: menú ⋯ → Más herramientas → Transmitir contenido multimedia a un dispositivo.","Elige tu TV o Chromecast y, en «Orígenes», selecciona «Transmitir pestaña».","Sin Chromecast: en Windows presiona la tecla Windows + K para enviar la pantalla a una TV compatible, o usa un cable HDMI."];
   };
   /* ================================= */
   const loadFromGithub=async()=>{
@@ -417,6 +425,14 @@ function App(){
     player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
       e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"),
       e("button",{key:"cast",className:"btn btn-s",style:{position:"absolute",top:"15px",left:"15px"},onClick:()=>cast(player.embed)},"📺 Transmitir"),
+      castHelp? e("div",{key:"ch",style:{position:"absolute",left:"10px",right:"10px",bottom:"10px",maxWidth:"720px",margin:"0 auto",background:"var(--panel)",border:"1px solid var(--gold)",borderRadius:"10px",padding:"14px",fontSize:".82rem",lineHeight:1.5,zIndex:5,textAlign:"left"}},[
+        e("div",{key:"t",style:{color:"var(--gold)",fontWeight:700,marginBottom:"6px"}},"Esta página no puede enviar el video sola a la TV. Usa la transmisión de tu aparato:"),
+        ...castSteps().map((t,i)=>e("div",{key:"s"+i,style:{marginBottom:"4px"}},(i+1)+". "+t)),
+        e("div",{key:"b",style:{display:"flex",gap:"8px",marginTop:"10px",flexWrap:"wrap"}},[
+          e("button",{key:"o",className:"btn btn-s",onClick:()=>window.open(getSrc(player.embed),"_blank","noopener,noreferrer")},"Abrir solo el video en otra pestaña"),
+          e("button",{key:"c",className:"btn btn-s",onClick:()=>setCastHelp(false)},"Cerrar")
+        ])
+      ]) : null,
       e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
     ]) : null,
     trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
