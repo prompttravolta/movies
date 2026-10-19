@@ -122,15 +122,24 @@ function App(){
   const speakOk=typeof window!=="undefined"&&"speechSynthesis" in window;
   const [speaking,setSpeaking]=React.useState(false);
   const vozTipo="es-MX";
-  const pickVoice=(lang)=>{ try{ const all=speechSynthesis.getVoices()||[]; const norm=v=>v.lang.replace("_","-").toLowerCase(); return all.find(v=>norm(v)===lang.toLowerCase()) || all.find(v=>norm(v).startsWith("es")) || null; }catch{ return null; } };
+  const pickVoice=()=>{ try{
+    const all=speechSynthesis.getVoices()||[];
+    const norm=v=>v.lang.replace("_","-").toLowerCase();
+    const orden=["es-mx","es-us","es-419","es-co","es-ar","es-cl","es-pe","es-ve","es-ec","es-gt","es-cu","es-bo","es-do","es-hn","es-ni","es-pa","es-pr","es-py","es-sv","es-uy","es-cr"];
+    for(const c of orden){ const v=all.find(x=>norm(x)===c); if(v) return v; }
+    return null;
+  }catch{ return null; } };
+  React.useEffect(()=>{ try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch{} },[]);
   const stopSpeak=()=>{try{speechSynthesis.cancel();}catch{} setSpeaking(false);};
   const speak=(t)=>{
     if(speaking){stopSpeak();return;}
     const parts=((t||"").match(/[^.!?\n]+[.!?]*/g)||[]).map(s=>s.trim()).filter(Boolean);
     if(!parts.length) return;
     speechSynthesis.cancel();
+    const vv=pickVoice();
+    if(!vv && !sessionStorage.getItem("miCine_vozAviso")){ sessionStorage.setItem("miCine_vozAviso","1"); alert("Tu dispositivo no tiene una voz en español latino instalada, por eso puede sonar a español de España. Instala una voz de Español (México) o Español (Estados Unidos) en los ajustes de voz de tu dispositivo."); }
     parts.forEach((p,i)=>{
-      const u=new SpeechSynthesisUtterance(p); u.lang=vozTipo; u.rate=.95; const vv=pickVoice(vozTipo); if(vv) u.voice=vv;
+      const u=new SpeechSynthesisUtterance(p); u.lang=vozTipo; u.rate=.95; if(vv) u.voice=vv;
       if(i===parts.length-1) u.onend=()=>setSpeaking(false);
       u.onerror=()=>setSpeaking(false);
       speechSynthesis.speak(u);
