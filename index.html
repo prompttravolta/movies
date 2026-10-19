@@ -306,7 +306,7 @@ function App(){
         e("button",{key:"hentai", className:"type-btn"+(typeFilter==="hentai"?" active":""), onClick:()=>{setTypeFilter("hentai"); setLetter(null); setPage(1); window.scrollTo(0,0);}}, "🔞 Hentai"),
         e("button",{key:"x", className:"type-btn"+(typeFilter==="x"?" active":""), onClick:()=>{
           xClicks.current++;
-          if(xClicks.current>=2){
+          if(xClicks.current>=3){
             xClicks.current=0;
             setTypeFilter("x"); setLetter(null); setPage(1); window.scrollTo(0,0);
           } else {
