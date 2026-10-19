@@ -21,8 +21,7 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .alpha-btn{min-width:30px;height:30px;border-radius:6px;border:1px solid transparent;background:transparent;color:var(--muted);font-weight:700;font-size:.85rem;cursor:pointer}
 .alpha-btn:hover{background:var(--card);color:var(--text)}
 .alpha-btn.active{background:var(--text);color:#000}
-#grid{display:grid;gap:14px;padding:16px;max-width:1800px;margin:0 auto}
-#grid{grid-template-columns:repeat(2,1fr)}
+#grid{display:grid;gap:14px;padding:16px;max-width:1800px;margin:0 auto;grid-template-columns:repeat(2,1fr)}
 @media(min-width:600px){#grid{grid-template-columns:repeat(3,1fr)}}
 @media(min-width:900px){#grid{grid-template-columns:repeat(4,1fr)}}
 @media(min-width:1024px){#grid{grid-template-columns:repeat(5,1fr)}}
@@ -45,6 +44,8 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .admin-box label{display:block;font-size:.75rem;color:var(--muted);margin:12px 0 4px;text-transform:uppercase;letter-spacing:.5px}
 .admin-box input,.admin-box textarea,.admin-box select{width:100%;background:#101012;border:1px solid var(--border);border-radius:6px;color:#fff;padding:9px 11px}
 .btn{padding:9px 16px;border-radius:8px;border:none;font-weight:700;cursor:pointer;font-size:.85rem}.btn-p{background:var(--red);color:#fff}.btn-s{background:transparent;border:1px solid var(--border);color:#fff}
+.btn-audio{width:100%;padding:12px 14px;border-radius:10px;border:1px solid var(--border);background:#222227;color:#fff;font-weight:700;cursor:pointer;text-align:left;display:flex;justify-content:space-between;align-items:center;margin-bottom:8px}
+.btn-audio:hover{border-color:var(--red)}
 .admin-item{display:flex;align-items:center;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid var(--border);font-size:.85rem}
 .icon-btn{background:var(--panel);border:1px solid var(--border);color:#fff;border-radius:6px;padding:5px 9px;cursor:pointer;font-size:.8rem}
 .icon-btn:disabled{opacity:.3}
@@ -52,15 +53,16 @@ header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;
 .detail-meta{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0 14px}
 .meta-chip{background:var(--panel);border:1px solid var(--border);color:var(--text);font-size:.78rem;padding:5px 11px;border-radius:999px}
 .meta-chip.gold{border-color:var(--gold);color:var(--gold)}
-img.emoji{height:1em;width:1em;margin:0.05em 0.1em;vertical-align:-0.15em;display:inline-block}
+img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;display:inline-block}
 #adModal{position:fixed;inset:0;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);z-index:9999;display:none;align-items:center;justify-content:center;padding:20px}
 #adModal.open{display:flex}
 .ad-box{background:#161619;border:1px solid #2a2a2f;border-radius:16px;width:min(480px,100%);padding:28px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.6)}
 .ad-box h2{font-family:'Bebas Neue';font-size:2rem;margin:0 0 12px;letter-spacing:2px}
 .ad-box p{color:var(--muted);font-size:.92rem;line-height:1.5;margin:0 0 18px}
-.ad-box.highlight{color:var(--text);background:var(--card);border:1px solid var(--border);padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:18px}
+.ad-box .highlight{color:var(--text);background:var(--card);border:1px solid var(--border);padding:10px 14px;border-radius:8px;font-size:.85rem;margin-bottom:18px}
 .empty-state{text-align:center;color:var(--muted);padding:40px 20px;grid-column:1/-1}
 .pagination{display:flex;justify-content:center;align-items:center;gap:6px;margin:24px 10px;flex-wrap:wrap}.page-num{min-width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-weight:800;cursor:pointer}.page-num.active{background:var(--red);color:#fff;border-color:var(--red)}.page-arrow{width:90px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:#fff;font-weight:800;cursor:pointer;font-size:.8rem}.page-arrow:disabled{opacity:.3}
+.tts-bar{display:flex;gap:8px;align-items:center;margin:12px 0;background:var(--panel);border:1px solid var(--border);padding:8px 12px;border-radius:10px}
 </style>
 <script>document.addEventListener('contextmenu',e=>e.preventDefault());document.addEventListener('keydown',e=>{if(e.key==='F12'||(e.ctrlKey&&e.shiftKey&&['I','J','C'].includes(e.key.toUpperCase()))||(e.ctrlKey&&['U','u'].includes(e.key))){e.preventDefault();return false;}});</script>
 </head>
@@ -72,397 +74,165 @@ img.emoji{height:1em;width:1em;margin:0.05em 0.1em;vertical-align:-0.15em;displa
 <script>
 const e = React.createElement;
 const KEY="miCine.movies";
-function getColumns(){
-const w=window.innerWidth;
-if(w>=1280) return 6;
-if(w>=1024) return 5;
-if(w>=768) return 4;
-if(w>=600) return 3;
-return 2;
-}
-function getPerPage(){
-const w=window.innerWidth;
-if(w>=1280) return 30;
-if(w>=1024) return 25;
-if(w>=768) return 20;
-if(w>=600) return 18;
-return 18;
-}
+function getPerPage(){const w=window.innerWidth; if(w>=1280) return 30; if(w>=1024) return 25; if(w>=768) return 20; if(w>=600) return 18; return 18;}
 function getPaginationRange(current,total,maxVisible){maxVisible=maxVisible||10;let start=Math.max(1,current-Math.floor(maxVisible/2));let end=start+maxVisible-1;if(end>total){end=total;start=Math.max(1,end-maxVisible+1);}const r=[];for(let i=start;i<=end;i++)r.push(i);return r;}
 const ALPHABET = [..."ABCDEFGHIJKLMNOPQRSTUVWXYZ", "#"];
 function normalize(s){return String(s||"").toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();}
-const FX_KEYS=["label","label2","label3","label4","embed2","embed3","embed4"];
+function extractSrc(embedStr){ if(!embedStr) return ""; embedStr=String(embedStr).trim(); if(embedStr.startsWith("<iframe")){ const m=embedStr.match(/src=["']([^"']+)["']/); return m?m[1]:embedStr; } return embedStr; }
+
 function App(){
-const =React.useState([]);
-const =React.useState("");
-const =React.useState(1);
-const =React.useState(null);
-const =React.useState(null);
-const =React.useState(null);
-const =React.useState(false);
-const =React.useState(null);
-const =React.useState(null);
-const =React.useState("");
-const =React.useState(null);
-const =React.useState("todos");
-const =React.useState(false);
-const clicks=React.useRef(0); const detailPosterClicks=React.useRef(0); const xClicks=React.useRef(0); const fileRef=React.useRef(null);
-const =React.useState(""); const =React.useState(""); const =React.useState("");
-const =React.useState(""); const =React.useState(""); const =React.useState("");
-const =React.useState(""); const =React.useState("");
-const =React.useState("pelicula");
-const =React.useState(""); const =React.useState("");
-const =React.useState(""); const =React.useState("");
-const =React.useState("");
-const =React.useState({});
-const setX=(k,v)=>setFx(p=>({...p,:v}));
-const loadFx=m=>setFx({label:m.label||"",label2:m.label2||"",label3:m.label3||"",label4:m.label4||"",embed2:m.embed2||"",embed3:m.embed3||"",embed4:m.embed4||""});[movies][setMovies][q][setQ][page][setPage][detail][setDetail][player][setPlayer][trailer][setTrailer][admin][setAdmin][editId][setEditId][selectedSaga][setSelectedSaga][msg][setMsg][letter][setLetter][typeFilter][setTypeFilter][showAd][setShowAd][fTitle][setFTitle][fPoster][setFPoster][fDesc][setFDesc][fEmbed][setFEmbed][fLang][setFLang][fLang2][setFLang2][fSubs][setFSubs][fTrailer][setFTrailer][fTipo][setFTipo][fSagaId][setFSagaId][fSagaName][setFSagaName][fSagaPoster][setFSagaPoster][fOrder][setFOrder][fTags][setFTags][fx][setFx][k]
+  const [movies,setMovies]=React.useState([]);
+  const [q,setQ]=React.useState(""); const [page,setPage]=React.useState(1);
+  const [detail,setDetail]=React.useState(null); const [player,setPlayer]=React.useState(null);
+  const [trailer,setTrailer]=React.useState(null); const [admin,setAdmin]=React.useState(false);
+  const [editId,setEditId]=React.useState(null); const [selectedSaga,setSelectedSaga]=React.useState(null);
+  const [msg,setMsg]=React.useState(""); const [letter,setLetter]=React.useState(null);
+  const [typeFilter,setTypeFilter]=React.useState("todos"); const [showAd,setShowAd]=React.useState(false);
+  const clicks=React.useRef(0); const detailPosterClicks=React.useRef(0); const xClicks=React.useRef(0); const fileRef=React.useRef(null);
+  const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
+  const [fEmbed,setFEmbed]=React.useState(""); const [fEmbed2,setFEmbed2]=React.useState(""); const [fEmbed3,setFEmbed3]=React.useState(""); const [fEmbed4,setFEmbed4]=React.useState("");
+  const [fAudioLabel,setFAudioLabel]=React.useState(""); const [fAudioLabel2,setFAudioLabel2]=React.useState(""); const [fAudioLabel3,setFAudioLabel3]=React.useState(""); const [fAudioLabel4,setFAudioLabel4]=React.useState("");
+  const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
+  const [fSubs,setFSubs]=React.useState(""); const [fTrailer,setFTrailer]=React.useState("");
+  const [fTipo,setFTipo]=React.useState("pelicula"); const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
+  const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState(""); const [fTags,setFTags]=React.useState("");
+  const [isSpeaking,setIsSpeaking]=React.useState(false);
 
-/* ===== AUDIO LATINO NEUTRO - ARREGLADO SIN ROMPER NADA ===== */
-const =React.useState(false);
-const audioRef=React.useRef(null);
-const LATAM = ["es-mx","es-us","es-419","es-co","es-ar","es-cl","es-pe","es-ve"];[speaking][setSpeaking]
+  const speakDesc=(txt)=>{ if(!('speechSynthesis' in window)){alert("Tu navegador no soporta voz");return;} if(isSpeaking){ window.speechSynthesis.cancel(); setIsSpeaking(false); return; } const u=new SpeechSynthesisUtterance(txt); u.lang='es-MX'; u.rate=0.95; try{const voices=window.speechSynthesis.getVoices(); const es=voices.find(v=>v.lang.includes('es-MX'))||voices.find(v=>v.lang.includes('es')); if(es) u.voice=es;}catch{} u.onend=()=>setIsSpeaking(false); u.onerror=()=>setIsSpeaking(false); window.speechSynthesis.speak(u); setIsSpeaking(true); };
+  React.useEffect(()=>{ if('speechSynthesis' in window) window.speechSynthesis.getVoices(); },[]);
 
-const getLatinoVoice=()=>{
-try{
-const voices=speechSynthesis.getVoices()||[];
-for(let c of LATAM){
-const v=voices.find(x=> (x.lang||"").toLowerCase().replace("_","-")===c );
-if(v) return v;
-}
-// si no hay exacta, busca que no sea es-es
-const v2=voices.find(x=>{
-const l=(x.lang||"").toLowerCase();
-return l.startsWith("es-") && l!=="es-es";
-});
-return v2||null;
-}catch{return null;}
-};
-React.useEffect(()=>{ try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch{} },[]);
-const stopSpeak=()=>{ try{speechSynthesis.cancel();}catch{} try{ if(audioRef.current){ const a=audioRef.current; audioRef.current=null; a.onended=null; a.onerror=null; a.pause(); } }catch{} setSpeaking(false); };
-const chunkText=(t)=>{
-const sents=((t||"").match(/.!?\N+[.!?]/g)||[]).map(s=>s.trim()).filter(Boolean);
-const out=[]; let cur="";
-const push=()=>{ if(cur.trim()) out.push(cur.trim()); cur=""; };
-sents.forEach(s=>{
-if(s.length>150){ push(); s.split(/(?<=,)\s+|\s+/).forEach(w=>{ if((cur+" "+w).length>150) push(); cur+=(cur?" ":"")+w; }); push(); }
-else if((cur+" "+s).length>150){ push(); cur=s; }
-else cur+=(cur?" ":"")+s;
-});
-push(); return out;
-};
-const speakLocal=(parts)=>{
-const vv=getLatinoVoice();
-if(!vv) return false;
-try{
-speechSynthesis.cancel();
-parts.forEach((p,i)=>{
-const u=new SpeechSynthesisUtterance(p); u.lang=vv.lang; u.voice=vv; u.rate=.95;
-if(i===parts.length-1) u.onend=()=>setSpeaking(false);
-u.onerror=()=>setSpeaking(false);
-speechSynthesis.speak(u);
-});
-setSpeaking(true); return true;
-}catch{return false;}
-};
-const speakOnline=(parts)=>{
-let i=0; const tok={};
-audioRef.current=tok;
-const next=()=>{
-if(audioRef.current!==tok) return;
-if(i>=parts.length){ audioRef.current=null; setSpeaking(false); return; }
-const a=new Audio("https://translate.googleapis.com/translate_tts?ie=UTF-8&client=gtx&tl=es-MX&q="+encodeURIComponent(parts));
-audioRef.current=a;
-a.onended=()=>{ i++; audioRef.current=tok; next(); };
-a.onerror=()=>{
-audioRef.current=null;
-if(!speakLocal(parts.slice(i))){ setSpeaking(false); alert("Sin internet y sin voz latina instalada"); }
-};
-a.play().catch(()=>{ audioRef.current=null; if(!speakLocal(parts.slice(i))) setSpeaking(false); });
-};
-setSpeaking(true); next();
-};
-const speak=(t)=>{
-if(speaking){stopSpeak();return;}
-const parts=chunkText(t);
-if(!parts.length) return;
-if(navigator.onLine){
-speakOnline(parts);
-} else {
-if(!speakLocal(parts)) alert("Sin internet. Instala la voz Español México en Ajustes del dispositivo para escuchar offline.");
-}
-};
-React.useEffect(()=>{ if(!detail) stopSpeak(); },);
-/ ===== FIN AUDIO ===== */[i][detail]
+  const castMovie=(embedUrl)=>{ const url=extractSrc(embedUrl); if(!url) return; if(window.PresentationRequest){ try{ const receiverHtml=`<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><style>body{margin:0;background:#000;display:flex;align-items:center;justify-content:center;height:100vh}iframe{width:100vw;height:100vh;border:0}</style></head><body><iframe src="${url}" allowfullscreen allow="autoplay; fullscreen"></iframe></body></html>`; const blob=new Blob([receiverHtml],{type:'text/html'}); const blobUrl=URL.createObjectURL(blob); const req=new PresentationRequest([blobUrl]); req.start().catch(()=>{ alert("Activa tu TV/Chromecast en la misma WiFi y usa Chrome > ⋮ > Transmitir"); window.open(url,'_blank'); }); return; }catch(err){} } alert("Para enviar a TV: Android/PC Chrome > menú ⋮ > Transmitir / Guardar y compartir > Transmitir. iPhone > AirPlay. Asegúrate que TV y celular estén en la misma WiFi."); };
 
-const getSrc=s=>{s=(s||"").trim();const m=s.match(/src="'/i);return m?m:s;};
-const cast=async(url)=>{
-if(!window.PresentationRequest){alert("Tu navegador no permite transmitir desde la página. Usa el menú ⋮ → Transmitir.");return;}
-try{ await new PresentationRequest([getSrc(url)]).start(); }
-catch(err){ if(err&&err.name!=="NotAllowedError"&&err.name!=="AbortError") alert("No se pudo transmitir. Prueba con ⋮ → Transmitir pestaña."); }
-};
-const loadFromGithub=async()=>{
-try{
-const r=await fetch("movies.json?v="+Date.now(),{cache:"no-store"});
-const d=await r.json();
-if(Array.isArray(d)&&d.length>0){
-const seen=new Set(); const fixed=d.map((m,i)=>{ if(seen.has(m.id)){ return {...m, id:m.id+"-"+i}; } seen.add(m.id); return m; });
-const norm = fixed.map(m=>{ if(!m.tipo){ if(m.collectionId) m.tipo = "coleccion"; else m.tipo = "pelicula"; } return m; });
-setMovies(norm); localStorage.setItem(KEY,JSON.stringify(norm));
-setMsg("Cargado desde Github ("+norm.length+")");
-}
-}catch{ try{const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s));}catch{} }
-};
-React.useEffect(()=>{loadFromGithub();},[]);
-React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},);
-React.useEffect(()=>{ if(window.twemoji){ window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'}); } },);
-React.useEffect(()=>{ if(!sessionStorage.getItem('miCine_aviso')){ setShowAd(true); } },[]);
-const closeAd=()=>{ setShowAd(false); sessionStorage.setItem('miCine_aviso','1'); };
-const =React.useState(getPerPage());
-React.useEffect(()=>{ const onR=()=>setPerPage(getPerPage()); window.addEventListener('resize',onR); return ()=>window.removeEventListener('resize',onR); },[]);
-const collectionsMap=React.useMemo(()=>{
-const map={};
-movies.forEach(m=>{
-if(m.collectionId){
-const id=m.collectionId.trim().toLowerCase().replace(/\s+/g,'-');
-if(!map) map={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[], tipo: m.tipo==="serie"? "serie" : "coleccion"};
-if(m.collectionPoster) map.poster=m.collectionPoster;
-if(m.collection) map.name=m.collection;
-if(m.tipo==="serie") map.tipo="serie";
-map.movies.push(m);
-}
-});
-Object.values(map).forEach(c=>c.movies.sort((a,b)=>(a.order||0)-(b.order||0)));
-return map;
-},);
-const standalone=React.useMemo(()=>movies.filter(m=>!m.collectionId),);
-const sagas=React.useMemo(()=>Object.values(collectionsMap),);
-const handleVolver=()=>{ setSelectedSaga(null); setPage(1); window.scrollTo({top:0, behavior:"smooth"}); };
-let homeItems=[];
-if(!selectedSaga){
-if(typeFilter==="hentai" || typeFilter==="x"){
-movies.filter(m=>m.tipo===typeFilter).forEach(m=>homeItems.push({type:'movie', data:m}));
-} else {
-if(typeFilter==="todos" || typeFilter==="pelicula"){
-standalone.filter(m=>m.tipo==="pelicula").forEach(m=>homeItems.push({type:'movie', data:m}));
-}
-if(typeFilter==="todos" || typeFilter==="coleccion" || typeFilter==="serie"){
-sagas.forEach(s=>{
-if(typeFilter==="todos" || s.tipo===typeFilter) homeItems.push({type:'collection', data:s});
-});
-}
-}
-if(q.trim()){
-const qq=normalize(q);
-homeItems=homeItems.filter(it=>{
-if(it.type==='movie'){
-const m=it.data;
-return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs,m.tags].filter(Boolean).some(v=>normalize(v).includes(qq));
-}
-const c=it.data;
-return [c.name,c.id].filter(Boolean).some(v=>normalize(v).includes(qq)) || c.movies.some(m=>[m.title,m.desc,m.collection,m.tags].filter(Boolean).some(v=>normalize(v).includes(qq)));
-});
-}
-if(letter){
-homeItems=homeItems.filter(it=>{
-const name = it.type==='movie'? it.data.title : it.data.name;
-const first = name.trim().charAt(0).toUpperCase();
-if(letter==="#") return!/[A-Z]/.test(first);
-return first===letter;
-});
-}
-homeItems.sort((a,b)=>{
-const na = (a.type==='movie'? a.data.title : a.data.name).toLowerCase();
-const nb = (b.type==='movie'? b.data.title : b.data.name).toLowerCase();
-return na.localeCompare(nb);
-});
-} else {
-const col=collectionsMap;
-if(col) homeItems=col.movies.map(m=>({type:'movie', data:m}));
-}
-const totalPages=Math.max(1,Math.ceil(homeItems.length/perPage));
-const paginated=selectedSaga? homeItems : homeItems.slice((page-1)perPage, pageperPage);
-React.useEffect(()=>{ if(page>totalPages) setPage(1); },);
-const openEditFromCard=(m)=>{loadFx(m);setEditId(m.id);setFTitle(m.title);setFPoster(m.poster||'');setFDesc(m.desc||'');setFEmbed(m.embed||'');setFLang(m.lang||'');setFLang2(m.lang2||'');setFSubs(m.subs||'');setFTrailer(m.trailer||'');setFTags(m.tags||'');setFTipo(m.tipo||'pelicula');setFSagaId(m.collectionId||'');setFSagaName(m.collection||'');setFSagaPoster(m.collectionPoster||'');setFOrder(m.order||'');setAdmin(true);setMsg('Editando: '+m.title);};
-const save=()=>{
-if(!fTitle.trim()){alert("Falta titulo");return;}
-const getNextId=()=>{let maxNum=0; movies.forEach(m=>{const num=parseInt(String(m.id).replace(/0-9/g,''),10); if(!isNaN(num)&&num>maxNum) maxNum=num;}); if(maxNum===0) maxNum=movies.length; return String(maxNum+1);};
-const fxClean={}; FX_KEYS.forEach(k=>{ fxClean=((fx||"")+"").trim()||undefined; });
-const obj={
-id: editId||getNextId(),
-title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(),
-lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(),
-tags:fTags.trim()||undefined,
-tipo: fTipo||"pelicula",
-collectionId:fSagaId.trim().toLowerCase().replace(/\s+/g,'-')||undefined,
-collection:fSagaName.trim()||undefined,
-collectionPoster:fSagaPoster.trim()||undefined,
-order:fOrder?parseInt(fOrder):undefined,
-...fxClean
-};
-Object.keys(obj).forEach(k=>obj===undefined&&delete obj);
-if(editId) setMovies(p=>p.map(m=>{ if(m.id!==editId) return m; const base={...m}; FX_KEYS.concat(["tags"]).forEach(k=>delete base); return {...base,...obj}; })); else setMovies(p=>[...p,obj]);
-setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFTags("");setFTipo("pelicula");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setFx({});setEditId(null);
-setMsg("Guardado local. Descarga JSON y súbelo a Github");
-};
-const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const =a.splice(from,1); a.splice(to,0,it); return a;}); };
-return e("div",{},[
-e("header",{key:"h"},[
-e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
-e("div",{key:"searchRow", style:{display:"flex", alignItems:"center", justifyContent:"center", gap:"10px", flexWrap:"wrap", marginTop:"10px"}},[
-e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
-e("span",{key:"cnt", style:{color:"var(--gold)", fontWeight:900, fontSize:".95rem", letterSpacing:"1px", background:"rgba(212,175,55,.12)", border:"1px solid rgba(212,175,55,.3)", padding:"6px 12px", borderRadius:"999px"}}, ${movies.length} Videos)
-]),
-selectedSaga? e("div",{key:"b", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:handleVolver}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
-]),
-e("div",{key:"ctrl", id:"controls"},[
-!selectedSaga? e("div",{key:"type", className:"type-bar"},[
-e("button",{key:"todos", className:"type-btn"+(typeFilter==="todos"?" active":""), onClick:()=>{setTypeFilter("todos"); setLetter(null); setPage(1);}}, "Todas"),
-e("button",{key:"pelicula", className:"type-btn"+(typeFilter==="pelicula"?" active":""), onClick:()=>{setTypeFilter("pelicula"); setLetter(null); setPage(1);}}, "Películas"),
-e("button",{key:"coleccion", className:"type-btn gold"+(typeFilter==="coleccion"?" active":""), onClick:()=>{setTypeFilter("coleccion"); setLetter(null); setPage(1);}}, "📦 Colecciones"),
-e("button",{key:"serie", className:"type-btn gold"+(typeFilter==="serie"?" active":""), onClick:()=>{setTypeFilter("serie"); setLetter(null); setPage(1);}}, "📺 Series"),
-e("button",{key:"hentai", className:"type-btn"+(typeFilter==="hentai"?" active":""), onClick:()=>{setTypeFilter("hentai"); setLetter(null); setPage(1); window.scrollTo(0,0);}}, "🔞 Hentai"),
-e("button",{key:"x", className:"type-btn"+(typeFilter==="x"?" active":""), onClick:()=>{
-xClicks.current++;
-if(xClicks.current>=3){
-xClicks.current=0;
-setTypeFilter("x"); setLetter(null); setPage(1); window.scrollTo(0,0);
-} else {
-clearTimeout(window.__miCineXClickTimer);
-window.__miCineXClickTimer=setTimeout(()=>{xClicks.current=0;},1500);
-}
-}}, "🐷 X"),
-e("button",{key:"app", className:"type-btn", title:"App no subida a Play Store, por lo que puede indicar que no es segura, pero no hay problema: puedes analizarla con VirusTotal.com. Instala sin miedo.", onClick:()=>window.open("https://drive.google.com/file/d/1e7x4AyFitZp8cGfJIbj7F30EomY2SX-m/view?usp=sharing","_blank","noopener,noreferrer")}, "📱 Prueba la app"),
-]) : null,
-!selectedSaga? e("div",{key:"alpha", className:"alpha-bar"},[
-e("button",{key:"all", className:"alpha-btn"+(letter===null?" active":""), onClick:()=>{setLetter(null); setPage(1);}}, "★"),
-...ALPHABET.map(l=> e("button",{key:l, className:"alpha-btn"+(letter===l?" active":""), onClick:()=>{setLetter(letter===l?null:l); setPage(1);}}, l))
-]) : null
-]),
-e("main",{key:"m"},[
-e("div",{key:"g", id:"grid"}, paginated.length? paginated.map((it,idx)=>{
-if(it.type==="collection"){
-const c=it.data;
-return e("div",{key:col-${c.id}-${idx}, className:"card", onClick:()=>{setSelectedSaga(c.id); setPage(1); window.scrollTo(0,0);}},[
-e("div",{key:"w", className:"poster-wrap"},[e("img",{key:"i", src:c.poster}), e("div",{key:"b", className:"collection-badge "+c.tipo}, c.tipo==="serie"?"SERIE":"COLECCIÓN"), e("div",{key:"c", style:{position:"absolute",left:"7px",bottom:"7px",background:"rgba(0,0,0,.7)",color:"#fff",padding:"3px 7px",borderRadius:"6px",fontSize:".7rem",fontWeight:800}}, c.movies.length)]),
-e("div",{key:"t", className:"card-title"}, c.name),
-e("div",{key:"s", className:"card-sub"}, c.movies.length+" títulos")
-]);
-} else {
-const p=it.data;
-return e("div",{key:mov-${p.id}-${idx}, className:"card", onClick:()=>setDetail(p)},[
-e("div",{key:"w", className:"poster-wrap"},[
-p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title),
-e("div",{key:"stack", className:"lang-stack"},[
-p.lang? e("span",{key:"l1", className:"lang-chip"}, 🔊 ${p.lang}) : null,
-p.lang2? e("span",{key:"l2", className:"lang-chip"}, 🔊 ${p.lang2}) : null,
-p.subs? e("span",{key:"s", className:"lang-chip"}, 💬 ${p.subs}) : null,
-].filter(Boolean))
-]),
-e("div",{key:"t", className:"card-title"}, p.title)
-]);
-}
-}) : e("div",{key:"empty", className:"empty-state"}, No hay ${typeFilter==="todos"?"películas":typeFilter==="hentai"?"Hentai":typeFilter==="x"?"películas X":typeFilter} ${letter?con letra ${letter}`:""} ${q?`para "${q}":""})),
-!selectedSaga && totalPages>1? ((()=>{const paginationRange=getPaginationRange(page,totalPages,10); return e("div",{key:"pag", className:"pagination"},[ e("button",{key:"pr", className:"page-arrow", disabled:page<=1, onClick:()=>{setPage(p=>Math.max(1,p-1)); window.scrollTo(0,0);}}, "‹ Anterior"), paginationRange[0]>1?e("button",{key:"first", className:"page-num", onClick:()=>{setPage(1); window.scrollTo(0,0);}}, "1"):null, paginationRange[0]>2?e("span",{key:"d1", style:{color:"var(--muted)"}}, "..."):null,...paginationRange.map(n=>e("button",{key:"pn"+n, className:"page-num"+(n===page?" active":""), onClick:()=>{setPage(n); window.scrollTo(0,0);}}, String(n))), paginationRange[paginationRange.length-1]<totalPages-1?e("span",{key:"d2", style:{color:"var(--muted)"}}, "..."):null, paginationRange[paginationRange.length-1]<totalPages?e("button",{key:"last", className:"page-num", onClick:()=>{setPage(totalPages); window.scrollTo(0,0);}}, String(totalPages)):null, e("button",{key:"nx", className:"page-arrow", disabled:page>=totalPages, onClick:()=>{setPage(p=>Math.min(totalPages,p+1)); window.scrollTo(0,0);}}, "Siguiente ›") ]); })()) : null
-]),
-showAd? e("div",{key:"ad", id:"adModal", className:"open", onClick:ev=>{if(ev.target.id==="adModal") closeAd();}},[
-e("div",{key:"box", className:"ad-box"},[
-e("h2",{key:"h"}, ["MI ", e("span",{style:{color:"var(--red)"}},"CINE")]),
-e("p",{key:"p1"}, "Página sin publicidad del creador, pero el server usa 6 ventanas emergentes para mantenerse gratis."),
-e("div",{key:"hl", className:"highlight"}, "INSTALAR ADBLOCK o ADGUARD -smartphone- para evitarlas"),
-e("p",{key:"p2", style:{fontSize:".78rem"}}, "Este aviso solo sale una vez por sesión. Si entras a una peli y vuelves no vuelve a salir, pero si cierras la pestaña sí."),
-e("button",{key:"btn", className:"btn btn-p", style:{width:"100%", padding:"12px", fontSize:"1rem", borderRadius:"10px"}, onClick:closeAd}, "Aceptar y entrar")
-])
-]) : null,
-detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[
-e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
-e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"42px", height:"42px", borderRadius:"50%", fontSize:"1.8rem", background:"var(--panel)", border:"1px solid var(--border)", color:"#fff"}, onClick:()=>setDetail(null)}, "×"),
-e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"12px", cursor:"pointer"}, onClick:()=>{detailPosterClicks.current++; clearTimeout(window.__detailTimer); if(detailPosterClicks.current>=3){detailPosterClicks.current=0; const m=detail; setDetail(null); openEditFromCard(m);} else {window.__detailTimer=setTimeout(()=>{detailPosterClicks.current=0;},900);}}, title:"3 clicks rapidos para editar"}),
-e("div",{key:"hint", style:{textAlign:"center", fontSize:".7rem", color:"var(--muted)", marginTop:"6px"}}, "Tip: 3 clicks en esta portada para editar"),
-e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2.2rem", marginBottom:"4px", marginTop:"14px"}}, detail.title),
-e("div",{key:"meta", className:"detail-meta"},[
-detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, 🔊 ${detail.lang}) : null,
-detail.lang2? e("span",{key:"l2", className:"meta-chip gold"}, 🔊 ${detail.lang2}) : null,
-detail.subs? e("span",{key:"s", className:"meta-chip"}, 💬 ${detail.subs}) : null,
-detail.collection? e("span",{key:"c", className:"meta-chip"}, 📦 ${detail.collection}) : null,
-detail.tipo? e("span",{key:"t", className:"meta-chip"}, 🏷 ${detail.tipo}) : null,
-].filter(Boolean)),
-e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line", lineHeight:"1.6"}}, detail.desc),
-e("div",{key:"a", style:{display:"flex", gap:"10px", marginTop:"18px", flexWrap:"wrap"}},[
-...(()=>{
-const opts=[[detail.embed,detail.label||detail.lang],[detail.embed2,detail.label2||detail.lang2],[detail.embed3,detail.label3],[detail.embed4,detail.label4]]
-.map((,i)=>({u,l:l||(i===0?"":"Opción "+(i+1))})).filter(o=>o.u&&o.u.trim());
-if(opts.length<=1) return [e("button",{key:"p",className:"btn btn-p",onClick:()=>{setDetail(null);setPlayer(detail);}},"▶️ Ver película")];
-return opts.map((o,i)=>e("button",{key:"p"+i,className:"btn btn-p",onClick:()=>{setDetail(null);setPlayer({...detail,embed:o.u});}},"▶️ "+(o.l||"Ver película")));
-})(),
-detail.desc? e("button",{key:"v",className:"btn btn-s",onClick:()=>speak(detail.desc)}, speaking?"⏹️ Detener":"🔈 Escuchar sinopsis") : null,
-detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")?.split("&")||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null
-].filter(Boolean))
-])
-]) : null,
-player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
-e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setPlayer(null)}, "×"),
-e("button",{key:"cast",className:"btn btn-s",style:{position:"absolute",top:"15px",left:"15px"},onClick:()=>cast(player.embed)},"📺 Transmitir"),
-e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, player.embed.trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:player.embed, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))
-]) : null,
-trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
-admin? e("div",{key:"adp", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[e("div",{key:"box", className:"admin-box"},[
-e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)", fontSize:"1.6rem"}}, "PANEL DE ADMINISTRACIÓN"),
-e("p",{key:"sub", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"-8px"}}, "5 toques al título para abrir. Ahora con TIPO y AUDIOS EXTRA."),
-e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginTop:"10px"}}, msg),
-e("label",{key:"lt"}, "TÍTULO"), e("input",{key:"it", value:fTitle, onChange:ev=>setFTitle(ev.target.value), placeholder:"Nombre de la pelicula"}),
-e("label",{key:"lti"}, "TIPO"), e("select",{key:"itipo", value:fTipo, onChange:ev=>setFTipo(ev.target.value)},[
-e("option",{key:"pel", value:"pelicula"}, "Pelicula (suelta)"),
-e("option",{key:"col", value:"coleccion"}, "Coleccion (ej: Rambo, Rocky)"),
-e("option",{key:"ser", value:"serie"}, "Serie (ej: X-Files, capitulos)"),
-e("option",{key:"hen", value:"hentai"}, "Hentai"),
-e("option",{key:"xxx", value:"x"}, "X"),
-]),
-e("label",{key:"lp"}, "URL DE LA PORTADA (IMAGEN)"), e("input",{key:"ip", value:fPoster, onChange:ev=>setFPoster(ev.target.value), placeholder:"https://..."}),
-e("label",{key:"ld"}, "DESCRIPCIÓN"), e("textarea",{key:"id", value:fDesc, onChange:ev=>setFDesc(ev.target.value), placeholder:"Sinopsis breve..."}),
-e("label",{key:"le"}, "CÓDIGO / ENLACE DEL REPRODUCTOR"), e("textarea",{key:"ie", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value), placeholder:"Pega aqui el <iframe> o URL: https://bysekoze.com/e/xxxxx"}),
-e("div",{key:"opts",style:{border:"1px dashed var(--border)",padding:"12px",marginTop:"14px",borderRadius:"8px"}},[
-e("label",{key:"h",style:{color:"var(--gold)",fontWeight:700}},"AUDIOS EXTRA (opcional)"),
-e("label",{key:"hl1"},"Nombre botón 1 (si vacío usa Idioma)"),
-e("input",{key:"l1",value:fx.label||"",onChange:ev=>setX("label",ev.target.value),placeholder:"Latino MX"}),
-....flatMap(n=>[
-e("label",{key:"hl"+n},"Nombre botón "+n),
-e("input",{key:"l"+n,value:fx["label"+n]||"",onChange:ev=>setX("label"+n,ev.target.value),placeholder:"Latino ARG"}),
-e("label",{key:"he"+n},"Embed "+n),
-e("textarea",{key:"e"+n,value:fx["embed"+n]||"",onChange:ev=>setX("embed"+n,ev.target.value),placeholder:"<iframe> o URL"})
-])
-]),
-e("div",{key:"langs", style:{border:"1px solid var(--border)", padding:"12px", borderRadius:"8px", marginTop:"14px", background:"rgba(255,255,255,.02)"}},[
-e("label",{key:"lh", style:{color:"var(--text)", fontWeight:700, marginTop:"0", fontSize:".8rem"}}, "IDIOMA (OPCIONAL)"),
-e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value), placeholder:"Ej: Español, Latino, Inglés... o ESP 🇲🇽"}),
-e("label",{key:"lh2", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "IDIOMA 2 (OPCIONAL)"),
-e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value), placeholder:"Ej: ESP 🇲🇽 - déjalo vacío si solo hay uno"}),
-e("label",{key:"l7", style:{color:"var(--text)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "SUBTÍTULOS (OPCIONAL)"),
-e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value), placeholder:"Ej: Español, Sin subtitulos... o Español 🇲🇽"}),
-e("label",{key:"l8", style:{color:"var(--muted)", marginTop:"12px"}}, "TRAILER YT (opcional)"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value), placeholder:"https://youtube.com/watch?v=..."}),
-e("label",{key:"l9", style:{color:"var(--gold)", fontWeight:700, marginTop:"12px", fontSize:".8rem"}}, "TAGS OCULTOS (para busqueda)"),
-e("input",{key:"i9", value:fTags, onChange:ev=>setFTags(ev.target.value), placeholder:"terror, comedia, 1990"}),
-]),
-e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"12px", marginTop:"14px", borderRadius:"8px"}},[
-e("label",{key:"ls", style:{color:"var(--gold)", fontWeight:700, fontSize:".9rem"}}, "SAGA / COLECCION / SERIE (opcional) - Si es colección o serie, todas las pelis con mismo ID se agrupan"),
-e("label",{key:"lsi"},"ID Saga (ej: rambo, xfiles)"), e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value), placeholder:"rambo"}),
-e("label",{key:"lsn"},"Nombre Saga visible"), e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value), placeholder:"Rambo Colección / X-Files Serie"}),
-e("label",{key:"lsp"},"Poster de la Coleccion/Serie (portada única)"), e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value), placeholder:"https://..."}),
-e("label",{key:"lo"},"Orden dentro de la saga (1,2,3...)"), e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value), placeholder:"1,2,3..."}),
-]),
-e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"16px", flexWrap:"wrap"}},[
-e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
-e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
-e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github?")) loadFromGithub();}}, "↺ Recargar"),
-e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar"),
-e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
-]),
-e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{const f=ev.target.files; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const j=JSON.parse(r.result); if(Array.isArray(j)){ setMovies(j); setMsg("Importado "+j.length);}}catch{setMsg("Error archivo");}}; r.readAsText(f);}}),
-e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:admin-${m.id}-${idx}, className:"admin-item"},[e("span",{key:"t", style:{flex:1}}, [${(m.tipo||'pelicula').toUpperCase()}] ${m.title}${m.collectionId? [${m.collectionId}]:""} ), e("div",{key:"b", style:{display:"flex", gap:"4px"}},[e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"), e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"), e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{loadFx(m); setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFTags(m.tags||""); setFTipo(m.tipo||"pelicula"); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"), e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")])])) )
-])]) : null
-]);
+  const loadFromGithub=async()=>{ try{ const r=await fetch("movies.json?v="+Date.now(),{cache:"no-store"}); const d=await r.json(); if(Array.isArray(d)&&d.length>0){ const seen=new Set(); const fixed=d.map((m,i)=>{ if(seen.has(m.id)){ return {...m, id:m.id+"-"+i}; } seen.add(m.id); return m; }); const norm = fixed.map(m=>{ if(!m.tipo){ if(m.collectionId) m.tipo = "coleccion"; else m.tipo = "pelicula"; } return m; }); setMovies(norm); localStorage.setItem(KEY,JSON.stringify(norm)); setMsg("Cargado desde Github ("+norm.length+")"); } }catch{ try{const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s));}catch{} } };
+  React.useEffect(()=>{loadFromGithub();},[]);
+  React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},[movies]);
+  React.useEffect(()=>{ if(window.twemoji){ window.twemoji.parse(document.body, {folder: 'svg', ext: '.svg'}); } },[movies,q,page,detail,selectedSaga,letter,typeFilter]);
+  React.useEffect(()=>{ if(!sessionStorage.getItem('miCine_aviso')){ setShowAd(true); } },[]);
+  const closeAd=()=>{ setShowAd(false); sessionStorage.setItem('miCine_aviso','1'); };
+  const [perPage,setPerPage]=React.useState(getPerPage());
+  React.useEffect(()=>{ const onR=()=>setPerPage(getPerPage()); window.addEventListener('resize',onR); return ()=>window.removeEventListener('resize',onR); },[]);
+  const collectionsMap=React.useMemo(()=>{ const map={}; movies.forEach(m=>{ if(m.collectionId){ const id=m.collectionId.trim().toLowerCase().replace(/\s+/g,'-'); if(!map[id]) map[id]={id, name:m.collection||id, poster:m.collectionPoster||m.poster, movies:[], tipo: m.tipo==="serie" ? "serie" : "coleccion"}; if(m.collectionPoster) map[id].poster=m.collectionPoster; if(m.collection) map[id].name=m.collection; if(m.tipo==="serie") map[id].tipo="serie"; map[id].movies.push(m); } }); Object.values(map).forEach(c=>c.movies.sort((a,b)=>(a.order||0)-(b.order||0))); return map; },[movies]);
+  const standalone=React.useMemo(()=>movies.filter(m=>!m.collectionId),[movies]);
+  const sagas=React.useMemo(()=>Object.values(collectionsMap),[collectionsMap]);
+  const handleVolver=()=>{ setSelectedSaga(null); setPage(1); window.scrollTo({top:0, behavior:"smooth"}); };
+  let homeItems=[];
+  if(!selectedSaga){
+    if(typeFilter==="hentai" || typeFilter==="x"){ movies.filter(m=>m.tipo===typeFilter).forEach(m=>homeItems.push({type:'movie', data:[STRIPPED] }
+    else { if(typeFilter==="todos" || typeFilter==="pelicula"){ standalone.filter(m=>m.tipo==="pelicula").forEach(m=>homeItems.push({type:'movie', data:[STRIPPED] } if(typeFilter==="todos" || typeFilter==="coleccion" || typeFilter==="serie"){ sagas.forEach(s=>{ if(typeFilter==="todos" || s.tipo===typeFilter) homeItems.push({type:'collection', data:[STRIPPED] }); } }
+    if(q.trim()){ const qq=normalize(q); homeItems=homeItems.filter(it=>{ if(it.type==='movie'){ const m=it.data; return [m.title,m.desc,m.collection,m.lang,m.lang2,m.subs,m.tags,m.audioLabel,m.audioLabel2].filter(Boolean).some(v=>normalize(v).includes(qq)); } const c=it.data; return [c.name,c.id].filter(Boolean).some(v=>normalize(v).includes(qq)) || c.movies.some(m=>[m.title,m.desc].filter(Boolean).some(v=>normalize(v).includes(qq))); }); }
+    if(letter){ homeItems=homeItems.filter(it=>{ const name = it.type==='movie' ? it.data.title : it.data.name; const first = name.trim().charAt(0).toUpperCase(); if(letter==="#") return !/[A-Z]/.test(first); return first===letter; }); }
+    homeItems.sort((a,b)=>{ const na = (a.type==='movie'? a.data.title : a.data.name).toLowerCase(); const nb = (b.type==='movie'? b.data.title : b.data.name).toLowerCase(); return na.localeCompare(nb); });
+  } else { const col=collectionsMap[selectedSaga]; if(col) homeItems=col.movies.map(m=>({type:'movie', data:[STRIPPED] }
+  const totalPages=Math.max(1,Math.ceil(homeItems.length/perPage));
+  const paginated=selectedSaga? homeItems : homeItems.slice((page-1)*perPage, page*perPage);
+  React.useEffect(()=>{ if(page>totalPages) setPage(1); },[totalPages]);
+  const openEditFromCard=(m)=>{setEditId(m.id);setFTitle(m.title);setFPoster(m.poster||'');setFDesc(m.desc||'');setFEmbed(m.embed||'');setFEmbed2(m.embed2||'');setFEmbed3(m.embed3||'');setFEmbed4(m.embed4||'');setFAudioLabel(m.audioLabel||'');setFAudioLabel2(m.audioLabel2||'');setFAudioLabel3(m.audioLabel3||'');setFAudioLabel4(m.audioLabel4||'');setFLang(m.lang||'');setFLang2(m.lang2||'');setFSubs(m.subs||'');setFTrailer(m.trailer||'');setFTags(m.tags||'');setFTipo(m.tipo||'pelicula');setFSagaId(m.collectionId||'');setFSagaName(m.collection||'');setFSagaPoster(m.collectionPoster||'');setFOrder(m.order||'');setAdmin(true);setMsg('Editando: '+m.title);};
+  const save=()=>{
+    if(!fTitle.trim()){alert("Falta titulo");return;}
+    const getNextId=()=>{let maxNum=0; movies.forEach(m=>{const num=parseInt(String(m.id).replace(/[^0-9]/g,''),10); if(!isNaN(num)&&num>maxNum) maxNum=num;}); if(maxNum===0) maxNum=movies.length; return String(maxNum+1);};
+    const obj={ id: editId||getNextId(), title:fTitle.trim(), poster:fPoster.trim(), desc:fDesc.trim(), embed:fEmbed.trim(), embed2:fEmbed2.trim()||undefined, embed3:fEmbed3.trim()||undefined, embed4:fEmbed4.trim()||undefined, audioLabel:fAudioLabel.trim()||undefined, audioLabel2:fAudioLabel2.trim()||undefined, audioLabel3:fAudioLabel3.trim()||undefined, audioLabel4:fAudioLabel4.trim()||undefined, lang:fLang.trim(), lang2:fLang2.trim(), subs:fSubs.trim(), trailer:fTrailer.trim(), tipo: fTipo||"pelicula", collectionId:fSagaId.trim().toLowerCase().replace(/\s+/g,'-')||undefined, collection:fSagaName.trim()||undefined, collectionPoster:fSagaPoster.trim()||undefined, order:fOrder?parseInt(fOrder):undefined, tags:fTags.trim()||undefined };
+    Object.keys(obj).forEach(k=>obj[k]===undefined&&delete obj[k]);
+    if(editId) setMovies(p=>p.map(m=>m.id===editId?{...m,...obj}:m)); else setMovies(p=>[...p,obj]);
+    setFTitle("");setFPoster("");setFDesc("");setFEmbed("");setFEmbed2("");setFEmbed3("");setFEmbed4("");setFAudioLabel("");setFAudioLabel2("");setFAudioLabel3("");setFAudioLabel4("");setFLang("");setFLang2("");setFSubs("");setFTrailer("");setFTags("");setFTipo("pelicula");setFSagaId("");setFSagaName("");setFSagaPoster("");setFOrder("");setEditId(null); setMsg("Guardado local. Descarga JSON y súbelo a Github");
+  };
+  const move=(from,to)=>{ if(to<0||to>=movies.length) return; setMovies(p=>{const a=[...p]; const [it]=a.splice(from,1); a.splice(to,0,it); return a;}); };
+  const detailEmbeds = detail ? [ {url: detail.embed, label: detail.audioLabel || detail.lang || "OPCIÓN 1 - Principal"}, {url: detail.embed2, label: detail.audioLabel2 || detail.lang2 || "OPCIÓN 2"}, {url: detail.embed3, label: detail.audioLabel3 || "OPCIÓN 3"}, {url: detail.embed4, label: detail.audioLabel4 || "OPCIÓN 4"}, ].filter(x=>x.url && String(x.url).trim()) : [];
+
+  return e("div",{},[
+    e("header",{key:"h"},[
+      e("h1",{key:"t", onClick:()=>{clicks.current++; setTimeout(()=>clicks.current=0,1500); if(clicks.current>=5){clicks.current=0; setAdmin(v=>!v);}}},["MI ",e("span",{style:{color:"var(--red)"}},"CINE")]),
+      e("div",{key:"searchRow", style:{display:"flex", alignItems:"center", justifyContent:"center", gap:"10px", flexWrap:"wrap", marginTop:"10px"}},[
+        e("input",{key:"s", id:"searchBox", placeholder:"Buscar...", value:q, onChange:ev=>{setQ(ev.target.value); setPage(1);}}),
+        e("span",{key:"cnt", style:{color:"var(--gold)", fontWeight:900, fontSize:".95rem", letterSpacing:"1px", background:"rgba(212,175,55,.12)", border:"1px solid rgba(212,175,55,.3)", padding:"6px 12px", borderRadius:"999px"}}, `${movies.length} Videos`)
+      ]),
+      selectedSaga? e("div",{key:"b", style:{marginTop:"10px"}}, e("button",{className:"btn btn-s", onClick:handleVolver}, "← Volver - "+(collectionsMap[selectedSaga]?.name||""))) : null
+    ]),
+    e("div",{key:"ctrl", id:"controls"},[
+      !selectedSaga ? e("div",{key:"type", className:"type-bar"},[
+        e("button",{key:"todos", className:"type-btn"+(typeFilter==="todos"?" active":""), onClick:()=>{setTypeFilter("todos"); setLetter(null); setPage(1);}}, "Todas"),
+        e("button",{key:"pelicula", className:"type-btn"+(typeFilter==="pelicula"?" active":""), onClick:()=>{setTypeFilter("pelicula"); setLetter(null); setPage(1);}}, "Películas"),
+        e("button",{key:"coleccion", className:"type-btn gold"+(typeFilter==="coleccion"?" active":""), onClick:()=>{setTypeFilter("coleccion"); setLetter(null); setPage(1);}}, "📦 Colecciones"),
+        e("button",{key:"serie", className:"type-btn gold"+(typeFilter==="serie"?" active":""), onClick:()=>{setTypeFilter("serie"); setLetter(null); setPage(1);}}, "📺 Series"),
+        e("button",{key:"hentai", className:"type-btn"+(typeFilter==="hentai"?" active":""), onClick:()=>{setTypeFilter("hentai"); setLetter(null); setPage(1); window.scrollTo(0,0);}}, "🔞 Hentai"),
+        e("button",{key:"x", className:"type-btn"+(typeFilter==="x"?" active":""), onClick:()=>{ xClicks.current++; if(xClicks.current>=3){ xClicks.current=0; setTypeFilter("x"); setLetter(null); setPage(1); window.scrollTo(0,0); } else { clearTimeout(window.__miCineXClickTimer); window.__miCineXClickTimer=setTimeout(()=>{xClicks.current=0;},1500); } }}, "🐷 X"),
+        e("button",{key:"app", className:"type-btn", onClick:()=>window.open("https://drive.google.com/file/d/1e7x4AyFitZp8cGfJIbj7F30EomY2SX-m/view?usp=sharing","_blank","noopener,noreferrer")}, "📱 Prueba la app"),
+      ]) : null,
+      !selectedSaga ? e("div",{key:"alpha", className:"alpha-bar"},[ e("button",{key:"all", className:"alpha-btn"+(letter===null?" active":""), onClick:()=>{setLetter(null); setPage(1);}}, "★"), ...ALPHABET.map(l=> e("button",{key:l, className:"alpha-btn"+(letter===l?" active":""), onClick:()=>{setLetter(letter===l?null:l); setPage(1);}}, l)) ]) : null
+    ]),
+    e("main",{key:"m"},[
+      e("div",{key:"g", id:"grid"}, paginated.length? paginated.map((it,idx)=>{
+        if(it.type==="collection"){ const c=it.data; return e("div",{key:`col-${c.id}-${idx}`, className:"card", onClick:()=>{setSelectedSaga(c.id); setPage(1); window.scrollTo(0,0);}},[ e("div",{key:"w", className:"poster-wrap"},[e("img",{key:"i", src:c.poster}), e("div",{key:"b", className:"collection-badge "+c.tipo}, c.tipo==="serie"?"SERIE":"COLECCIÓN") , e("div",{key:"c", style:{position:"absolute",left:"7px",bottom:"7px",background:"rgba(0,0,0,.7)",color:"#fff",padding:"3px 7px",borderRadius:"6px",fontSize:".7rem",fontWeight:800}}, c.movies.length)]), e("div",{key:"t", className:"card-title"}, c.name), e("div",{key:"s", className:"card-sub"}, c.movies.length+" títulos") ]); }
+        else { const p=it.data; const countAudios=[p.embed,p.embed2,p.embed3,p.embed4].filter(Boolean).length; return e("div",{key:`mov-${p.id}-${idx}`, className:"card", onClick:()=>setDetail(p)},[ e("div",{key:"w", className:"poster-wrap"},[ p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title), e("div",{key:"stack", className:"lang-stack"},[ p.lang? e("span",{key:"l1", className:"lang-chip"}, `🔊 ${p.lang}`) : null, p.lang2? e("span",{key:"l2", className:"lang-chip"}, `🔊 ${p.lang2}`) : null, countAudios>1? e("span",{key:"multi", className:"lang-chip", style:{background:"var(--red)"}}, `+${countAudios} audios`) : null, p.subs? e("span",{key:"s", className:"lang-chip"}, `💬 ${p.subs}`) : null, ].filter(Boolean)) ]), e("div",{key:"t", className:"card-title"}, p.title) ]); }
+      }) : e("div",{key:"empty", className:"empty-state"}, `No hay resultados`)),
+      !selectedSaga && totalPages>1? ((()=>{const paginationRange=getPaginationRange(page,totalPages,10); return e("div",{key:"pag", className:"pagination"},[ e("button",{key:"pr", className:"page-arrow", disabled:page<=1, onClick:()=>{setPage(p=>Math.max(1,p-1)); window.scrollTo(0,0);}}, "‹ Anterior"), paginationRange[0]>1?e("button",{key:"first", className:"page-num", onClick:()=>{setPage(1); window.scrollTo(0,0);}}, "1"):null, paginationRange[0]>2?e("span",{key:"d1", style:{color:"var(--muted)"}}, "..."):null, ...paginationRange.map(n=>e("button",{key:"pn"+n, className:"page-num"+(n===page?" active":""), onClick:()=>{setPage(n); window.scrollTo(0,0);}}, String(n))), paginationRange[paginationRange.length-1]<totalPages-1?e("span",{key:"d2", style:{color:"var(--muted)"}}, "..."):null, paginationRange[paginationRange.length-1]<totalPages?e("button",{key:"last", className:"page-num", onClick:()=>{setPage(totalPages); window.scrollTo(0,0);}}, String(totalPages)):null, e("button",{key:"nx", className:"page-arrow", disabled:page>=totalPages, onClick:()=>{setPage(p=>Math.min(totalPages,p+1)); window.scrollTo(0,0);}}, "Siguiente ›") ]); })()) : null
+    ]),
+    showAd ? e("div",{key:"ad", id:"adModal", className:"open", onClick:ev=>{if(ev.target.id==="adModal") closeAd();}},[ e("div",{key:"box", className:"ad-box"},[ e("h2",{key:"h"}, ["MI ", e("span",{style:{color:"var(--red)"}},"CINE")]), e("p",{key:"p1"}, "Página sin publicidad del creador, pero el server usa 6 ventanas emergentes para mantenerse gratis."), e("div",{key:"hl", className:"highlight"}, "INSTALAR ADBLOCK o ADGUARD -smartphone- para evitarlas"), e("p",{key:"p2", style:{fontSize:".78rem"}}, "Este aviso solo sale una vez por sesión."), e("button",{key:"btn", className:"btn btn-p", style:{width:"100%", padding:"12px", fontSize:"1rem", borderRadius:"10px"}, onClick:closeAd}, "Aceptar y entrar") ]) ]) : null,
+    detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView"){ window.speechSynthesis.cancel(); setIsSpeaking(false); setDetail(null);}}},[
+      e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
+        e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"42px", height:"42px", borderRadius:"50%", fontSize:"1.8rem", background:"var(--panel)", border:"1px solid var(--border)", color:"#fff"}, onClick:()=>{ window.speechSynthesis.cancel(); setIsSpeaking(false); setDetail(null);}}, "×"),
+        e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"12px", cursor:"pointer"}, onClick:()=>{detailPosterClicks.current++; clearTimeout(window.__detailTimer); if(detailPosterClicks.current>=3){detailPosterClicks.current=0; const m=detail; setDetail(null); openEditFromCard(m);} else {window.__detailTimer=setTimeout(()=>{detailPosterClicks.current=0;},900);}}, title:"3 clicks para editar"}),
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2.2rem", marginBottom:"4px", marginTop:"14px"}}, detail.title),
+        e("div",{key:"meta", className:"detail-meta"},[ detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, `🔊 ${detail.lang}`) : null, detail.lang2? e("span",{key:"l2", className:"meta-chip gold"}, `🔊 ${detail.lang2}`) : null, detail.subs? e("span",{key:"s", className:"meta-chip"}, `💬 ${detail.subs}`) : null, detail.collection? e("span",{key:"c", className:"meta-chip"}, `📦 ${detail.collection}`) : null, ].filter(Boolean)),
+        detail.desc ? e("div",{key:"tts", className:"tts-bar"},[ e("button",{key:"btn", className:"btn "+(isSpeaking?"btn-s":"btn-p"), style:{flex:1}, onClick:()=>speakDesc(detail.title + ". " + detail.desc)}, isSpeaking? "⏹️ Detener voz" : "🔊 Escuchar sinopsis"), e("span",{key:"acc", style:{fontSize:".7rem", color:"var(--muted)"}}, "♿") ]) : null,
+        e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line", lineHeight:"1.6"}}, detail.desc),
+        e("div",{key:"audios", style:{display:"flex", flexDirection:"column", gap:"8px", marginTop:"18px"}},[
+          e("div",{key:"label", style:{fontSize:".8rem", color:"var(--gold)", fontWeight:800, letterSpacing:"1px"}}, detailEmbeds.length>1 ? `ELIGE AUDIO (${detailEmbeds.length}):` : "REPRODUCIR:"),
+          ...detailEmbeds.map((aud,i)=> e("button",{key:"aud"+i, className:"btn-audio", onClick:()=>{ window.speechSynthesis.cancel(); setIsSpeaking(false); setDetail(null); setPlayer({...detail, selectedEmbed: aud.url}); }},[ e("span",{key:"t"}, `▶ ${aud.label}`), e("span",{key:"ic", style:{fontSize:".7rem", opacity:.6}}, i===0?"Principal":"Alt") ]))
+        ]),
+        e("div",{key:"a2", style:{display:"flex", gap:"10px", marginTop:"14px"}},[ detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null ])
+      ])
+    ]) : null,
+    player? e("div",{key:"pl", id:"playerModal", className:"open", onClick:ev=>{if(ev.target.id==="playerModal") setPlayer(null)}},[
+      e("div",{key:"topbar", style:{position:"absolute", top:"15px", left:"15px", right:"15px", display:"flex", justifyContent:"space-between", gap:"8px", zIndex:10}},[
+        e("button",{key:"cast", className:"btn btn-s", style:{background:"rgba(0,0,0,.7)"}, onClick:()=>castMovie(player.selectedEmbed||player.embed)}, "📡 Enviar a TV"),
+        e("button",{key:"x", style:{width:"42px", height:"42px", borderRadius:"50%", fontSize:"1.8rem", background:"var(--panel)", border:"1px solid var(--border)", color:"#fff"}, onClick:()=>setPlayer(null)}, "×")
+      ]),
+      e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000", borderRadius:"12px", overflow:"hidden"}}, (player.selectedEmbed||player.embed).trim().startsWith("<iframe")? e("div",{dangerouslySetInnerHTML:{__html:player.selectedEmbed||player.embed}, style:{width:"100%", height:"100%"}}) : e("iframe",{src:extractSrc(player.selectedEmbed||player.embed), allowFullScreen:true, allow:"autoplay; fullscreen", style:{width:"100%", height:"100%", border:0}}))
+    ]) : null,
+    trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
+    admin? e("div",{key:"adp", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[e("div",{key:"box", className:"admin-box"},[
+        e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)", fontSize:"1.6rem"}}, "PANEL v2 - MULTI AUDIO"),
+        e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginTop:"10px"}}, msg),
+        e("label",{key:"lt"}, "TÍTULO"), e("input",{key:"it", value:fTitle, onChange:ev=>setFTitle(ev.target.value)}),
+        e("label",{key:"lti"}, "TIPO"), e("select",{key:"itipo", value:fTipo, onChange:ev=>setFTipo(ev.target.value)},[ e("option",{key:"pel", value:"pelicula"}, "Pelicula"), e("option",{key:"col", value:"coleccion"}, "Coleccion"), e("option",{key:"ser", value:"serie"}, "Serie"), e("option",{key:"hen", value:"hentai"}, "Hentai"), e("option",{key:"xxx", value:"x"}, "X"), ]),
+        e("label",{key:"lp"}, "POSTER"), e("input",{key:"ip", value:fPoster, onChange:ev=>setFPoster(ev.target.value)}),
+        e("label",{key:"ld"}, "DESCRIPCIÓN"), e("textarea",{key:"id", value:fDesc, onChange:ev=>setFDesc(ev.target.value)}),
+        e("div",{key:"embedBox", style:{border:"2px solid var(--red)", padding:"12px", borderRadius:"10px", marginTop:"16px", background:"rgba(200,16,46,.06)"}},[
+          e("label",{key:"lh", style:{color:"#fff", fontWeight:900}}, "🎬 REPRODUCTORES (hasta 4) - El primero es 'embed' original"),
+          e("label",{key:"le1"}, "EMBED 1 - Principal"), e("textarea",{key:"ie1", value:fEmbed, onChange:ev=>setFEmbed(ev.target.value)}),
+          e("label",{key:"la1"}, "Etiqueta 1"), e("input",{key:"ia1", value:fAudioLabel, onChange:ev=>setFAudioLabel(ev.target.value), placeholder:"LATINO MX"}),
+          e("label",{key:"le2"}, "EMBED 2"), e("textarea",{key:"ie2", value:fEmbed2, onChange:ev=>setFEmbed2(ev.target.value)}),
+          e("label",{key:"la2"}, "Etiqueta 2"), e("input",{key:"ia2", value:fAudioLabel2, onChange:ev=>setFAudioLabel2(ev.target.value), placeholder:"LATINO ARG"}),
+          e("label",{key:"le3"}, "EMBED 3"), e("textarea",{key:"ie3", value:fEmbed3, onChange:ev=>setFEmbed3(ev.target.value)}),
+          e("label",{key:"la3"}, "Etiqueta 3"), e("input",{key:"ia3", value:fAudioLabel3, onChange:ev=>setFAudioLabel3(ev.target.value), placeholder:"INGLES"}),
+          e("label",{key:"le4"}, "EMBED 4"), e("textarea",{key:"ie4", value:fEmbed4, onChange:ev=>setFEmbed4(ev.target.value)}),
+          e("label",{key:"la4"}, "Etiqueta 4"), e("input",{key:"ia4", value:fAudioLabel4, onChange:ev=>setFAudioLabel4(ev.target.value), placeholder:"CASTELLANO"}),
+        ]),
+        e("label",{key:"l5"}, "Lang legacy 1"), e("input",{key:"i5", value:fLang, onChange:ev=>setFLang(ev.target.value)}),
+        e("label",{key:"l6"}, "Lang legacy 2"), e("input",{key:"i6", value:fLang2, onChange:ev=>setFLang2(ev.target.value)}),
+        e("label",{key:"l7"}, "Subs"), e("input",{key:"i7", value:fSubs, onChange:ev=>setFSubs(ev.target.value)}),
+        e("label",{key:"l8"}, "Trailer"), e("input",{key:"i8", value:fTrailer, onChange:ev=>setFTrailer(ev.target.value)}),
+        e("label",{key:"l9"}, "Tags"), e("input",{key:"i9", value:fTags, onChange:ev=>setFTags(ev.target.value)}),
+        e("div",{key:"sg", style:{border:"1px dashed var(--gold)", padding:"12px", marginTop:"14px", borderRadius:"8px"}},[
+          e("label",{key:"ls", style:{color:"var(--gold)"}}, "SAGA"),
+          e("input",{key:"isi", value:fSagaId, onChange:ev=>setFSagaId(ev.target.value), placeholder:"ID saga"}),
+          e("input",{key:"isn", value:fSagaName, onChange:ev=>setFSagaName(ev.target.value), placeholder:"Nombre saga", style:{marginTop:"6px"}}),
+          e("input",{key:"isp", value:fSagaPoster, onChange:ev=>setFSagaPoster(ev.target.value), placeholder:"Poster saga", style:{marginTop:"6px"}}),
+          e("input",{key:"io", type:"number", value:fOrder, onChange:ev=>setFOrder(ev.target.value), placeholder:"Orden", style:{marginTop:"6px"}}),
+        ]),
+        e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"16px", flexWrap:"wrap"}},[
+          e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar cambios":"Agregar"),
+          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
+          e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github?")) loadFromGithub();}}, "↺ Recargar"),
+          e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar"),
+          e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
+        ]),
+        e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const j=JSON.parse(r.result); if(Array.isArray(j)){ setMovies(j); setMsg("Importado "+j.length);}}catch{setMsg("Error archivo");}}; r.readAsText(f);}}),
+        e("div",{key:"list", style:{marginTop:"20px"}}, movies.map((m,idx)=>e("div",{key:`admin-${m.id}-${idx}`, className:"admin-item"},[e("span",{key:"t", style:{flex:1}}, `${m.title} ${[m.embed2,m.embed3,m.embed4].filter(Boolean).length>0?`[${[m.embed,m.embed2,m.embed3,m.embed4].filter(Boolean).length} audios]`:''} `), e("div",{key:"b", style:{display:"flex", gap:"4px"}},[e("button",{key:"up", className:"icon-btn", disabled:idx===0, onClick:()=>move(idx,idx-1)}, "↑"), e("button",{key:"down", className:"icon-btn", disabled:idx===movies.length-1, onClick:()=>move(idx,idx+1)}, "↓"), e("button",{key:"e", className:"icon-btn", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFEmbed2(m.embed2||""); setFEmbed3(m.embed3||""); setFEmbed4(m.embed4||""); setFAudioLabel(m.audioLabel||""); setFAudioLabel2(m.audioLabel2||""); setFAudioLabel3(m.audioLabel3||""); setFAudioLabel4(m.audioLabel4||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFTags(m.tags||""); setFTipo(m.tipo||"pelicula"); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||""); window.scrollTo(0,0);}}, "Editar"), e("button",{key:"x", className:"icon-btn", style:{borderColor:"var(--red)", color:"var(--red)"}, onClick:()=>{if(confirm("Borrar "+m.title+"?")) setMovies(p=>p.filter(x=>x.id!==m.id));}}, "X")])])) )
+      ])]) : null
+  ]);
 }
 ReactDOM.createRoot(document.getElementById("root")).render(e(App));
 </script>
 </body>
-</html>[1][movies][q][page][detail][selectedSaga][letter][typeFilter][perPage][setPerPage][id][collectionsMap][totalPages][k][it][u][l][0][2][3][4]
+</html>
