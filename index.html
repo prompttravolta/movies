@@ -119,7 +119,7 @@ function App(){
   const setX=(k,v)=>setFx(p=>({...p,[k]:v}));
   const loadFx=m=>setFx({label:m.label||"",label2:m.label2||"",label3:m.label3||"",label4:m.label4||"",embed2:m.embed2||"",embed3:m.embed3||"",embed4:m.embed4||""});
   /* ===== NUEVO: leer sinopsis en voz alta ===== */
-  const speakOk=typeof window!=="undefined"&&"speechSynthesis" in window;
+  const speakOk=typeof window!=="undefined";
   const [speaking,setSpeaking]=React.useState(false);
   const vozTipo="es-MX";
   const pickVoice=()=>{ try{
@@ -130,14 +130,22 @@ function App(){
     return null;
   }catch{ return null; } };
   React.useEffect(()=>{ try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch{} },[]);
-  const stopSpeak=()=>{try{speechSynthesis.cancel();}catch{} setSpeaking(false);};
-  const speak=(t)=>{
-    if(speaking){stopSpeak();return;}
-    const parts=((t||"").match(/[^.!?\n]+[.!?]*/g)||[]).map(s=>s.trim()).filter(Boolean);
-    if(!parts.length) return;
-    speechSynthesis.cancel();
+  const audioRef=React.useRef(null);
+  const stopSpeak=()=>{try{speechSynthesis.cancel();}catch{} try{ if(audioRef.current){ const a=audioRef.current; audioRef.current=null; a.onended=null; a.onerror=null; a.pause(); } }catch{} setSpeaking(false);};
+  const chunkText=(t)=>{
+    const sents=((t||"").match(/[^.!?\n]+[.!?]*/g)||[]).map(s=>s.trim()).filter(Boolean);
+    const out=[]; let cur="";
+    const push=()=>{ if(cur.trim()) out.push(cur.trim()); cur=""; };
+    sents.forEach(s=>{
+      if(s.length>180){ push(); s.split(/(?<=,)\s+|\s+/).forEach(w=>{ if((cur+" "+w).length>180) push(); cur+=(cur?" ":"")+w; }); push(); }
+      else if((cur+" "+s).length>180){ push(); cur=s; }
+      else cur+=(cur?" ":"")+s;
+    });
+    push(); return out;
+  };
+  const speakLocal=(parts)=>{
     const vv=pickVoice();
-    if(!vv && !sessionStorage.getItem("miCine_vozAviso")){ sessionStorage.setItem("miCine_vozAviso","1"); alert("Tu dispositivo no tiene una voz en español latino instalada, por eso puede sonar a español de España. Instala una voz de Español (México) o Español (Estados Unidos) en los ajustes de voz de tu dispositivo."); }
+    speechSynthesis.cancel();
     parts.forEach((p,i)=>{
       const u=new SpeechSynthesisUtterance(p); u.lang=vozTipo; u.rate=.95; if(vv) u.voice=vv;
       if(i===parts.length-1) u.onend=()=>setSpeaking(false);
@@ -145,6 +153,26 @@ function App(){
       speechSynthesis.speak(u);
     });
     setSpeaking(true);
+  };
+  const speakOnline=(parts)=>{
+    let i=0; const tok={};
+    audioRef.current=tok;
+    const next=()=>{
+      if(audioRef.current!==tok) return;
+      if(i>=parts.length){ audioRef.current=null; setSpeaking(false); return; }
+      const a=new Audio("https://translate.google.com/translate_tts?ie=UTF-8&client=tw-ob&tl=es-MX&q="+encodeURIComponent(parts[i]));
+      audioRef.current=a; a.__tok=tok;
+      a.onended=()=>{ i++; audioRef.current=tok; next(); };
+      a.onerror=()=>{ if(i===0){ audioRef.current=null; try{ speakLocal(parts); }catch{ setSpeaking(false); } } else { audioRef.current=null; setSpeaking(false); } };
+      a.play().catch(()=>{ if(i===0){ audioRef.current=null; try{ speakLocal(parts); }catch{ setSpeaking(false); } } else { setSpeaking(false); } });
+    };
+    setSpeaking(true); next();
+  };
+  const speak=(t)=>{
+    if(speaking){stopSpeak();return;}
+    const parts=chunkText(t);
+    if(!parts.length) return;
+    if(pickVoice()) speakLocal(parts); else speakOnline(parts);
   };
   React.useEffect(()=>{ if(!detail) stopSpeak(); },[detail]);
   /* ===== NUEVO: transmitir a TV / proyector ===== */
