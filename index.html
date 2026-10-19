@@ -7,7 +7,7 @@
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 :root{--bg:#0b0b0d;--panel:#161619;--card:#1c1c20;--red:#c8102e;--gold:#d4af37;--text:#f2f0ea;--muted:#8a8a8f;--border:#2a2a2f;}
-*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;user-select:none}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden}
 header{position:sticky;top:0;z-index:100;padding:14px 16px;text-align:center;background:rgba(11,11,13,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--border)}
 header h1{font-family:'Bebas Neue';font-size:2.8rem;margin:0;letter-spacing:4px;cursor:pointer;user-select:none}header h1 span{color:var(--red)}
 #searchBox{margin-top:10px;width:min(520px,90%);padding:10px 18px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);outline:none}
@@ -66,19 +66,6 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;disp
 .page-arrow{width:36px;height:36px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:#fff;font-weight:900;cursor:pointer}
 .page-arrow:disabled{opacity:.3}
 </style>
-<script>
-// PROTECCION - deshabilitar click derecho y consola
-document.addEventListener('contextmenu', e => e.preventDefault());
-document.addEventListener('keydown', e => {
-  if(e.key === 'F12' ||
-     (e.ctrlKey && e.shiftKey && (e.key==='I' || e.key==='J' || e.key==='C')) ||
-     (e.ctrlKey && (e.key==='U' || e.key==='u' || e.key==='S' || e.key==='s'))) {
-    e.preventDefault();
-    return false;
-  }
-});
-document.addEventListener('dragstart', e => e.preventDefault());
-</script>
 </head>
 <body>
 <div id="root"></div>
@@ -135,7 +122,7 @@ function App(){
   const [showAd,setShowAd]=React.useState(false);
   const [adminSearch,setAdminSearch]=React.useState("");
   const clicks=React.useRef(0); const xClicks=React.useRef(0); const fileRef=React.useRef(null);
-  const detailPosterClicks=React.useRef(0);
+  const detailTimer=React.useRef(null);
   const [fTitle,setFTitle]=React.useState(""); const [fPoster,setFPoster]=React.useState(""); const [fDesc,setFDesc]=React.useState("");
   const [fEmbed,setFEmbed]=React.useState(""); const [fLang,setFLang]=React.useState(""); const [fLang2,setFLang2]=React.useState("");
   const [fSubs,setFSubs]=React.useState(""); const [fTrailer,setFTrailer]=React.useState("");
@@ -178,17 +165,6 @@ function App(){
   React.useEffect(()=>{
     const onR=()=>setPerPage(getPerPage());
     window.addEventListener('resize',onR); return ()=>window.removeEventListener('resize',onR);
-  },[]);
-
-  // Atajo teclado Ctrl+Alt+P para admin
-  React.useEffect(()=>{
-    const onKey=(ev)=>{
-      if(ev.ctrlKey && ev.altKey && (ev.key==='p' || ev.key==='P')){
-        setAdmin(v=>!v);
-      }
-    };
-    window.addEventListener('keydown', onKey);
-    return ()=>window.removeEventListener('keydown', onKey);
   },[]);
 
   const collectionsMap=React.useMemo(()=>{
@@ -267,6 +243,20 @@ function App(){
     setEditId(m.id); setFTitle(m.title); setFPoster(m.poster||""); setFDesc(m.desc||""); setFEmbed(m.embed||""); setFLang(m.lang||""); setFLang2(m.lang2||""); setFSubs(m.subs||""); setFTrailer(m.trailer||""); setFTags(m.tags||""); setFTipo(m.tipo||"pelicula"); setFSagaId(m.collectionId||""); setFSagaName(m.collection||""); setFSagaPoster(m.collectionPoster||""); setFOrder(m.order||"");
     setAdmin(true);
     setMsg("Editando: "+m.title+" (ID "+m.id+") - guarda para aplicar");
+    window.scrollTo(0,0);
+  };
+
+  const handleCardClick=(ev,m)=>{
+    if(ev.detail===3){
+      ev.preventDefault();
+      clearTimeout(detailTimer.current);
+      openEditFromCard(m);
+      return;
+    }
+    if(ev.detail===1){
+      clearTimeout(detailTimer.current);
+      detailTimer.current=setTimeout(()=>{ setDetail(m); }, 220);
+    }
   };
 
   const save=()=>{
@@ -316,7 +306,7 @@ function App(){
         e("button",{key:"hentai", className:"type-btn"+(typeFilter==="hentai"?" active":""), onClick:()=>{setTypeFilter("hentai"); setLetter(null); setPage(1); window.scrollTo(0,0);}}, "🔞 Hentai"),
         e("button",{key:"x", className:"type-btn"+(typeFilter==="x"?" active":""), onClick:()=>{
           xClicks.current++;
-          if(xClicks.current>=3){
+          if(xClicks.current>=2){
             xClicks.current=0;
             setTypeFilter("x"); setLetter(null); setPage(1); window.scrollTo(0,0);
           } else {
@@ -342,7 +332,7 @@ function App(){
           ]);
         } else {
           const p=it.data;
-          return e("div",{key:`mov-${p.id}-${idx}`, className:"card", onClick:()=>setDetail(p)},[
+          return e("div",{key:`mov-${p.id}-${idx}`, className:"card", onClick:(ev)=>handleCardClick(ev,p), title:"1 click: ver | 3 clicks rapidos: editar"},[
             e("div",{key:"w", className:"poster-wrap"},[
               p.poster?e("img",{key:"i", src:p.poster}):e("div",{},p.title),
               e("div",{key:"stack", className:"lang-stack"},[
@@ -378,22 +368,7 @@ function App(){
     detail? e("div",{key:"det", id:"detailView", className:"open", onClick:ev=>{if(ev.target.id==="detailView") setDetail(null)}},[
       e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
         e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"42px", height:"42px", borderRadius:"50%", fontSize:"1.8rem", background:"var(--panel)", border:"1px solid var(--border)", color:"#fff"}, onClick:()=>setDetail(null)}, "×"),
-        e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"12px", cursor:"pointer", border:"2px solid transparent"}, 
-          onClick:(ev)=>{
-            detailPosterClicks.current++;
-            clearTimeout(window.__detailPosterTimer);
-            if(detailPosterClicks.current>=3){
-              detailPosterClicks.current=0;
-              const m=detail;
-              setDetail(null);
-              openEditFromCard(m);
-            } else {
-              window.__detailPosterTimer=setTimeout(()=>{detailPosterClicks.current=0;}, 900);
-            }
-          },
-          title:"3 clicks rapidos para editar esta pelicula"
-        ),
-        e("div",{key:"hint", style:{textAlign:"center", fontSize:".7rem", color:"var(--muted)", marginTop:"6px"}}, "3 clicks en la portada grande para editar (admin)"),
+        e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"12px"}}),
         e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2.2rem", marginBottom:"4px", marginTop:"14px"}}, detail.title),
         e("div",{key:"meta", className:"detail-meta"},[
           detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, `🔊 ${detail.lang}`) : null,
@@ -405,7 +380,8 @@ function App(){
         e("p",{key:"d", style:{color:"var(--muted)", whiteSpace:"pre-line", lineHeight:"1.6"}}, detail.desc),
         e("div",{key:"a", style:{display:"flex", gap:"10px", marginTop:"18px", flexWrap:"wrap"}},[
           e("button",{key:"p", className:"btn btn-p", onClick:()=>{setDetail(null); setPlayer(detail);}}, "▶ Ver película"),
-          detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null
+          detail.trailer? e("button",{key:"t", className:"btn btn-s", onClick:()=>{let id=detail.trailer.split("v=")[1]?.split("&")[0]||detail.trailer.split("/").pop(); setTrailer("https://www.youtube.com/embed/"+id);}}, "Trailer") : null,
+          e("button",{key:"edit", className:"btn btn-s", style:{borderColor:"var(--gold)", color:"var(--gold)"}, onClick:()=>{const m=detail; setDetail(null); openEditFromCard(m);}}, "✏️ Editar (admin)")
         ])
       ])
     ]) : null,
@@ -413,7 +389,7 @@ function App(){
     trailer? e("div",{key:"tr", id:"trailerModal", className:"open", onClick:ev=>{if(ev.target.id==="trailerModal") setTrailer(null)}},[e("button",{key:"x", style:{position:"absolute", top:"15px", right:"15px", fontSize:"2rem", background:"none", border:"none", color:"#fff"}, onClick:()=>setTrailer(null)}, "×"), e("div",{key:"f", style:{width:"min(1100px,95vw)", aspectRatio:"16/9", background:"#000"}}, e("iframe",{src:trailer, allowFullScreen:true, style:{width:"100%", height:"100%", border:0}}))]) : null,
     admin? e("div",{key:"adp", id:"adminPanel", className:"open", onClick:ev=>{if(ev.target.id==="adminPanel") setAdmin(false)}},[e("div",{key:"box", className:"admin-box"},[
         e("h2",{key:"h", style:{fontFamily:"Bebas Neue", color:"var(--gold)", fontSize:"1.6rem"}}, "PANEL DE ADMINISTRACIÓN"),
-        e("p",{key:"sub", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"-8px"}}, "5 clicks al titulo MI CINE o Ctrl+Alt+P. En detalle: 3 clicks en portada grande = editar"),
+        e("p",{key:"sub", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"-8px"}}, "5 clicks al titulo | 3 clicks rapidos en miniatura = editar directo"),
         e("div",{key:"msg", style:{fontSize:".8rem", color:"var(--gold)", minHeight:"18px", marginTop:"10px"}}, msg),
         e("label",{key:"lt"}, "TÍTULO"), e("input",{key:"it", value:fTitle, onChange:ev=>setFTitle(ev.target.value), placeholder:"Nombre de la pelicula"}),
         e("label",{key:"lti"}, "TIPO"), e("select",{key:"itipo", value:fTipo, onChange:ev=>setFTipo(ev.target.value)},[
@@ -454,7 +430,7 @@ function App(){
         e("input",{key:"file", id:"importFile", ref:fileRef, type:"file", accept:"application/json", onChange:ev=>{const f=ev.target.files[0]; if(!f) return; const r=new FileReader(); r.onload=()=>{try{const j=JSON.parse(r.result); if(Array.isArray(j)){ setMovies(j); setMsg("Importado "+j.length);}}catch{setMsg("Error archivo");}}; r.readAsText(f);}}),
         e("div",{key:"searchAdmin", style:{marginTop:"20px"}},[
           e("input",{key:"sa", value:adminSearch, onChange:ev=>setAdminSearch(ev.target.value), placeholder:"🔍 Buscar en admin para editar... (titulo, id, coleccion)", style:{borderColor:"var(--gold)"}}),
-          e("div",{key:"cnt", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"6px"}}, `Mostrando ${filteredAdminMovies.length} de ${movies.length} | En detalle, 3 clicks en portada = editar`)
+          e("div",{key:"cnt", style:{fontSize:".75rem", color:"var(--muted)", marginTop:"6px"}}, `Mostrando ${filteredAdminMovies.length} de ${movies.length} | 3 clicks en portada = editar directo`)
         ]),
         e("div",{key:"list", style:{marginTop:"12px", maxHeight:"400px", overflow:"auto", border:"1px solid var(--border)", borderRadius:"8px", padding:"0 10px"}}, filteredAdminMovies.map((m,idx)=>{
           const realIdx = movies.findIndex(mm=>mm.id===m.id);
