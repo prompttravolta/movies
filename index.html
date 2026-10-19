@@ -72,6 +72,10 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;disp
 <script>
 const e = React.createElement;
 const KEY="miCine.movies";
+/* ===== VOZ LATINA (ResponsiveVoice) =====
+   Pega aquí tu clave gratuita entre las comillas. Ejemplo: const RV_KEY="AbCdEfGh";
+   Si la dejas vacía, la página usa el sistema anterior. */
+const RV_KEY="";
 function getColumns(){
   const w=window.innerWidth; 
   if(w>=1280) return 6;
@@ -122,16 +126,18 @@ function App(){
   const speakOk=typeof window!=="undefined";
   const [speaking,setSpeaking]=React.useState(false);
   const vozTipo="es-MX";
+  const esList=()=>{ try{ return (speechSynthesis.getVoices()||[]).filter(v=>v.lang.toLowerCase().startsWith("es")); }catch{ return []; } };
   const pickVoice=()=>{ try{
-    const all=speechSynthesis.getVoices()||[];
+    const all=esList();
     const norm=v=>v.lang.replace("_","-").toLowerCase();
     const orden=["es-mx","es-us","es-419","es-co","es-ar","es-cl","es-pe","es-ve","es-ec","es-gt","es-cu","es-bo","es-do","es-hn","es-ni","es-pa","es-pr","es-py","es-sv","es-uy","es-cr"];
     for(const c of orden){ const v=all.find(x=>norm(x)===c); if(v) return v; }
-    return null;
+    const porNombre=all.find(x=>/mexic|méxic|estados unidos|united states|latin|latam|colomb|argent|chile|peru|perú/i.test(x.name) && !/spain|españa|espa[nñ]a/i.test(x.name));
+    return porNombre||null;
   }catch{ return null; } };
   React.useEffect(()=>{ try{ speechSynthesis.getVoices(); speechSynthesis.onvoiceschanged=()=>speechSynthesis.getVoices(); }catch{} },[]);
   const audioRef=React.useRef(null);
-  const stopSpeak=()=>{try{speechSynthesis.cancel();}catch{} try{ if(audioRef.current){ const a=audioRef.current; audioRef.current=null; a.onended=null; a.onerror=null; a.pause(); } }catch{} setSpeaking(false);};
+  const stopSpeak=()=>{try{if(window.responsiveVoice) responsiveVoice.cancel();}catch{} try{speechSynthesis.cancel();}catch{} try{ if(audioRef.current){ const a=audioRef.current; audioRef.current=null; a.onended=null; a.onerror=null; a.pause(); } }catch{} setSpeaking(false);};
   const chunkText=(t)=>{
     const sents=((t||"").match(/[^.!?\n]+[.!?]*/g)||[]).map(s=>s.trim()).filter(Boolean);
     const out=[]; let cur="";
@@ -163,7 +169,7 @@ function App(){
   const speakOnline=(parts)=>{
     let i=0, src=-1; const tok={};
     audioRef.current=tok;
-    const fallback=()=>{ if(audioRef.current!==tok&&audioRef.current!==null&&audioRef.current.__tok!==tok) return; audioRef.current=null; setVozInfo("Voz del dispositivo (la voz en línea no respondió)"); try{ speakLocal(parts); }catch{ setSpeaking(false); } };
+    const fallback=()=>{ if(audioRef.current!==tok&&audioRef.current!==null&&audioRef.current.__tok!==tok) return; audioRef.current=null; { const l=esList().map(v=>v.lang).filter((x,i,arr)=>arr.indexOf(x)===i).join(", "); setVozInfo("Voz del dispositivo. Idiomas en español que trae tu aparato: "+(l||"ninguno")+". No hay voz latina.") } try{ speakLocal(parts); }catch{ setSpeaking(false); } };
     const play=(si)=>{
       if(audioRef.current!==tok&&!(audioRef.current&&audioRef.current.__tok===tok)) return;
       if(i>=parts.length){ audioRef.current=null; setSpeaking(false); return; }
@@ -185,9 +191,20 @@ function App(){
     if(speaking){stopSpeak();return;}
     const parts=chunkText(t);
     if(!parts.length) return;
-    if(pickVoice()){ setVozInfo("Voz del dispositivo (latina)"); speakLocal(parts); } else speakOnline(parts);
+    const go=()=>{
+      if(RV_KEY && window.responsiveVoice){
+        try{ responsiveVoice.cancel(); setVozInfo("Voz ResponsiveVoice (español latino)"); setSpeaking(true);
+          responsiveVoice.speak(t,"Spanish Latin American Female",{rate:.95,onend:()=>setSpeaking(false),onerror:()=>setSpeaking(false)}); return; }catch{ setSpeaking(false); }
+      }
+      const vv=pickVoice();
+      if(vv){ setVozInfo("Voz del dispositivo: "+vv.name+" ("+vv.lang+")"); speakLocal(parts); } else speakOnline(parts);
+    };
+    let total=0; try{ total=(speechSynthesis.getVoices()||[]).length; }catch{}
+    if(total===0){ setVozInfo("Cargando voces…"); let n=0; const iv=setInterval(()=>{ n++; let c=0; try{ c=(speechSynthesis.getVoices()||[]).length; }catch{} if(c>0||n>15){ clearInterval(iv); go(); } },100); }
+    else go();
   };
   React.useEffect(()=>{ if(!detail) stopSpeak(); },[detail]);
+  React.useEffect(()=>{ if(RV_KEY && !window.responsiveVoice && !document.getElementById("rvScript")){ const sc=document.createElement("script"); sc.id="rvScript"; sc.src="https://code.responsivevoice.org/responsivevoice.js?key="+encodeURIComponent(RV_KEY); document.head.appendChild(sc); } },[]);
   /* ===== NUEVO: transmitir a TV / proyector ===== */
   const getSrc=s=>{s=(s||"").trim();const m=s.match(/src=["']([^"']+)/i);return m?m[1]:s;};
   const cast=async(url)=>{
@@ -360,6 +377,7 @@ function App(){
       }) : e("div",{key:"empty", className:"empty-state"}, `No hay ${typeFilter==="todos"?"películas":typeFilter==="hentai"?"Hentai":typeFilter==="x"?"películas X":typeFilter} ${letter?`con letra ${letter}`:""} ${q?`para "${q}"`:""}`)),
    !selectedSaga && totalPages>1? ((()=>{const paginationRange=getPaginationRange(page,totalPages,10); return e("div",{key:"pag", className:"pagination"},[ e("button",{key:"pr", className:"page-arrow", disabled:page<=1, onClick:()=>{setPage(p=>Math.max(1,p-1)); window.scrollTo(0,0);}}, "‹ Anterior"), paginationRange[0]>1?e("button",{key:"first", className:"page-num", onClick:()=>{setPage(1); window.scrollTo(0,0);}}, "1"):null, paginationRange[0]>2?e("span",{key:"d1", style:{color:"var(--muted)"}}, "..."):null, ...paginationRange.map(n=>e("button",{key:"pn"+n, className:"page-num"+(n===page?" active":""), onClick:()=>{setPage(n); window.scrollTo(0,0);}}, String(n))), paginationRange[paginationRange.length-1]<totalPages-1?e("span",{key:"d2", style:{color:"var(--muted)"}}, "..."):null, paginationRange[paginationRange.length-1]<totalPages?e("button",{key:"last", className:"page-num", onClick:()=>{setPage(totalPages); window.scrollTo(0,0);}}, String(totalPages)):null, e("button",{key:"nx", className:"page-arrow", disabled:page>=totalPages, onClick:()=>{setPage(p=>Math.min(totalPages,p+1)); window.scrollTo(0,0);}}, "Siguiente ›") ]); })()) : null
     ]),
+    RV_KEY? e("footer",{key:"ft",style:{textAlign:"center",padding:"20px",fontSize:".65rem",color:"var(--gold)",opacity:.85}},["Voz por ",e("a",{href:"https://responsivevoice.org",target:"_blank",rel:"noopener noreferrer",style:{color:"var(--gold)"}},"ResponsiveVoice")]) : null,
     showAd ? e("div",{key:"ad", id:"adModal", className:"open", onClick:ev=>{if(ev.target.id==="adModal") closeAd();}},[
       e("div",{key:"box", className:"ad-box"},[
         e("h2",{key:"h"}, ["MI ", e("span",{style:{color:"var(--red)"}},"CINE")]),
