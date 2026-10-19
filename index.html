@@ -121,6 +121,8 @@ function App(){
   /* ===== NUEVO: leer sinopsis en voz alta ===== */
   const speakOk=typeof window!=="undefined"&&"speechSynthesis" in window;
   const [speaking,setSpeaking]=React.useState(false);
+  const vozTipo="es-MX";
+  const pickVoice=(lang)=>{ try{ const all=speechSynthesis.getVoices()||[]; const norm=v=>v.lang.replace("_","-").toLowerCase(); return all.find(v=>norm(v)===lang.toLowerCase()) || all.find(v=>norm(v).startsWith("es")) || null; }catch{ return null; } };
   const stopSpeak=()=>{try{speechSynthesis.cancel();}catch{} setSpeaking(false);};
   const speak=(t)=>{
     if(speaking){stopSpeak();return;}
@@ -128,7 +130,7 @@ function App(){
     if(!parts.length) return;
     speechSynthesis.cancel();
     parts.forEach((p,i)=>{
-      const u=new SpeechSynthesisUtterance(p); u.lang="es-MX"; u.rate=.95;
+      const u=new SpeechSynthesisUtterance(p); u.lang=vozTipo; u.rate=.95; const vv=pickVoice(vozTipo); if(vv) u.voice=vv;
       if(i===parts.length-1) u.onend=()=>setSpeaking(false);
       u.onerror=()=>setSpeaking(false);
       speechSynthesis.speak(u);
@@ -409,4 +411,3 @@ ReactDOM.createRoot(document.getElementById("root")).render(e(App));
 </script>
 </body>
 </html>
-s
