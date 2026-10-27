@@ -72,6 +72,9 @@ img.emoji{height:1em;width:1em;margin:0 .05em 0 .1em;vertical-align:-0.15em;disp
 <script>
 const e = React.createElement;
 const KEY="miCine.movies";
+/* ===== VOZ LATINA (ResponsiveVoice) =====
+   Pega aquí tu clave gratuita entre las comillas. Ejemplo: const RV_KEY="AbCdEfGh";
+   Si la dejas vacía, la página usa el sistema anterior. */
 const RV_KEY="";
 function getColumns(){
   const w=window.innerWidth; 
@@ -115,9 +118,11 @@ function App(){
   const [fSagaId,setFSagaId]=React.useState(""); const [fSagaName,setFSagaName]=React.useState("");
   const [fSagaPoster,setFSagaPoster]=React.useState(""); const [fOrder,setFOrder]=React.useState("");
   const [fTags,setFTags]=React.useState("");
+  /* ===== NUEVO: audios extra ===== */
   const [fx,setFx]=React.useState({});
   const setX=(k,v)=>setFx(p=>({...p,[k]:v}));
   const loadFx=m=>setFx({label:m.label||"",label2:m.label2||"",label3:m.label3||"",label4:m.label4||"",embed2:m.embed2||"",embed3:m.embed3||"",embed4:m.embed4||""});
+  /* ===== NUEVO: leer sinopsis en voz alta ===== */
   const speakOk=typeof window!=="undefined";
   const [speaking,setSpeaking]=React.useState(false);
   const vozTipo="es-MX";
@@ -200,42 +205,18 @@ function App(){
   };
   React.useEffect(()=>{ if(!detail) stopSpeak(); },[detail]);
   React.useEffect(()=>{ if(RV_KEY && !window.responsiveVoice && !document.getElementById("rvScript")){ const sc=document.createElement("script"); sc.id="rvScript"; sc.src="https://code.responsivevoice.org/responsivevoice.js?key="+encodeURIComponent(RV_KEY); document.head.appendChild(sc); } },[]);
-  // ===== NUEVO: CARGA MULTI-ARCHIVO PARA EVITAR LIMITE GITHUB 5MB =====
-  const ARCHIVOS_JSON = [
-    "data/movies-1-500.json",
-    "data/movies-501-1000.json",
-    "data/movies-1001-1500.json",
-    "data/movies-1501-2000.json",
-    "data/movies-2001-2500.json",
-    "data/movies-2501-3000.json",
-    // Agrega aqui el siguiente cuando llegues a 3000: "data/movies-3001-3500.json",
-    "movies.json"
-  ];
+  /* ================================= */
   const loadFromGithub=async()=>{
     try{
-      const resultados = await Promise.all(
-        ARCHIVOS_JSON.map(url => 
-          fetch(url + "?v=" + Date.now(), {cache:"no-store"})
-            .then(r => { if(!r.ok) return []; return r.json(); })
-            .catch(()=>[])
-        )
-      );
-      let d = resultados.flat().filter(Boolean);
-      const mapa = new Map();
-      d.forEach(m => { if(m && m.id && !mapa.has(String(m.id))) mapa.set(String(m.id), m); });
-      d = Array.from(mapa.values());
-      if(Array.isArray(d) && d.length>0){
-        const seen=new Set(); 
-        const fixed=d.map((m,i)=>{ if(seen.has(m.id)){ return {...m, id:m.id+"-"+i}; } seen.add(m.id); return m; });
+      const r=await fetch("movies.json?v="+Date.now(),{cache:"no-store"});
+      const d=await r.json();
+      if(Array.isArray(d)&&d.length>0){
+        const seen=new Set(); const fixed=d.map((m,i)=>{ if(seen.has(m.id)){ return {...m, id:m.id+"-"+i}; } seen.add(m.id); return m; });
         const norm = fixed.map(m=>{ if(!m.tipo){ if(m.collectionId) m.tipo = "coleccion"; else m.tipo = "pelicula"; } return m; });
-        setMovies(norm); 
-        localStorage.setItem(KEY,JSON.stringify(norm));
-        setMsg("Cargado multi-archivo ("+norm.length+" peliculas)");
-        console.log("Cargado desde", ARCHIVOS_JSON.filter((_,i)=>resultados[i].length>0).length, "archivos");
-        return;
+        setMovies(norm); localStorage.setItem(KEY,JSON.stringify(norm));
+        setMsg("Cargado desde Github ("+norm.length+")");
       }
-    }catch(err){ console.error("Error multi-archivo", err); }
-    try{const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s));}catch{}
+    }catch{ try{const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s));}catch{} }
   };
   React.useEffect(()=>{loadFromGithub();},[]);
   React.useEffect(()=>{if(movies.length) localStorage.setItem(KEY,JSON.stringify(movies));},[movies]);
@@ -477,27 +458,7 @@ function App(){
         ]),
         e("div",{key:"ac", style:{display:"flex", gap:"8px", marginTop:"16px", flexWrap:"wrap"}},[
           e("button",{key:"sv", className:"btn btn-p", onClick:save}, editId?"Guardar":"Agregar"),
-          e("button",{key:"dw", className:"btn btn-p", style:{background:"var(--gold)", color:"#000"}, onClick:()=>{
-            const CHUNK=500;
-            const sorted=[...movies].sort((a,b)=>{const na=parseInt(String(a.id).replace(/[^0-9]/g,''),10)||0; const nb=parseInt(String(b.id).replace(/[^0-9]/g,''),10)||0; return na-nb;});
-            for(let i=0;i<sorted.length;i+=CHUNK){
-              const slice=sorted.slice(i,i+CHUNK);
-              const start=i+1; const end=i+slice.length;
-              const b=new Blob([JSON.stringify(slice,null,2)],{type:"application/json"});
-              const u=URL.createObjectURL(b);
-              const a=document.createElement("a"); a.href=u; a.download=`movies-${start}-${end}.json`; a.click();
-              setTimeout(()=>URL.revokeObjectURL(u),1000);
-            }
-            const total=sorted.length;
-            const needed=Math.ceil(total/CHUNK);
-            const currentArchivos=ARCHIVOS_JSON.filter(x=>x.startsWith("data/")).length;
-            if(needed>currentArchivos){
-              setMsg(`¡Pasaste a ${total}! Se descargaron ${needed} archivos. Agrega a ARCHIVOS_JSON: "data/movies-${currentArchivos*CHUNK+1}-${total}.json"`);
-            } else {
-              setMsg(`Descargados ${needed} archivos divididos (${total} pelis). Súbelos a /data/`);
-            }
-          }}, "Descargar TODO dividido (nuevo)"),
-          e("button",{key:"dw1", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar 1 gigante (viejo)"),
+          e("button",{key:"dw", className:"btn btn-s", onClick:()=>{const b=new Blob([JSON.stringify(movies,null,2)],{type:"application/json"}); const u=URL.createObjectURL(b); const a=document.createElement("a"); a.href=u; a.download="movies.json"; a.click();}}, "Descargar JSON"),
           e("button",{key:"rg", className:"btn btn-s", onClick:()=>{if(confirm("Recargar desde Github?")) loadFromGithub();}}, "↺ Recargar"),
           e("button",{key:"imp", className:"btn btn-s", onClick:()=>fileRef.current.click()}, "Importar"),
           e("button",{key:"x", className:"btn btn-s", onClick:()=>setAdmin(false)}, "Cerrar")
