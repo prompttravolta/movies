@@ -202,104 +202,40 @@ function App(){
   React.useEffect(()=>{ if(RV_KEY && !window.responsiveVoice && !document.getElementById("rvScript")){ const sc=document.createElement("script"); sc.id="rvScript"; sc.src="https://code.responsivevoice.org/responsivevoice.js?key="+encodeURIComponent(RV_KEY); document.head.appendChild(sc); } },[]);
   // ===== NUEVO: CARGA MULTI-ARCHIVO PARA EVITAR LIMITE GITHUB 5MB =====
   
-  // ===== CARGA AUTO-DESCUBRIMIENTO - NO NECESITAS EDITAR NOMBRES NUNCA =====
-  const CHUNK_SIZE = 1000;
+  // ===== CARGA SIMPLE 3 ARCHIVOS - ESTA SI FUNCIONA =====
+  const ARCHIVOS_JSON = [
+    "data/movies-1-1000.json",
+    "data/movies-1001-2000.json",
+    "data/movies-2001-2205.json",
+    "data/movies-2001-2210.json",
+    "data/movies-2001-3000.json"
+  ];
   const loadFromGithub=async()=>{
-    let todo=[];
-    let start=1;
-    let intentosFallidosSeguidos=0;
-    console.log("Iniciando carga auto...");
-    // Intenta bloques de 1000 en 1000 hasta que fallen 2 seguidos
-    for(let bloque=0; bloque<20; bloque++){
-      let end = start + CHUNK_SIZE - 1;
-      // Lista de nombres posibles para este bloque - prueba todos
-      const candidatos = [
-        `data/movies-${start}-${end}.json`,
-        `data/movies-${start}-${end-100}.json`,
-        `data/movies-${start}-${end-200}.json`,
-        `data/movies-${start}-${end-500}.json`,
-        `data/movies-${start}-3000.json`,
-        `data/movies-${start}-2500.json`,
-        `data/movies-${start}-2210.json`,
-        `data/movies-${start}-2205.json`,
-        `data/movies-${start}-2204.json`,
-        `data/movies-${start}-2200.json`,
-        `data/movies-${start}-${start+210}.json`,
-        `data/movies-${start}-${start+205}.json`,
-        `data/movies-${start}-${start+204}.json`,
-        `data/movies-${start}-${start+100}.json`,
-        `data/movies-1-500.json`,
-        `data/movies-501-1000.json`,
-        `data/movies-1001-1500.json`,
-        `data/movies-1501-2000.json`,
-        `data/movies-2001-2500.json`,
-        `movies.json`
-      ];
-      // Solo para el primer bloque, quita candidatos que no empiezan con start (menos los legacy)
-      let lista = candidatos;
-      if(start>1){
-        lista = candidatos.filter(u=> u.includes(`movies-${start}-`) || u==="movies.json");
+    try{
+      const resultados = await Promise.all(
+        ARCHIVOS_JSON.map(url => 
+          fetch(url + "?v=" + Date.now(), {cache:"no-store"})
+            .then(r => r.ok ? r.json() : [])
+            .catch(()=>[])
+        )
+      );
+      let d = resultados.flat().filter(m=>m && m.id);
+      console.log("Cargados:", resultados.map(r=>r.length), "total:", d.length);
+      if(d.length>0){
+        const mapa=new Map();
+        d.forEach(m=>{ if(!mapa.has(String(m.id))) mapa.set(String(m.id), m); });
+        d=Array.from(mapa.values());
+        d.sort((a,b)=>{ const na=parseInt(String(a.id).replace(/[^0-9]/g,''),10)||0; const nb=parseInt(String(b.id).replace(/[^0-9]/g,''),10)||0; return na-nb; });
+        const seen=new Set();
+        const fixed=d.map((m,i)=>{ if(seen.has(m.id)) return {...m, id:m.id+"-"+i}; seen.add(m.id); return m; });
+        const norm=fixed.map(m=>{ if(!m.tipo){ if(m.collectionId) m.tipo="coleccion"; else m.tipo="pelicula"; } return m; });
+        setMovies(norm);
+        localStorage.setItem(KEY, JSON.stringify(norm));
+        setMsg("Cargado ("+norm.length+" pelis)");
+        return;
       }
-      
-      let encontrado=false;
-      for(const url of lista){
-        try{
-          const r = await fetch(url + "?v=" + Date.now(), {cache:"no-store"});
-          if(!r.ok) continue;
-          const data = await r.json();
-          if(Array.isArray(data) && data.length>0){
-            console.log("OK cargado", url, data.length);
-            todo = todo.concat(data);
-            encontrado=true;
-            break; // ya encontramos este bloque, pasa al siguiente
-          }
-        }catch(e){}
-      }
-      if(encontrado){
-        intentosFallidosSeguidos=0;
-        start += CHUNK_SIZE;
-      }else{
-        intentosFallidosSeguidos++;
-        // Si fallan 2 bloques seguidos, ya no hay mas
-        if(intentosFallidosSeguidos>=2 && start>2000) break;
-        // Si estamos en bloques viejos de 500, intenta avanzar de 500 en 500 tambien
-        if(start===1 && bloque===0){
-          // intenta tambien esquema 500
-          start = 1;
-          // ya se probo, si no encontro nada, prueba 501
-          if(!encontrado) { start = 501; continue; }
-        } else {
-          start += CHUNK_SIZE;
-        }
-        if(start>10000) break;
-      }
-    }
-    
-    // Fallback: si no encontro nada, intenta carga directa de todos los nombres conocidos en paralelo (por si acaso)
-    if(todo.length===0){
-      console.log("Auto no encontro nada, intentando paralelo forzado");
-      const todosPosibles = [
-        "data/movies-1-1000.json","data/movies-1001-2000.json","data/movies-2001-3000.json",
-        "data/movies-1-500.json","data/movies-501-1000.json","data/movies-1001-1500.json","data/movies-1501-2000.json",
-        "data/movies-2001-2210.json","data/movies-2001-2205.json","data/movies-2001-2204.json",
-        "data/movies-2001-2500.json","movies.json"
-      ];
-      const resultados = await Promise.all(todosPosibles.map(u=>fetch(u+"?v="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():[]).catch(()=>[])));
-      todo = resultados.flat().filter(m=>m && m.id);
-    }
-
-    console.log("Total bruto:", todo.length);
-    if(todo.length>0){
-      const mapa=new Map();
-      todo.forEach(m=>{ if(!mapa.has(String(m.id))) mapa.set(String(m.id), m); });
-      let d=Array.from(mapa.values());
-      d.sort((a,b)=>{ const na=parseInt(String(a.id).replace(/[^0-9]/g,''),10)||0; const nb=parseInt(String(b.id).replace(/[^0-9]/g,''),10)||0; return na-nb; });
-      setMovies(d);
-      localStorage.setItem(KEY, JSON.stringify(d));
-      setMsg("Cargado auto ("+d.length+" pelis)");
-      return;
-    }
-    try{ const s=localStorage.getItem(KEY); if(s){ setMovies(JSON.parse(s)); setMsg("Cache local ("+JSON.parse(s).length+")"); } }catch{}
+    }catch(e){ console.error(e); }
+    try{ const s=localStorage.getItem(KEY); if(s) setMovies(JSON.parse(s)); }catch{}
   };
 
     React.useEffect(()=>{loadFromGithub();},[]);
