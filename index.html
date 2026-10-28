@@ -202,13 +202,25 @@ function App(){
   React.useEffect(()=>{ if(RV_KEY && !window.responsiveVoice && !document.getElementById("rvScript")){ const sc=document.createElement("script"); sc.id="rvScript"; sc.src="https://code.responsivevoice.org/responsivevoice.js?key="+encodeURIComponent(RV_KEY); document.head.appendChild(sc); } },[]);
   // ===== NUEVO: CARGA MULTI-ARCHIVO PARA EVITAR LIMITE GITHUB 5MB =====
   
-  // ===== CARGA SIMPLE 3 ARCHIVOS - ESTA SI FUNCIONA =====
+  // ===== CARGA FINAL - ARCHIVOS EN RAIZ (TU ESTRUCTURA REAL) =====
   const ARCHIVOS_JSON = [
-    "data/movies-1-1000.json",
-    "data/movies-1001-2000.json",
-    "data/movies-2001-2205.json",
-    "data/movies-2001-2210.json",
-    "data/movies-2001-3000.json"
+    "movies-1-1000.json",
+    "movies-1001-2000.json",
+    "movies-2001-3000.json",
+    "movies-3001-4000.json",
+    "movies-4001-5000.json",
+    "movies-5001-6000.json",
+    "movies-6001-7000.json",
+    "movies-7001-8000.json",
+    "movies-8001-9000.json",
+    "movies-9001-10000.json",
+    "movies-1-500.json",
+    "movies-501-1000.json",
+    "movies-1001-1500.json",
+    "movies-1501-2000.json",
+    "movies-2001-2205.json",
+    "movies-2001-2210.json",
+    "movies.json"
   ];
   const loadFromGithub=async()=>{
     try{
@@ -220,7 +232,8 @@ function App(){
         )
       );
       let d = resultados.flat().filter(m=>m && m.id);
-      console.log("Cargados:", resultados.map(r=>r.length), "total:", d.length);
+      console.log("Resultados:", ARCHIVOS_JSON.map((u,i)=>u+"="+resultados[i].length).join(", "));
+      console.log("Total:", d.length);
       if(d.length>0){
         const mapa=new Map();
         d.forEach(m=>{ if(!mapa.has(String(m.id))) mapa.set(String(m.id), m); });
