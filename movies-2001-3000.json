@@ -2726,19 +2726,6 @@
     "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNmRkZmIxMmYtMjY5Ny00MzA3LWI1MmYtZDg3MjBhZDFlZTY5XkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
     "tags": "chavo, perdido, cancun, 1983"
   },
-   {
-    "id": "2210",
-    "title": "El Chavo en Las Playas de Cancun (1983)",
-    "poster": "https://m.media-amazon.com/images/M/MV5BNmRkZmIxMmYtMjY5Ny00MzA3LWI1MmYtZDg3MjBhZDFlZTY5XkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
-    "desc": "Episodio considerado mito por decadas, grabado alrededor de 1983. No es el famoso de Acapulco. El Profesor Jirafales lleva a su clase en excursion escolar a la playa de Cancun. Cast principal: Roberto Gomez Bolaños como El Chavo, Ruben Aguirre como Profesor Jirafales, Maria Antonieta de las Nieves como La Chilindrina, Florinda Meza como La Popis, Edgar Vivar como Ñoño, Horacio Gomez Bolaños como Godinez.",
-    "embed": "",
-    "lang": "Español 🇲🇽",
-    "tipo": "pelicula",
-    "collectionId": "el-chavo",
-    "collection": "El Chavo del 8",
-    "collectionPoster": "https://m.media-amazon.com/images/M/MV5BNmRkZmIxMmYtMjY5Ny00MzA3LWI1MmYtZDg3MjBhZDFlZTY5XkEyXkFqcGc@._V1_FMjpg_UY480_.jpg",
-    "tags": "chavo, perdido, cancun, 1983"
-  },
   {
     "id": "2211",
     "title": "The Terminator (1984)",
@@ -2750,7 +2737,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, james cameron, arnold schwarzenegger, culto, 80s"
   },
@@ -2765,7 +2752,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, james cameron, arnold schwarzenegger, t-1000, 90s, clasico"
   },
@@ -2780,7 +2767,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, arnold schwarzenegger, t-x, skynet"
   },
@@ -2795,7 +2782,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, post apocaliptico, christian bale, john connor, directors cut"
   },
@@ -2810,7 +2797,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, viaje en el tiempo, arnold schwarzenegger, emilia clarke"
   },
@@ -2825,7 +2812,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collection": "terminatorsaga"
+    "collection": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, linda hamilton, arnold schwarzenegger, rev-9, secuela directa"
   } 
