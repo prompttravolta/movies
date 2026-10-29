@@ -2737,7 +2737,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, james cameron, arnold schwarzenegger, culto, 80s"
   },
@@ -2752,7 +2752,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, james cameron, arnold schwarzenegger, t-1000, 90s, clasico"
   },
@@ -2767,7 +2767,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, arnold schwarzenegger, t-x, skynet"
   },
@@ -2782,7 +2782,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, post apocaliptico, christian bale, john connor, directors cut"
   },
@@ -2797,7 +2797,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, viaje en el tiempo, arnold schwarzenegger, emilia clarke"
   },
@@ -2812,7 +2812,7 @@
     "lang2": "Español 🇲🇽",
     "subs": "Español",
     "tipo": "coleccion",
-    "collectionid": "terminatorsaga",
+    "collectionIfd": "terminatorsaga",
     "collection": "Terminator Saga",
     "tags": "terminator saga, accion, ciencia ficcion, linda hamilton, arnold schwarzenegger, rev-9, secuela directa"
   },
