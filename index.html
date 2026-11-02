@@ -417,7 +417,7 @@ function App(){
       e("div",{key:"b", style:{maxWidth:"700px", margin:"0 auto", padding:"30px 20px"}},[
         e("button",{key:"x", style:{position:"fixed", top:"15px", right:"15px", width:"42px", height:"42px", borderRadius:"50%", fontSize:"1.8rem", background:"var(--panel)", border:"1px solid var(--border)", color:"#fff"}, onClick:()=>setDetail(null)}, "×"),
         e("img",{key:"i", src:detail.poster, style:{width:"100%", maxWidth:"400px", display:"block", margin:"0 auto", borderRadius:"12px", cursor:"pointer"}, onClick:()=>{detailPosterClicks.current++; clearTimeout(window.__detailTimer); if(detailPosterClicks.current>=3){detailPosterClicks.current=0; const m=detail; setDetail(null); openEditFromCard(m);} else {window.__detailTimer=setTimeout(()=>{detailPosterClicks.current=0;},900);}}, title:"3 clicks rapidos para editar"}),
-        e("div",{key:"hint", style:{textAlign:"center", fontSize:".7rem", color:"var(--muted)", marginTop:"6px"}}, "Tip: 3 clicks en esta portada para editar"),
+        e("div",{key:"hint", style:{textAlign:"center", fontSize:".7rem", color:"var(--muted)", marginTop:"6px"}}, "Gracias por tú visita."),
         e("h2",{key:"h", style:{fontFamily:"Bebas Neue", fontSize:"2.2rem", marginBottom:"4px", marginTop:"14px"}}, detail.title),
         e("div",{key:"meta", className:"detail-meta"},[
           detail.lang? e("span",{key:"l1", className:"meta-chip gold"}, `🔊 ${detail.lang}`) : null,
