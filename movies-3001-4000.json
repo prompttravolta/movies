@@ -488,7 +488,7 @@
   {
     "id": "3038",
     "title": "Tarzan",
-    "poster": "https://image.tmdb.org/t/p/w500/kiooaH0Qaxn6gUY3zfSddKAdLiw.jpg",
+    "poster": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAsuX7N8zXFncXFl7X0w5p9Pwo9wcVcxxiia3nWyNPq94KAnGsQoi1s2o&s=10",
     "desc": "Tarzan, versión 3D motion capture, es un huérfano criado por gorilas que debe salvar la selva de una corporación energética.",
     "embed": "https://bysekoze.com/e/4uvz2264psnq",
     "lang": "Español 🇲🇽",
@@ -496,12 +496,13 @@
     "tipo": "pelicula",
     "collectionId": "",
     "collection": "",
-    "tags": "infantil, animada, disney, tarzan, selva, 3d, corporacion, gorilas"
+    "tags": "infantil, animada, disney, tarzan, selva, 3d, corporacion, gorilas",
+    "nota": "2013"
   },
   {
     "id": "3039",
     "title": "Tarzan 1",
-    "poster": "https://image.tmdb.org/t/p/w500/jdGxQijI06Kq4BCiYkhMlE6nhNz.jpg",
+    "poster": "https://m.media-amazon.com/images/M/MV5BZjM5OWM5NzktMTIzYy00OTk1LWIyYzAtYzBhNWY3NWQ2Y2Y0XkEyXkFqcGc@._V1_FMjpg_UX1000_.jpg",
     "desc": "Tarzan, huérfano criado por gorilas, descubre que es humano cuando llega Jane Porter y debe elegir entre dos mundos.",
     "embed": "https://bysekoze.com/e/ayvzn9n1ln1j",
     "lang": "Español 🇲🇽",
@@ -514,7 +515,7 @@
   {
     "id": "3040",
     "title": "Tarzan 2",
-    "poster": "https://image.tmdb.org/t/p/w500/qWHw655nXNFwWPIQqFiQHN1fHxq.jpg",
+    "poster": "https://m.media-amazon.com/images/M/MV5BYmM0MzQzY2ItM2UxOC00ZmMwLWIwNTYtNDc5MGEzYmNjYWU4XkEyXkFqcGc@._V1_.jpg",
     "desc": "Tarzan de niño cree que es un monstruo por ser diferente y busca una criatura legendaria llamada Zugor para probar su valía.",
     "embed": "https://bysekoze.com/e/k7w563gjx3gl",
     "lang": "Español 🇲🇽",
@@ -522,12 +523,13 @@
     "tipo": "pelicula",
     "collectionId": "",
     "collection": "",
-    "tags": "infantil, animada, disney, tarzan, niño, zugor, identidad, selva"
+    "tags": "infantil, animada, disney, tarzan, niño, zugor, identidad, selva",
+    "nota": "2005"
   },
   {
     "id": "3041",
     "title": "The Book Of Life",
-    "poster": "https://image.tmdb.org/t/p/w500/xDw2kqSDsYneL3g9OIpExPfqpHJ.jpg",
+    "poster": "https://m.media-amazon.com/images/M/MV5BNTM5MzE5MDA1Nl5BMl5BanBnXkFtZTgwOTA0MDA5MTE@._V1_.jpg",
     "desc": "Manolo debe elegir entre cumplir las expectativas de su familia o seguir su corazón en una aventura por tres mundos en Día de Muertos.",
     "embed": "https://bysekoze.com/e/57rsmosywu0l",
     "lang": "Español 🇲🇽",
@@ -535,12 +537,13 @@
     "tipo": "pelicula",
     "collectionId": "",
     "collection": "",
-    "tags": "infantil, animada, disney, libro de la vida, dia de muertos, manolo, maria, toros"
+    "tags": "infantil, animada, disney, libro de la vida, dia de muertos, manolo, maria, toros",
+    "nota": "2014"
   },
   {
     "id": "3042",
     "title": "The Boxtrolls",
-    "poster": "https://image.tmdb.org/t/p/w500/uFGLkizYHzAE5cEtWtyL6FBcBdJ.jpg",
+    "poster": "https://m.media-amazon.com/images/M/MV5BMTQxODA5MDkyNV5BMl5BanBnXkFtZTgwMDMyNjkzMjE@._V1_FMjpg_UX1000_.jpg",
     "desc": "Eggs, un niño criado por Boxtrolls, criaturas que viven bajo Cheesebridge, debe salvarlos del exterminador Archibald Snatcher.",
     "embed": "https://bysekoze.com/e/u7yiud885lrl",
     "lang": "Español 🇲🇽",
@@ -548,12 +551,13 @@
     "tipo": "pelicula",
     "collectionId": "",
     "collection": "",
-    "tags": "infantil, animada, disney, laika, boxtrolls, queso, snatcher, niño"
+    "tags": "infantil, animada, disney, laika, boxtrolls, queso, snatcher, niño",
+    "nota": "2014"
   },
   {
     "id": "3043",
     "title": "The Good Dinosaur",
-    "poster": "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/uFGLkizYHzAE5cEtWtyL6FBcBdJ.jpg",
     "desc": "Arlo, un Apatosaurus joven, pierde a su padre y hace un viaje épico con Spot, un niño salvaje, para volver a casa.",
     "embed": "https://bysekoze.com/e/sfh3vjbo5wvx",
     "lang": "Español 🇲🇽",
@@ -566,7 +570,7 @@
   {
     "id": "3044",
     "title": "The Incredibles",
-    "poster": "https://image.tmdb.org/t/p/w500/lbctonEnewCYZ4FYoTZhs8cidAl.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/2LqaLgk4Z226KkgPJuiOQ58wvrm.jpg",
     "desc": "Los Increíbles, una familia de superhéroes retirados, deben volver a la acción cuando Síndrome amenaza al mundo.",
     "embed": "https://bysekoze.com/e/ojo6c7s6l0lk",
     "lang": "Español 🇲🇽",
@@ -579,7 +583,7 @@
   {
     "id": "3045",
     "title": "The Lego Movie",
-    "poster": "https://image.tmdb.org/t/p/w500/4iHnGlmOjAj2k5zUftYDIzSITCf.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/lbctonEnewCYZ4FYoTZhs8cidAl.jpg",
     "desc": "Emmet, un albañil común, es confundido con el Maestro Constructor y debe detener al malvado Lord Business con sus amigos Lego.",
     "embed": "https://bysekoze.com/e/bs8efn6rayhi",
     "lang": "Español 🇲🇽",
@@ -592,7 +596,7 @@
   {
     "id": "3046",
     "title": "The Nub Job",
-    "poster": "https://image.tmdb.org/t/p/w500/zKCPluxSnGQB7ofILPixzBnS62e.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/4iHnGlmOjAj2k5zUftYDIzSITCf.jpg",
     "desc": "Surly, una ardilla egoísta, planea robar una tienda de nueces para sobrevivir al invierno pero debe aprender a compartir.",
     "embed": "https://bysekoze.com/e/48oxoirhyrtm",
     "lang": "Español 🇲🇽",
@@ -605,7 +609,7 @@
   {
     "id": "3047",
     "title": "The Peanuts Movie",
-    "poster": "https://image.tmdb.org/t/p/w500/9lR1i4u6W3z4kG8x2Q9pL5v8a7b6c.jpg",
+    "poster": "https://image.tmdb.org/t/p/w500/zKCPluxSnGQB7ofILPixzBnS62e.jpg",
     "desc": "Snoopy y Charlie Brown viven su mayor aventura cuando Snoopy busca a su amor y Charlie intenta ganar el corazón de la niña pelirroja.",
     "embed": "https://bysekoze.com/e/ip4svklwntef",
     "lang": "Español 🇲🇽",
